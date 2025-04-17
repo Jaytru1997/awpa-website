@@ -5,7 +5,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "pm2 start app.js --name awpa-website --watch --ignore-watch=\"node_modules, logs\"",
+    "kill": "pm2 delete awpa-website",
+    "restart": "pm2 stop awpa-website && pm2 start awpa-website --watch --ignore-watch=\"node_modules, logs\"",
     "dev": "nodemon server.js",
     "test": "jest --coverage"
   },

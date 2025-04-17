@@ -13,19 +13,22 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google-cloud/dialogflow": "^6.14.0",
     "@google-cloud/translate": "^8.5.1",
     "axios": "^1.8.1",
     "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "express-mongo-sanitize": "^2.2.0",
     "express-validator": "^7.2.1",
     "flutterwave-node-v3": "^1.1.15",
     "geoip-lite": "^1.4.10",
     "google-auth-library": "^9.15.1",
     "googleapis": "^146.0.0",
     "helmet": "^8.0.0",
+    "hpp": "^0.2.3",
     "https-proxy-agent": "^7.0.6",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.12.1",
@@ -37,7 +40,8 @@
     "swagger-ui-express": "^5.0.1",
     "twilio": "^5.4.5",
     "winston": "^3.17.0",
-    "winston-daily-rotate-file": "^5.0.0"
+    "winston-daily-rotate-file": "^5.0.0",
+    "xss-clean": "^0.1.4"
   },
   "devDependencies": {
     "jest": "^29.7.0",

@@ -1,11 +1,5 @@
-const dns = require("dns");
-const fs = require("fs");
 const tls = require("tls");
-const path = require("path");
-const geoip = require("geoip-lite");
 const { createTransport } = require("nodemailer");
-const { HttpsProxyAgent } = require("https-proxy-agent");
-const { SocksProxyAgent } = require("socks-proxy-agent");
 const { template } = require("./email.template");
 require("dotenv").config();
 const logger = require("./logger");
@@ -14,9 +8,6 @@ const logger = require("./logger");
 const secureContext = tls.createSecureContext({
   ciphers: "DEFAULT:@SECLEVEL=1", // Set custom cipher suites
 });
-
-// Proxies
-const proxyFilePath = path.join(__dirname, "active_proxies.txt");
 
 // Define mailer headers
 function priorityHeaders(level) {
@@ -57,81 +48,6 @@ function priorityHeaders(level) {
       return mailOptions;
   }
 }
-/**
- * Parse the proxy list from a file.
- */
-function loadProxies(proxyFilePath) {
-  console.log("loading proxies");
-  const proxies = fs
-    .readFileSync(proxyFilePath, "utf-8")
-    .split("\n")
-    .filter((line) => line.trim() !== "");
-  return proxies.map((proxy) => {
-    const [protocol, address] = proxy.split("://");
-    return { protocol, address };
-  });
-}
-
-/**
- * Find the nearest proxy based on recipient's location.
- */
-function findNearestProxy(proxies, recipientLocation) {
-  console.log("finding nearest proxy");
-  let nearestProxy = null;
-  let shortestDistance = Infinity;
-
-  proxies.forEach((proxy) => {
-    const proxyIP = proxy.address.split(":")[0];
-    const proxyLocation = geoip.lookup(proxyIP);
-
-    if (proxyLocation && recipientLocation) {
-      const distance = calculateDistance(
-        recipientLocation.ll[0],
-        recipientLocation.ll[1],
-        proxyLocation.ll[0],
-        proxyLocation.ll[1]
-      );
-
-      if (distance < shortestDistance) {
-        shortestDistance = distance;
-        nearestProxy = proxy;
-      }
-    }
-  });
-
-  return nearestProxy;
-}
-
-/**
- * Return a randomly selected proxy
- */
-function getRandomProxy(proxies) {
-  if (!proxies || proxies.length === 0) {
-    return null;
-  }
-  const randomIndex = Math.floor(Math.random() * proxies.length);
-  return proxies[randomIndex];
-}
-
-/**
- * Calculate distance between two geographical points using the Haversine formula.
- */
-function calculateDistance(lat1, lon1, lat2, lon2) {
-  console.log("calculating distance");
-  const R = 6371; // Earth's radius in kilometers
-  const dLat = (lat2 - lat1) * (Math.PI / 180);
-  const dLon = (lon2 - lon1) * (Math.PI / 180);
-
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(lat1 * (Math.PI / 180)) *
-      Math.cos(lat2 * (Math.PI / 180)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
-
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c;
-}
 
 //@desc     Send email using the nearest proxy
 //@param    options: {email, subject, attachments, message || message_1, message_2, message_3, header}
@@ -152,24 +68,6 @@ exports.sendEmail = async (options) => {
       },
     });
   } else {
-    const proxies = loadProxies(proxyFilePath);
-    let agent = null;
-
-    // Find the nearest proxy
-    const randomProxy = getRandomProxy(proxies);
-    if (!randomProxy) {
-      console.error("No suitable proxy found.");
-      return;
-    }
-
-    agent =
-      randomProxy.protocol === "socks4"
-        ? new SocksProxyAgent(
-            `${randomProxy.protocol}://${randomProxy.address}`
-          )
-        : new HttpsProxyAgent(
-            `${randomProxy.protocol}://${randomProxy.address}`
-          );
     transporter = createTransport({
       host: process.env.MAIL_HOST,
       port: process.env.MAIL_PORT,
@@ -185,7 +83,6 @@ exports.sendEmail = async (options) => {
               rejectUnauthorized: false, // Optional: Skip certificate verification
             }
           : undefined,
-      proxy: agent,
     });
   }
 

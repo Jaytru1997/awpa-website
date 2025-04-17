@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 const Blacklist = require("../models/Blacklist");
 const { asyncWrapper } = require("../utils/async");
+const logger = require("../services/logger");
 
 const authMiddleware = asyncWrapper(async (req, res, next) => {
   //get token from header

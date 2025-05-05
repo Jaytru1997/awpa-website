@@ -9,6 +9,7 @@ const hpp = require("hpp");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const mongoSanitize = require("express-mongo-sanitize");
+const staticRoutes = require("./routes/staticRoutes");
 const authRoutes = require("./routes/authRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
@@ -36,7 +37,7 @@ app.use(helmet());
 app.use(express.json());
 
 //Serve Static Files
-app.use("/public", express.static("public"));
+app.use(express.static("public"));
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
@@ -123,6 +124,7 @@ app.use(xss());
 app.use(hpp()); //use white list to pass in duplicate query parameters
 
 // Routes
+app.use("/", staticRoutes);
 app.use("/auth", authRoutes);
 app.use("/bookings", bookingRoutes);
 app.use("/payments", paymentRoutes);

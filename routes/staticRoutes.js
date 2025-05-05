@@ -1,10 +1,15 @@
 const express = require("express");
+require("dotenv").config();
+const { config } = require("../config/config");
 
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.status(200).json({
-    message: "Welcome to the Angel Wings Power Assembly",
+  res.status(200).render("index", {
+    app_name: process.env.APP_NAME,
+    title: "Home",
+    description: config.page_desc,
+    keywords: "home, welcome, church, Angel Wings Power Assembly",
   });
 });
 

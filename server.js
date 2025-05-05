@@ -27,8 +27,19 @@ connectDB();
 // Initialize app
 const app = express();
 
+// 1) GLOBAL MIDDLEWARES
+// Set security HTTP headers
+app.set("trust proxy", "127.0.0.1");
+app.use(helmet());
+
+// Middleware
+app.use(express.json());
+
 //Serve Static Files
 app.use("/public", express.static("public"));
+
+// set the view engine to ejs
+app.set("view engine", "ejs");
 
 // Logging Requests
 app.use((req, res, next) => {
@@ -37,16 +48,70 @@ app.use((req, res, next) => {
   next();
 });
 
-// Middleware
-app.use(express.json());
-app.use(cors());
-app.use(helmet());
-app.use(morgan("dev"));
+// Development logging
+const morganFormat =
+  ":method :url :status :res[content-length] - :response-time ms"; // Customize format
+app.use(morgan(morganFormat));
 
-app.use(express.json());
+const expires = 1000 * 60 * 60 * 24;
+app.use(
+  sessions({
+    secret: "YHadz6yXTBqanjD$4rBm6q?zgmq5CaQ4MbAsN8qR",
+    saveUninitialized: true,
+    cookie: { maxAge: expires },
+    resave: false,
+  })
+);
+
+app.use(cors());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.disable("view cache");
 
+app.use(function (req, res, next) {
+  const allowedOrigins = [
+    "http://localhost:10000",
+    "https://angelwingspowerassembly.org",
+  ];
+
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    // Website you wish to allow to connect
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  // Request methods you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+
+  // Request headers you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type, Accept, Authorization"
+  );
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader("Access-Control-Allow-Credentials", true);
+
+  // res.setHeader("Content-Security-Policy", "script-src 'self' 'unsafe-inline'");
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;"
+  );
+
+  res.set(
+    "Cache-control",
+    "no-store, no-cache, must-revalidate, proxy-revalidate"
+  );
+  res.set("Pragma", "no-cache");
+  // res.set("Expires", "0");
+  // res.set("Surrogate-Control", "no-store");
+  next();
+});
 
 //Data Sanitization against NoSQL query injection
 app.use(mongoSanitize());
@@ -57,29 +122,6 @@ app.use(xss());
 //Prevents parameter pollution
 app.use(hpp()); //use white list to pass in duplicate query parameters
 
-
-app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type, Authorization"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", false);
-
-  res.set(
-    "Cache-control",
-    "no-store, no-cache, must-revalidate, proxy-revalidate"
-  );
-  res.set("Pragma", "no-cache");
-  res.set("Expires", "0");
-  res.set("Surrogate-Control", "no-store");
-  next();
-});
-
 // Routes
 app.use("/auth", authRoutes);
 app.use("/bookings", bookingRoutes);
@@ -89,6 +131,21 @@ app.use("/blog", blogRoutes);
 
 // Swagger Docs
 app.use("/awpa-api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+//ERROR LOGGING MIDDLEWARES
+if (process) {
+  process.on("uncaughtException", (error) => {
+    logger.error("Uncaught Exception:", error);
+    // Optionally, perform some cleanup before exiting the application
+    process.exit(1);
+  });
+
+  process.on("unhandledRejection", (reason, promise) => {
+    logger.error("Unhandled Rejection:", reason);
+    process.exit(1);
+    // Optionally, handle the rejection gracefully or perform some cleanup
+  });
+}
 
 // Start server
 const PORT = process.env.PORT || 10000;

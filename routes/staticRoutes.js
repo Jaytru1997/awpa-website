@@ -7,6 +7,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
   res.status(200).render("index", {
     app_name: process.env.APP_NAME,
+    url: process.env.URL,
     title: "Home",
     description: config.page_desc,
     keywords: "home, welcome, church, Angel Wings Power Assembly",

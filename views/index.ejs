@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="">
 
 <head>
     <meta charset="UTF-8">
@@ -23,11 +23,49 @@
 </head>
 
 <body class="font-roboto bg-light dark:bg-dark text-dark dark:text-white">
+
+    <!-- Navigation Bar -->
     <nav class="bg-dark-blue-900">
-        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div class="relative flex h-16 items-center justify-between">
+        <div class="mx-auto max-w-7xl px-2">
+            <div class="relative flex h-20 items-center justify-between">
+                <!-- Logo -->
+                <div class="flex shrink-0 items-center">
+                    <img class="h-8 sm:h-14 w-auto " src="/asset/logo/logo.png" alt="<%= app_name %>">
+                </div>
+
+                <!-- Menu -->
+                <div class="flex items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="hidden sm:ml-6 sm:block">
+                        <div class="flex space-x-4 uppercase">
+                            <a href="/"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Home</a>
+                            <a href="/who-we-are"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Who
+                                we are</a>
+                            <a href="/programs-and-events"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Programs
+                                & Events</a>
+                            <a href="/visit-us"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Visit
+                                Us</a>
+                            <a href="/media"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Media</a>
+                            <a href="/resources"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Resources</a>
+                            <a href="/giving"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Giving</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Service Button -->
+                <a href="https://live.<%= url %>"
+                    class="hidden sm:inline-flex items-center justify-center rounded-md border border-transparent bg-light-blue-600 px-4 py-2 text-base font-medium text-dark shadow-sm hover:bg-dark-blue-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 uppercase">
+                    Live Service
+                </a>
+
                 <!-- Mobile menu button -->
-                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                <div class="absolute inset-y-0 right-0 flex items-center sm:hidden">
                     <button type="button"
                         class="relative inline-flex items-center justify-center rounded-md p-2 text-grey-400 hover:bg-dark-blue-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
                         aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-toggle">
@@ -45,81 +83,40 @@
                         </svg>
                     </button>
                 </div>
-                <!-- Logo and Menu -->
-                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                    <div class="flex shrink-0 items-center">
-                        <img class="h-8 w-auto" src="/asset/logo/logo.png" alt="<%= app_name %>">
-                    </div>
-                    <div class="hidden sm:ml-6 sm:block">
-                        <div class="flex space-x-4">
-                            <a href="#" class="rounded-md bg-dark-blue-900 px-3 py-2 text-sm font-medium text-white"
-                                aria-current="page">
-                                <%= app_name %>
-                            </a>
-                            <a href="#"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Team</a>
-                            <a href="#"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Projects</a>
-                            <a href="#"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Calendar</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Notifications and Profile -->
-                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <button type="button"
-                        class="relative rounded-full bg-dark-blue-800 p-1 text-grey-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-dark-blue-800">
-                        <span class="sr-only">View notifications</span>
-                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-                        </svg>
-                    </button>
-                    <!-- Profile dropdown -->
-                    <div class="relative ml-3">
-                        <button type="button"
-                            class="relative flex rounded-full bg-dark-blue-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-dark-blue-800"
-                            id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                            <span class="sr-only">Open user menu</span>
-                            <img class="size-8 rounded-full"
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt="User profile">
-                        </button>
-                        <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 hidden"
-                            role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
-                            id="user-menu">
-                            <a href="#" class="block px-4 py-2 text-sm text-grey-900 hover:bg-grey-200" role="menuitem"
-                                tabindex="-1">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-grey-900 hover:bg-grey-200" role="menuitem"
-                                tabindex="-1">Settings</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-grey-900 hover:bg-grey-200" role="menuitem"
-                                tabindex="-1">Sign out</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <!-- Mobile menu -->
         <div class="hidden sm:hidden" id="mobile-menu">
-            <div class="space-y-1 px-2 pt-2 pb-3">
-                <a href="#" class="block rounded-md bg-dark-blue-900 px-3 py-2 text-base font-medium text-white"
+            <div class="space-y-1 px-2 pt-2 pb-3 uppercase">
+                <a href="/" class="block rounded-md bg-dark-blue-900 px-3 py-2 text-base font-medium text-white"
                     aria-current="page">
-                    <%= app_name %>
+                    Home
                 </a>
-                <a href="#"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Team</a>
-                <a href="#"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Projects</a>
-                <a href="#"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Calendar</a>
+                <a href="/who-we-are"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Who
+                    we are</a>
+                <a href="/programs-and-events"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Programs
+                    & Events</a>
+                <a href="/visit-us"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Visit
+                    Us</a>
+                <a href="/media"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Media</a>
+                <a href="/resources"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Resources</a>
+                <a href="/giving"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Giving</a>
+                <a href="https://live.<%= url %>"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Live
+                    Service</a>
             </div>
         </div>
     </nav>
 
     <!-- Render child templates -->
     <main>
-        <div class="container mx-auto px-4 py-6">
+        <div class="container mx-auto max-w-7xl px-4 py-6">
             <h1 class="text-2xl font-bold mb-4">Welcome to <%= app_name %>
             </h1>
             <p class="text-lg text-grey-700">
@@ -142,16 +139,6 @@
             mobileMenu.classList.toggle('hidden');
             menuOpenIcon.classList.toggle('hidden');
             menuCloseIcon.classList.toggle('hidden');
-        });
-
-        // Profile dropdown toggle
-        const userMenuButton = document.getElementById('user-menu-button');
-        const userMenu = document.getElementById('user-menu');
-
-        userMenuButton.addEventListener('click', () => {
-            const isExpanded = userMenuButton.getAttribute('aria-expanded') === 'true';
-            userMenuButton.setAttribute('aria-expanded', !isExpanded);
-            userMenu.classList.toggle('hidden');
         });
     </script>
 </body>

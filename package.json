@@ -52,15 +52,15 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
-    "@tailwindcss/aspect-ratio": "^0.5.0",
-    "@tailwindcss/forms": "^0.6.0",
-    "@tailwindcss/postcss": "^4.1.0",
-    "@tailwindcss/typography": "^0.6.0",
-    "postcss": "^8.4.47",
-    "postcss-cli": "^12.0.0",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/postcss": "^4.1.5",
+    "@tailwindcss/typography": "^0.5.16",
     "jest": "^29.7.0",
     "nodemon": "^3.1.9",
+    "postcss": "^8.5.3",
+    "postcss-cli": "^11.0.1",
     "supertest": "^7.0.0",
-    "tailwindcss": "^4.1.0"
+    "tailwindcss": "^4.1.5"
   }
 }

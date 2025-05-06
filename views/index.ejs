@@ -235,14 +235,14 @@
     </section>
     <!-- Slideshow End -->
 
-    <!-- Render child templates -->
+    <!-- QUick Links Start -->
     <section class=" mt-8">
         <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
             <p class="text-md text-dark uppercase">Join us</p>
             <h2 class="uppercase text-2xl md:text-3xl lg:text-5xl text-dark font-bold mb-4">Church is where should be!
             </h2>
             <!-- Card -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 <!-- New Member -->
                 <div
                     class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-light-blue-600 h-96 flex flex-col items-start justify-center gap-4 pl-12">
@@ -284,6 +284,39 @@
 
         </div>
     </section>
+    <!-- Quick Links End -->
+
+    <!-- About Start -->
+    <section>
+        <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
+            <p class="text-md text-dark uppercase">About Us</p>
+            <h2 class="uppercase text-2xl md:text-3xl lg:text-5xl text-dark font-bold mb-4">Love and Compassion</h2>
+            <p class="text-gray-700 dark:text-gray-300 text-center">Our church system reflects our core values:
+                Organization/Order,
+                Righteousness, Excellence, Accountability, Diligence,
+                Integrity, and Loyalty (OREADILY). We serve God with our talents, skills, resources, and time.</p>
+            <a href="/who-we-are"
+                class="mt-4 inline-block bg-light-blue-600 text-dark px-4 py-3 rounded-xl hover:bg-light-blue-900 uppercase">Read
+                More</a>
+
+            <!-- three images -->
+            <div
+                class="grid grid-cols-1 grid-rows-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-1 md:gap-3 lg:gap-4 mt-8">
+                <div class="flex justify-center">
+                    <img src="/asset/images/about_1.png" alt="About Us 1" class="w-[293px] h-[348px]">
+                </div>
+                <div class="flex justify-center">
+                    <img src="/asset/images/about_2.png" alt="About Us 2"
+                        class="w-[293px] sm:w-[387px] h-[348px] sm:h-[517px] md:mt-16">
+                </div>
+                <div class="flex justify-center">
+                    <img src="/asset/images/about_3.png" alt="About Us 3" class="w-[293px] h-[348px]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About End -->
 
     <!-- FadeInSlideUp Animation Observer Script -->
     <script>
@@ -317,7 +350,7 @@
         let autoSlideInterval;
 
         // Configure auto-rotation duration (in milliseconds)
-        const autoSlideDuration = 5000; // Change this value to adjust rotation time (e.g., 3000 for 3 seconds)
+        const autoSlideDuration = 7000; // Change this value to adjust rotation time (e.g., 3000 for 3 seconds)
 
         function showSlide(index) {
             if (index >= totalSlides) currentSlide = 0;

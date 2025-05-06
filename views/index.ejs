@@ -24,7 +24,7 @@
 
 <body class="font-roboto bg-light dark:bg-dark text-dark dark:text-white">
 
-    <!-- Navigation Bar -->
+    <!-- Navigation Bar Start-->
     <nav class="bg-dark-blue-900">
         <div class="mx-auto max-w-7xl px-2">
             <div class="relative flex h-20 items-center justify-between">
@@ -34,11 +34,12 @@
                 </div>
 
                 <!-- Menu -->
-                <div class="flex items-center justify-center sm:items-stretch sm:justify-start">
-                    <div class="hidden sm:ml-6 sm:block">
+                <div class="flex items-center justify-center lg:items-stretch lg:justify-start">
+                    <div class="hidden lg:ml-6 lg:block">
                         <div class="flex space-x-4 uppercase">
                             <a href="/"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Home</a>
+                                class="rounded-md px-3 py-2 text-sm font-medium hover:bg-dark-blue-800 text-white"
+                                aria-current="page">Home</a>
                             <a href="/who-we-are"
                                 class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Who
                                 we are</a>
@@ -60,12 +61,12 @@
 
                 <!-- Live Service Button -->
                 <a href="https://live.<%= url %>"
-                    class="hidden sm:inline-flex items-center justify-center rounded-md border border-transparent bg-light-blue-600 px-4 py-2 text-base font-medium text-dark shadow-sm hover:bg-dark-blue-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 uppercase">
+                    class="hidden lg:inline-flex items-center justify-center rounded-md border border-transparent bg-light-blue-600 px-4 py-2 text-base font-medium text-dark shadow-sm hover:bg-light-blue-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 uppercase">
                     Live Service
                 </a>
 
                 <!-- Mobile menu button -->
-                <div class="absolute inset-y-0 right-0 flex items-center sm:hidden">
+                <div class="absolute inset-y-0 right-0 flex items-center lg:hidden">
                     <button type="button"
                         class="relative inline-flex items-center justify-center rounded-md p-2 text-grey-400 hover:bg-dark-blue-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
                         aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-toggle">
@@ -86,7 +87,7 @@
             </div>
         </div>
         <!-- Mobile menu -->
-        <div class="hidden sm:hidden" id="mobile-menu">
+        <div class="hidden lg:hidden" id="mobile-menu">
             <div class="space-y-1 px-2 pt-2 pb-3 uppercase">
                 <a href="/" class="block rounded-md bg-dark-blue-900 px-3 py-2 text-base font-medium text-white"
                     aria-current="page">
@@ -113,17 +114,193 @@
             </div>
         </div>
     </nav>
+    <!-- Navigation Bar End -->
+
+    <!-- Slideshow Start-->
+    <section class="relative w-full h-[90vh] overflow-hidden bg-dark-blue-900">
+        <!-- Slides -->
+        <div class="slideshow-container flex h-full transition-transform duration-500 ease-in-out" id="slideshow">
+            <!-- Slide 1 -->
+            <div class="slide flex-none w-full h-full relative">
+                <!-- Desktop -->
+                <img src="/asset/images/slide_1.png" alt="Welcome to Angel Wings Power Assembly"
+                    class="w-full h-full object-cover object-bottom hidden xl:block">
+                <!-- Tablet -->
+                <img src="/asset/images/slide_tablet_1.png" alt="Welcome to Angel Wings Power Assembly"
+                    class="w-full h-full object-cover hidden sm:block xl:hidden">
+                <!-- Mobile -->
+                <img src="/asset/images/slide_mobile_1.png" alt="Welcome to Angel Wings Power Assembly"
+                    class="w-full h-full object-cover sm:hidden">
+                <div class="absolute inset-0 bg-dark-blue-900/50 flex items-center justify-center sm:justify-start">
+                    <div
+                        class="sm:ml-18 md:w-[50%] xl:w-[40%] text-center sm:text-left prose prose-lg text-white font-roboto">
+                        <p class="text-md md:text-lg uppercase">Welcome to Angel Wings Power Assembly</p>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl mb-4 font-extrabold text-white uppercase">Adding
+                            value to lives, raising living legends</h1>
+                        <a href="https://live.<%= url %>"
+                            class="inline-block bg-light-blue-600 text-dark px-6 py-3 rounded-xl hover:bg-light-blue-900 uppercase">Join
+                            Us In Worship</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide flex-none w-full h-full relative">
+                <!-- Desktop -->
+                <img src="/asset/images/slide_1.png" alt="Sunday Service"
+                    class="w-full h-full object-cover hidden xl:block">
+                <!-- Tablet -->
+                <img src="/asset/images/slide_tablet_1.png" alt="Sunday Service"
+                    class="w-full h-full object-cover hidden sm:block xl:hidden">
+                <!-- Mobile -->
+                <img src="/asset/images/slide_mobile_1.png" alt="Sunday Service"
+                    class="w-full h-full object-cover sm:hidden">
+                <div class="absolute inset-0 bg-dark-blue-900/50 flex items-center justify-center sm:justify-start">
+                    <div
+                        class="sm:ml-18 md:w-[50%] xl:w-[40%] text-center sm:text-left prose prose-lg text-white font-roboto">
+                        <p class="text-md md:text-lg uppercase">Welcome to Angel Wings Power Assembly</p>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl mb-4 font-extrabold text-white uppercase">Adding
+                            value to lives, raising living legends</h1>
+                        <a href="https://live.<%= url %>"
+                            class="inline-block bg-light-blue-600 text-dark px-6 py-3 rounded-xl hover:bg-light-blue-900 uppercase">Join
+                            Us In Worship</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide flex-none w-full h-full relative">
+                <!-- Desktop -->
+                <img src="/asset/images/slide_1.png" alt="Community Outreach"
+                    class="w-full h-full object-cover hidden xl:block">
+                <!-- Tablet -->
+                <img src="/asset/images/slide_tablet_1.png" alt="Community Outreach"
+                    class="w-full h-full object-cover hidden sm:block xl:hidden">
+                <!-- Mobile -->
+                <img src="/asset/images/slide_mobile_1.png" alt="Community Outreach"
+                    class="w-full h-full object-cover sm:hidden">
+                <div class="absolute inset-0 bg-dark-blue-900/50 flex items-center justify-center sm:justify-start">
+                    <div
+                        class="sm:ml-18 md:w-[50%] xl:w-[40%] text-center sm:text-left prose prose-lg text-white font-roboto">
+                        <p class="text-md md:text-lg uppercase">Welcome to Angel Wings Power Assembly</p>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl mb-4 font-extrabold text-white uppercase">Adding
+                            value to lives, raising living legends</h1>
+                        <a href="https://live.<%= url %>"
+                            class="inline-block bg-light-blue-600 text-dark px-6 py-3 rounded-xl hover:bg-light-blue-900 uppercase">Join
+                            Us In Worship</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Previous/Next Buttons -->
+        <button
+            class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-grey-900/50 text-white p-2 rounded-full hover:bg-grey-800"
+            id="prevBtn">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <button
+            class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-grey-900/50 text-white p-2 rounded-full hover:bg-grey-800"
+            id="nextBtn">
+            <!-- arrow right -->
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+
+        <!-- Pagination Dots -->
+        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2" id="dots">
+            <span class="dot w-3 h-3 bg-grey-400 rounded-full cursor-pointer hover:bg-grey-200" data-slide="0"></span>
+            <span class="dot w-3 h-3 bg-grey-400 rounded-full cursor-pointer hover:bg-grey-200" data-slide="1"></span>
+            <span class="dot w-3 h-3 bg-grey-400 rounded-full cursor-pointer hover:bg-grey-200" data-slide="2"></span>
+        </div>
+    </section>
+    <!-- Slideshow End -->
 
     <!-- Render child templates -->
-    <main>
-        <div class="container mx-auto max-w-7xl px-4 py-6">
-            <h1 class="text-2xl font-bold mb-4">Welcome to <%= app_name %>
-            </h1>
-            <p class="text-lg text-grey-700">
-                <%= description %>
-            </p>
-        </div>
-    </main>
+    <!-- <main>
+            <div class="hero">
+                <div class="container mx-auto max-w-7xl px-4 py-6">
+                    <h1 class="text-2xl font-bold mb-4">Welcome to <%= app_name %>
+                    </h1>
+                    <p class="text-lg text-grey-700">
+                        <%= description %>
+                    </p>
+                </div>
+            </div>
+        </main> -->
+
+    <!-- Slideshow Javascript -->
+    <script>
+        const slideshow = document.getElementById('slideshow');
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+
+        // Configure auto-rotation duration (in milliseconds)
+        const autoSlideDuration = 5000; // Change this value to adjust rotation time (e.g., 3000 for 3 seconds)
+
+        function showSlide(index) {
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
+
+            slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('bg-white', i === currentSlide);
+                dot.classList.toggle('bg-grey-400', i !== currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, autoSlideDuration);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        // Event Listeners
+        nextBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            nextSlide();
+            startAutoSlide();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            prevSlide();
+            startAutoSlide();
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                stopAutoSlide();
+                showSlide(parseInt(dot.dataset.slide));
+                startAutoSlide();
+            });
+        });
+
+        // Initialize
+        showSlide(0);
+        startAutoSlide();
+
+        // Pause on hover
+        slideshow.parentElement.addEventListener('mouseenter', stopAutoSlide);
+        slideshow.parentElement.addEventListener('mouseleave', startAutoSlide);
+    </script>
 
     <!-- JavaScript for mobile menu and dropdown -->
     <script>

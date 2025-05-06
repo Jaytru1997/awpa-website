@@ -5,12 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<%= description %>">
-    <!-- meta image -->
-    <meta name="image" content="/asset/images/banner.png">
     <meta name="keywords" content="<%= keywords %>">
     <title>
         <%= app_name %>
     </title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="<%= app_name %>">
+    <meta property="og:description" content="<%= description %>">
+    <meta property="og:image" content="/asset/images/banner.png">
+    <meta property="og:image:alt" content="Angel Wings Power Assembly Logo">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://<%= url %>">
+    <meta property="og:site_name" content="<%= app_name %>">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= app_name %>">
+    <meta name="twitter:description" content="<%= description %>">
+    <meta name="twitter:image" content="/asset/images/banner.png">
+    <meta name="twitter:image:alt" content="Angel Wings Power Assembly Logo">
 
     <!-- Font Awesome (if used, ensure it's installed) -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">

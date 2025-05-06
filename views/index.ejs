@@ -13,7 +13,7 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="<%= app_name %>">
     <meta property="og:description" content="<%= description %>">
-    <meta property="og:image" content="/asset/images/banner.png">
+    <meta property="og:image" content="https://awpa-website.onrender.com/asset/images/banner.png">
     <meta property="og:image:alt" content="Angel Wings Power Assembly Logo">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -142,13 +142,13 @@
             <div class="slide flex-none w-full h-full relative">
                 <!-- Desktop -->
                 <img src="/asset/images/slide_1.png" alt="Welcome to Angel Wings Power Assembly"
-                    class="w-full h-full object-cover object-bottom hidden xl:block">
+                    class="w-full h-full object-cover object-[100%_25%] hidden xl:block">
                 <!-- Tablet -->
                 <img src="/asset/images/slide_tablet_1.png" alt="Welcome to Angel Wings Power Assembly"
-                    class="w-full h-full object-cover hidden sm:block xl:hidden">
+                    class="w-full h-full object-cover object-[100%_25%] hidden sm:block xl:hidden">
                 <!-- Mobile -->
                 <img src="/asset/images/slide_mobile_1.png" alt="Welcome to Angel Wings Power Assembly"
-                    class="w-full h-full object-cover sm:hidden">
+                    class="w-full h-full object-cover object-[100%_25%] sm:hidden">
                 <div class="absolute inset-0 bg-dark-blue-900/50 flex items-center justify-center sm:justify-start">
                     <div
                         class="sm:ml-18 md:w-[50%] xl:w-[40%] text-center sm:text-left prose prose-lg text-white font-roboto">
@@ -165,13 +165,13 @@
             <div class="slide flex-none w-full h-full relative">
                 <!-- Desktop -->
                 <img src="/asset/images/slide_1.png" alt="Sunday Service"
-                    class="w-full h-full object-cover hidden xl:block">
+                    class="w-full h-full object-cover object-[100%_25%] hidden xl:block">
                 <!-- Tablet -->
                 <img src="/asset/images/slide_tablet_1.png" alt="Sunday Service"
-                    class="w-full h-full object-cover hidden sm:block xl:hidden">
+                    class="w-full h-full object-cover object-[100%_25%] hidden sm:block xl:hidden">
                 <!-- Mobile -->
                 <img src="/asset/images/slide_mobile_1.png" alt="Sunday Service"
-                    class="w-full h-full object-cover sm:hidden">
+                    class="w-full h-full object-cover object-[100%_25%] sm:hidden">
                 <div class="absolute inset-0 bg-dark-blue-900/50 flex items-center justify-center sm:justify-start">
                     <div
                         class="sm:ml-18 md:w-[50%] xl:w-[40%] text-center sm:text-left prose prose-lg text-white font-roboto">
@@ -188,13 +188,13 @@
             <div class="slide flex-none w-full h-full relative">
                 <!-- Desktop -->
                 <img src="/asset/images/slide_1.png" alt="Community Outreach"
-                    class="w-full h-full object-cover hidden xl:block">
+                    class="w-full h-full object-cover object-[100%_25%] hidden xl:block">
                 <!-- Tablet -->
                 <img src="/asset/images/slide_tablet_1.png" alt="Community Outreach"
-                    class="w-full h-full object-cover hidden sm:block xl:hidden">
+                    class="w-full h-full object-cover object-[100%_25%] hidden sm:block xl:hidden">
                 <!-- Mobile -->
                 <img src="/asset/images/slide_mobile_1.png" alt="Community Outreach"
-                    class="w-full h-full object-cover sm:hidden">
+                    class="w-full h-full object-cover object-[100%_25%] sm:hidden">
                 <div class="absolute inset-0 bg-dark-blue-900/50 flex items-center justify-center sm:justify-start">
                     <div
                         class="sm:ml-18 md:w-[50%] xl:w-[40%] text-center sm:text-left prose prose-lg text-white font-roboto">
@@ -236,17 +236,74 @@
     <!-- Slideshow End -->
 
     <!-- Render child templates -->
-    <!-- <main>
-            <div class="hero">
-                <div class="container mx-auto max-w-7xl px-4 py-6">
-                    <h1 class="text-2xl font-bold mb-4">Welcome to <%= app_name %>
-                    </h1>
-                    <p class="text-lg text-grey-700">
-                        <%= description %>
-                    </p>
+    <section class=" mt-8">
+        <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
+            <p class="text-md text-dark uppercase">Join us</p>
+            <h2 class="uppercase text-2xl md:text-3xl lg:text-5xl text-dark font-bold mb-4">Church is where should be!
+            </h2>
+            <!-- Card -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- New Member -->
+                <div
+                    class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-light-blue-600 h-96 flex flex-col items-start justify-center gap-4 pl-12">
+                    <img src="/asset/icons/welcome.svg" alt="welcome"
+                        class="w-12 h-12 rounded-full bg-light-blue-600 p-2">
+                    <h2 class="text-xl md:text2xl lg:text-3xl font-bold mb-4 uppercase">I'm New Here</h2>
+                    <p class="text-gray-700 dark:text-gray-300">We would love for you to become a part of us as we seek
+                        the face of God and do His work daily.</p>
+                    <a href="https://edu.<%= url %>"
+                        class="mt-4 inline-block bg-light-blue-600 text-dark px-4 py-3 rounded-xl hover:bg-light-blue-900 uppercase">Become
+                        a Member</a>
+                </div>
+
+                <!-- Live Service -->
+                <div
+                    class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-light-blue-600 h-96 flex flex-col items-start justify-center gap-4 pl-12">
+                    <img src="/asset/icons/pray.svg" alt="welcome" class="w-12 h-12 rounded-full bg-light-blue-600 p-2">
+                    <h2 class="text-xl md:text2xl lg:text-3xl font-bold mb-4 uppercase">Join us in worship</h2>
+                    <p class="text-gray-700 dark:text-gray-300">Join us live online if you are unable to get to any of
+                        our physical worship centers.</p>
+                    <a href="https://live.<%= url %>"
+                        class="mt-4 inline-block bg-light-blue-600 text-dark px-4 py-3 rounded-xl hover:bg-light-blue-900 uppercase">Live
+                        Service</a>
+                </div>
+
+                <!-- Upcoming Events -->
+                <div
+                    class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-light-blue-600 h-96 flex flex-col items-start justify-center gap-4 pl-12">
+                    <img src="/asset/icons/calendar.svg" alt="welcome"
+                        class="w-12 h-12 rounded-full bg-light-blue-600 p-2">
+                    <h2 class="text-xl md:text2xl lg:text-3xl font-bold mb-4 uppercase">Upcoming Events</h2>
+                    <p class="text-gray-700 dark:text-gray-300">Check out our upcoming programs & events and be part of
+                        what God is doing in these seasons.</p>
+                    <a href="/programs-and-events"
+                        class="mt-4 inline-block bg-light-blue-600 text-dark px-4 py-3 rounded-xl hover:bg-light-blue-900 uppercase">View
+                        Events</a>
                 </div>
             </div>
-        </main> -->
+
+        </div>
+    </section>
+
+    <!-- FadeInSlideUp Animation Observer Script -->
+    <script>
+        // Intersection Observer for viewport-based animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target); // Stop observing after animation
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of element is visible
+        });
+
+        // Observe all elements except those with .no-animate or .slide
+        document.querySelectorAll('*:not(.no-animate):not(.slide)').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
 
     <!-- Slideshow Javascript -->
     <script>

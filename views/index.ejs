@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="icon" href="/asset/logo/logo.png" type="image/png">
     <meta name="description" content="<%= description %>">
     <meta name="keywords" content="<%= keywords %>">
     <title>
@@ -84,7 +86,7 @@
                 </a>
 
                 <!-- Mobile menu button -->
-                <div class="absolute inset-y-0 right-0 flex items-center lg:hidden">
+                <div class="absolute inset-y-0 right-0 flex items-center lg:hidden no-animate">
                     <button type="button"
                         class="relative inline-flex items-center justify-center rounded-md p-2 text-grey-400 hover:bg-dark-blue-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
                         aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-toggle">
@@ -105,7 +107,7 @@
             </div>
         </div>
         <!-- Mobile menu -->
-        <div class="hidden lg:hidden" id="mobile-menu">
+        <div class="hidden lg:hidden no-animate" id="mobile-menu">
             <div class="space-y-1 px-2 pt-2 pb-3 uppercase">
                 <a href="/" class="block rounded-md bg-dark-blue-900 px-3 py-2 text-base font-medium text-white"
                     aria-current="page">
@@ -434,8 +436,302 @@
             </div>
         </div>
     </section>
-
     <!-- Upcoming Events End -->
+
+    <!-- Service Starts -->
+    <section
+        class="bg-[url('../asset/images/service-bg.png')] bg-cover object-cover w-full sm:h-[736px] mt-8 py-8 flex flex-col items-center justify-center">
+        <div
+            class="bg-light-blue-200/45 dark:bg-dark-blue-900 p-6 border-b-[16px] border-light-blue-600  flex flex-col items-start justify-center">
+            <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
+                <h2 class="uppercase text-2xl md:text-3xl lg:text-5xl text-dark font-bold mb-4">Service Times
+                </h2>
+            </div>
+            <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    <!-- Service 1 -->
+                    <div
+                        class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[300px] flex flex-col items-start justify-center gap-4 pl-12">
+                        <p class="uppercase text-light-blue-900 font-bold text-xs">Tuesdays
+                        </p>
+                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Church at home</h2>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Join us every tuesday for cell fellowship
+                            meetings.
+                            Visit the church admin ofice or call our lines to find out which cell fellowship location is
+                            closest to you.</p>
+                        <p class="text-gray-700 font-normal flex gap-1 items-center justify-start text-sm"><img
+                                src="/asset/icons/clock-filled.svg" alt="date icon"> 5:00 PM</p>
+                    </div>
+                    <!-- Service 2 -->
+                    <div
+                        class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[300px] flex flex-col items-start justify-center gap-4 pl-12">
+                        <p class="uppercase text-light-blue-900 font-bold text-xs">Thursdays
+                        </p>
+                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Hour Of Divine Touch</h2>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Join us every tuesday for cell fellowship
+                            meetings.
+                            Visit the church admin ofice or call our lines to find out which cell fellowship location is
+                            closest to you.</p>
+                        <p class="text-gray-700 font-normal flex gap-1 items-center justify-start text-sm"><img
+                                src="/asset/icons/clock-filled.svg" alt="date icon"> 5:30 PM</p>
+                    </div>
+                    <!-- Service 3 -->
+                    <div
+                        class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[300px] flex flex-col items-start justify-center gap-4 pl-12">
+                        <p class="uppercase text-light-blue-900 font-bold text-xs">Sundays
+                        </p>
+                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">School Of Success</h2>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Join us every tuesday for cell fellowship
+                            meetings.
+                            Visit the church admin ofice or call our lines to find out which cell fellowship location is
+                            closest to you.</p>
+                        <p class="text-gray-700 font-normal flex gap-1 items-center justify-start text-sm"><img
+                                src="/asset/icons/clock-filled.svg" alt="date icon"> 7:30 AM</p>
+                    </div>
+                    <!-- Service 4 -->
+                    <div
+                        class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[300px] flex flex-col items-start justify-center gap-4 pl-12">
+                        <p class="uppercase text-light-blue-900 font-bold text-xs">Sundays
+                        </p>
+                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Glorious Service</h2>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Join us every tuesday for cell fellowship
+                            meetings.
+                            Visit the church admin ofice or call our lines to find out which cell fellowship location is
+                            closest to you.</p>
+                        <p class="text-gray-700 font-normal flex gap-1 items-center justify-start text-sm"><img
+                                src="/asset/icons/clock-filled.svg" alt="date icon"> 9:00 AM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Ends -->
+
+    <!-- Blogs Start -->
+    <section class="mt-8 py-8">
+        <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
+            <p class="text-md text-dark uppercase">Read Our Blog</p>
+            <h2 class="uppercase text-2xl md:text-3xl lg:text-5xl text-dark font-bold mb-4">Share, Inspire, Innovate
+            </h2>
+        </div>
+        <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                <!-- Blog 1 -->
+                <a href="/resources/articles/1">
+                    <div
+                        class="bg-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[367px] flex flex-col items-start justify-center gap-4 pl-12">
+                        <p class="uppercase text-light-blue-900 font-bold text-xs">Gratitude
+                        </p>
+                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Gratitude - a provoker of unusual favour
+                        </h2>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">From our scripture we could see how out of
+                            ten lepers healed, only one returned to give thanks...</p>
+                        <p class="text-gray-700 font-normal text-sm">By Rev. Samson Bodjor <br> Tuesday 14 May, 2024</p>
+                    </div>
+                </a>
+                <!-- Blog 2 -->
+                <a href="/resources/articles/2">
+                    <div
+                        class="bg-blue-200 dark:bg-dark-blue-900 p-6  h-[367px] flex flex-col items-start justify-center gap-4 pl-12">
+                        <p class="uppercase text-light-blue-900 font-bold text-xs">Gratitude
+                        </p>
+                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Gratitude - a provoker of unusual favour
+                        </h2>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">From our scripture we could see how out of
+                            ten lepers healed, only one returned to give thanks...</p>
+                        <p class="text-gray-700 font-normal text-sm">By Rev. Samson Bodjor <br> Tuesday 14 May, 2024</p>
+                    </div>
+                </a>
+                <!-- Blog 3 -->
+                <a href="/resources/articles/3">
+                    <div
+                        class="bg-blue-200 dark:bg-dark-blue-900 p-6  h-[367px] flex flex-col items-start justify-center gap-4 pl-12">
+                        <p class="uppercase text-light-blue-900 font-bold text-xs">Gratitude
+                        </p>
+                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Gratitude - a provoker of unusual favour
+                        </h2>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">From our scripture we could see how out of
+                            ten lepers healed, only one returned to give thanks...</p>
+                        <p class="text-gray-700 font-normal text-sm">By Rev. Samson Bodjor <br> Tuesday 14 May, 2024</p>
+                    </div>
+                </a>
+                <!-- Blog 4 -->
+                <a href="/resources/articles/4">
+                    <div
+                        class="bg-blue-200 dark:bg-dark-blue-900 p-6  h-[367px] flex flex-col items-start justify-center gap-4 pl-12">
+                        <p class="uppercase text-light-blue-900 font-bold text-xs">Gratitude
+                        </p>
+                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Gratitude - a provoker of unusual favour
+                        </h2>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">From our scripture we could see how out of
+                            ten lepers healed, only one returned to give thanks...</p>
+                        <p class="text-gray-700 font-normal text-sm">By Rev. Samson Bodjor <br> Tuesday 14 May, 2024</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blogs End -->
+
+    <!-- Testimonies Start -->
+    <section class=" mt-8 py-8">
+        <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
+            <p class="text-md text-dark uppercase">Testimonies</p>
+            <h2
+                class="uppercase text-2xl md:text-3xl lg:text-5xl text-dark font-bold mb-4 max-w-2xl lg:max-w-3xl text-center">
+                Some
+                life
+                transforming
+                impact <br>shared from around the globe
+            </h2>
+        </div>
+        <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
+            <!-- Testimony 1 -->
+            <div class="flex flex-col md:flex-row items-center justify-center gap-1 pt-0">
+                <div class="flex-1">
+                    <h2 class="text-xl lg:text-2xl text-dark font-bold mb-4 uppercase">Divine Healing</h2>
+                    <p class="text-dark">During the week of emphasis, I discovered a big boil on one of my breast. I was
+                        gripped in fear with the thought that it
+                        might be cancerous, but because Reverend (the lead pastor) has prayed for me before time, I said
+                        to myself that this
+                        will not stand. One of the days of the week of emphasis when Reverend (lead pastor) was praying;
+                        He made mentioned
+                        emphatically that every arrow shot at us will be returned back to sender. I claimed it by faith
+                        and that night i had a
+                        dream. A man was standing by my side pointing to the boil on my breast and declaring this will
+                        not stand. He went ahead
+                        to place His hand on it and the boil melted immediately. When i woke up from the dream, i
+                        realized the boil was no
+                        longer there.</p>
+                </div>
+                <img src="/asset/images/testimonies/testimony.jpg" alt="Testimony 1"
+                    class="w-full h-full object-contain object-center mt-0 flex-1">
+            </div>
+            <!-- Testimony 2 -->
+            <div
+                class="flex flex-col md:flex-row items-center justify-center gap-1 pt-0 even:gap-4 even:my-4 even:sm:my-0">
+                <img src="/asset/images/testimonies/testimony.jpg" alt="Testimony 1"
+                    class="w-full h-full object-contain object-center mt-0 flex-1">
+                <div class="flex-1">
+                    <h2 class="text-xl lg:text-2xl text-dark font-bold mb-4 uppercase">Prophecy Fulfilled</h2>
+                    <p class="text-dark">One of the services, Reverend (lead pastor) made an altar call to pray for
+                        those that would love to involve in kingdom
+                        projects but don't have a financial base. And he said before the next service, we will come to
+                        testify because God will
+                        surprise us with money from nowhere.
+                        Before then, I have been believing God for a financial base for my business over some months and
+                        since it was not coming
+                        as expected, I decided to start small. When Reverend made that altar call, i knew in my spirit
+                        that something was in for
+                        me but since I didn't have any money with me to sow, I came out and knelt down to pray to God to
+                        still confirm the word
+                        of our father (lead pastor) through me and when it happen, I will sow to Him.</p>
+                </div>
+            </div>
+            <!-- Testimony 3 -->
+            <div class="flex flex-col md:flex-row items-center justify-center gap-1 pt-0">
+                <div class="flex-1">
+                    <h2 class="text-xl lg:text-2xl text-dark font-bold mb-4 uppercase">Long term chest pain and
+                        respiratory seizures ended</h2>
+                    <p class="text-dark">Over some months now, i have been experiencing pains in my chest and severe
+                        headache. Most times, i have respiratory
+                        seizure that deprive me from breathing well even when ministering. I decided to plan for a scan
+                        so i could know what was
+                        wrong but before then I met with our father (the lead pastor) and i told him about it and he
+                        prayed on water for me to
+                        drink. Immediately, i drank the water, the pain, the heaviness and the headachedisappeared. And
+                        from that moment till
+                        now, i have not experience it again and its gone for good in Jesus name! Amen.</p>
+                </div>
+                <img src="/asset/images/testimonies/testimony.jpg" alt="Testimony 1"
+                    class="w-full h-full object-contain object-center mt-0 flex-1">
+            </div>
+            <!-- Testimony 4 -->
+            <div
+                class="flex flex-col md:flex-row items-center justify-center gap-1 pt-0 even:gap-4 even:my-4 even:sm:my-0">
+                <img src="/asset/images/testimonies/testimony.jpg" alt="Testimony 1"
+                    class="w-full h-full object-contain object-center mt-0 flex-1">
+                <div class="flex-1">
+                    <h2 class="text-xl lg:text-2xl text-dark font-bold mb-4 uppercase">Lack Ended by the impact of
+                        divine instruction</h2>
+                    <p class="text-dark">When we entered 2024, our father (lead pastor) told us that it was our year of
+                        greatness and for greatness to manifest,
+                        we must constantly be in our place of service. I held unto the instruction even when I didn't
+                        feel like serving and God
+                        really showed up for me. My prayer constantly was for me not to lack and truly in 2024, i had no
+                        reason to beg or lack.
+                        God kept providing for me on daily basis.</p>
+                </div>
+            </div>
+            <!-- Share Testimony -->
+            <p class="inline-flex flex-end items-center justify-center gap-1 hover:gap-3 ease-in-out cursor-pointer">
+                Share your testimony <img src="/asset/icons/arrow-right.svg" alt="" srcset=""></p>
+        </div>
+    </section>
+
+    <!-- Testimonies End -->
+
+    <!-- Footer Start -->
+    <footer class="bg-dark-blue-900 mt-8 mb-0 py-8">
+        <div class="mx-auto max-w-7xl px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div class="flex flex-col gap-4">
+                <!-- Logo -->
+                <div class="flex items-start justify-start">
+                    <img src="/asset/logo/logo.png" alt="" srcset="" class="w-20 h-16">
+                </div>
+                <!-- Address -->
+                <div class="uppercase text-light flex flex-col gap-3 text-sm">
+                    <p>+234 (803) 647 6292</p>
+                    <p class="">17, Angel Wings Avenue, Off Kess College Road,
+                        Ekredjebor, Ughelli, Delta State.</p>
+                    <p>contact@angelwingspowerassembly.org</p>
+                </div>
+
+            </div>
+
+            <div class="">
+                <!-- Quick Links -->
+                <div class="flex items-start justify-start mb-4">
+                    <p class="text-left text-light">Quick Links</p>
+                </div>
+                <!-- Address -->
+                <div class="text-light flex flex-col gap-1 uppercase text-sm">
+                    <a href="/giving" class="py-2 text-base font-medium text-grey-400">Giving</a>
+                    <a href="/visit-us" class="py-2 text-base font-medium text-grey-400">Visit
+                        Us</a>
+                    <a href="/who-we-are" class="py-2 text-base font-medium text-grey-400">About Us</a>
+                    <a href="/programs-and-events" class="py-2 text-base font-medium text-grey-400">Events</a>
+                    <a href="/resources" class="py-2 text-base font-medium text-grey-400">Resources</a>
+                </div>
+            </div>
+
+            <div class="">
+                <!-- Connect -->
+                <div class="flex items-start justify-start mb-4">
+                    <p class="text-left text-light">Connect</p>
+                </div>
+                <!-- Address -->
+                <div class="text-light flex flex-row gap-3 uppercase text-sm">
+                    <a href="https://facebook.com" class="py-2 text-base font-medium text-grey-400"><img
+                            src="/asset/icons/facebook.svg" alt=""></a>
+                    <a href="https://linkedin.com" class="py-2 text-base font-medium text-grey-400"><img
+                            src="/asset/icons/linked-in.svg" alt=""></a>
+                    <a href="https://youtube.com" class="text-base font-medium text-grey-400"><img
+                            src="/asset/icons/youtube.svg" alt="" class="mt-[5px]"></a>
+                </div>
+            </div>
+
+            <div class="">
+                <!-- Newsletter -->
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- Footer End -->
 
 
     <!-- FadeInSlideUp Animation Observer Script -->

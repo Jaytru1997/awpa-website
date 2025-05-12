@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="icon" href="/asset/logo/logo.png" type="image/png">
+    <meta name="description" content="<%= description %>">
+    <meta name="keywords" content="<%= keywords %>">
+    <title>
+        <%= app_name %>
+    </title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="<%= app_name %>">
+    <meta property="og:description" content="<%= description %>">
+    <meta property="og:image" content="https://awpa-website.onrender.com/asset/images/banner.png">
+    <meta property="og:image:alt" content="Angel Wings Power Assembly Logo">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://<%= url %>">
+    <meta property="og:site_name" content="<%= app_name %>">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= app_name %>">
+    <meta name="twitter:description" content="<%= description %>">
+    <meta name="twitter:image" content="/asset/images/banner.png">
+    <meta name="twitter:image:alt" content="Angel Wings Power Assembly Logo">
+
+    <!-- Font Awesome (if used, ensure it's installed) -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="/css/tailwind.css">
+
+    <!-- Google Fonts: Roboto Condensed (optimized for 400, 700 weights) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="font-roboto bg-white dark:bg-black text-dark dark:text-white">
+
+    <!-- Navigation Bar Start-->
+    <nav class="bg-dark-blue-900">
+        <div class="mx-auto max-w-7xl px-2">
+            <div class="relative flex h-20 items-center justify-between">
+                <!-- Logo -->
+                <div class="flex shrink-0 items-center">
+                    <img class="h-8 sm:h-14 w-auto " src="/asset/logo/logo.png" alt="<%= app_name %>">
+                </div>
+
+                <!-- Menu -->
+                <div class="flex items-center justify-center lg:items-stretch lg:justify-start">
+                    <div class="hidden lg:ml-6 lg:block">
+                        <div class="flex space-x-4 uppercase">
+                            <a href="/"
+                                class="rounded-md px-3 py-2 text-sm font-medium hover:bg-dark-blue-800 text-grey-400 hover:text-white">Home</a>
+                            <a href="/who-we-are"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Who
+                                we are</a>
+                            <a href="/programs-and-events"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Programs
+                                & Events</a>
+                            <a href="/visit-us"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Visit
+                                Us</a>
+                            <a href="/media"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Media</a>
+                            <a href="/resources"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Resources</a>
+                            <a href="/giving"
+                                class="rounded-md px-3 py-2 text-sm font-medium hover:bg-dark-blue-800 text-white"
+                                aria-current="page">Giving</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Service Button -->
+                <a href="https://live.<%= url %>"
+                    class="hidden lg:inline-flex items-center justify-center rounded-md border border-transparent bg-light-blue-600 px-4 py-2 text-base font-medium text-dark shadow-sm hover:bg-light-blue-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 uppercase">
+                    Live Service
+                </a>
+
+                <!-- Mobile menu button -->
+                <div class="absolute inset-y-0 right-0 flex items-center lg:hidden no-animate">
+                    <button type="button"
+                        class="relative inline-flex items-center justify-center rounded-md p-2 text-grey-400 hover:bg-dark-blue-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
+                        aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-toggle">
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Hamburger icon (shown when menu is closed) -->
+                        <svg class="block size-6 menu-open" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                        <!-- Close icon (shown when menu is open) -->
+                        <svg class="hidden size-6 menu-close" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="hidden lg:hidden no-animate" id="mobile-menu">
+            <div class="space-y-1 px-2 pt-2 pb-3 uppercase">
+                <a href="/"
+                    class="block rounded-md bg-dark-blue-900 px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">
+                    Home
+                </a>
+                <a href="/who-we-are"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Who
+                    we are</a>
+                <a href="/programs-and-events"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Programs
+                    & Events</a>
+                <a href="/visit-us"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Visit
+                    Us</a>
+                <a href="/media"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Media</a>
+                <a href="/resources"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Resources</a>
+                <a href="/giving"
+                    class="block rounded-md px-3 py-2 text-base font-medium  hover:bg-dark-blue-800 text-white"
+                    aria-current="page">Giving</a>
+                <a href="https://live.<%= url %>"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Live
+                    Service</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navigation Bar End -->
+
+
+
+
+
+    <!-- Footer Start -->
+    <footer class="bg-dark-blue-900 mt-8 mb-0 py-8">
+        <div class="w-full mx-auto max-w-7xl px-2 grid grid-cols-12 gap-4">
+            <div class="flex flex-col gap-4 col-span-12 lg:col-span-4">
+                <!-- Logo -->
+                <div class="flex items-start justify-start">
+                    <img src="/asset/logo/logo.png" alt="" srcset="" class="w-20 h-16">
+                </div>
+                <!-- Address -->
+                <div class="uppercase text-light flex flex-col gap-3 text-sm">
+                    <p>+234 (803) 647 6292</p>
+                    <p class="">17, Angel Wings Avenue, Off Kess College Road,
+                        Ekredjebor, Ughelli, Delta State.</p>
+                    <p>contact@angelwingspowerassembly.org</p>
+                </div>
+
+            </div>
+
+            <div class="col-span-12 lg:col-span-2">
+                <!-- Quick Links -->
+                <div class="flex items-start justify-start mb-4">
+                    <p class="text-left text-light">Quick Links</p>
+                </div>
+                <!-- Address -->
+                <div class="text-light flex flex-col gap-1 uppercase text-sm">
+                    <a href="/giving" class="py-2 text-base font-medium text-grey-400">Giving</a>
+                    <a href="/visit-us" class="py-2 text-base font-medium text-grey-400">Visit
+                        Us</a>
+                    <a href="/who-we-are" class="py-2 text-base font-medium text-grey-400">About Us</a>
+                    <a href="/programs-and-events" class="py-2 text-base font-medium text-grey-400">Events</a>
+                    <a href="/resources" class="py-2 text-base font-medium text-grey-400">Resources</a>
+                </div>
+            </div>
+
+            <div class="col-span-12 lg:col-span-2">
+                <!-- Connect -->
+                <div class="flex items-start justify-start mb-4">
+                    <p class="text-left text-light">Connect</p>
+                </div>
+                <!-- Address -->
+                <div class="text-light flex flex-row gap-3 uppercase text-sm">
+                    <a href="https://facebook.com" class="py-2 text-base font-medium text-grey-400"><img
+                            src="/asset/icons/facebook.svg" alt=""></a>
+                    <a href="https://linkedin.com" class="py-2 text-base font-medium text-grey-400"><img
+                            src="/asset/icons/linked-in.svg" alt=""></a>
+                    <a href="https://youtube.com" class="text-base font-medium text-grey-400"><img
+                            src="/asset/icons/youtube.svg" alt="" class="mt-[5px]"></a>
+                </div>
+            </div>
+
+            <div class="col-span-12 lg:col-span-4 items-center justify-center">
+                <!-- Newsletter -->
+                <div class="flex items-start justify-start mb-4">
+                    <p class="text-left text-light font-bold text-lg md:text-xl lg:text-2xl uppercase w-80">Subscribe to
+                        get
+                        Latest
+                        Updates and News</p>
+                </div>
+                <div>
+                    <form action="/subscribe" method="post">
+                        <div class="flex flex-row gap-0 items-center justify-start">
+                            <input type="email" name="email" id="email"
+                                class="bg-transparent dark:bg-dark-blue-900 rounded-xl border-l-1 border-y-1 border-light text-dark px-4 py-3 placeholder:text-light -mr-10"
+                                placeholder="Enter your email address" required>
+                            <button type="submit"
+                                class="bg-light-blue-600 text-dark border-1 border-l-0 border-light px-8 py-3 rounded-xl hover:bg-light-blue-900 uppercase">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- Footer End -->
+
+
+    <!-- FadeInSlideUp Animation Observer Script -->
+    <script>
+        // Intersection Observer for viewport-based animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target); // Stop observing after animation
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of element is visible
+        });
+
+        // Observe all elements except those with .no-animate, .slide, or their descendants
+        document.querySelectorAll('*').forEach(element => {
+            if (!element.closest('.no-animate, .slide')) {
+                observer.observe(element);
+            }
+        });
+    </script>
+
+
+    <!-- JavaScript for mobile menu and dropdown -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOpenIcon = mobileMenuButton.querySelector('.menu-open');
+        const menuCloseIcon = mobileMenuButton.querySelector('.menu-close');
+
+        mobileMenuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            menuOpenIcon.classList.toggle('hidden');
+            menuCloseIcon.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>

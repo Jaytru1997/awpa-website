@@ -137,7 +137,7 @@
     <!-- Navigation Bar End -->
 
     <!-- Slideshow Start-->
-    <section class="relative w-full h-[90vh] overflow-hidden bg-dark-blue-900">
+    <section class="relative w-full h-[90vh] overflow-hidden bg-dark-blue-900 no-animate">
         <!-- Slides -->
         <div class="slideshow-container flex h-full transition-transform duration-500 ease-in-out" id="slideshow">
             <!-- Slide 1 -->
@@ -293,7 +293,8 @@
         <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
             <p class="text-md text-dark uppercase">About Us</p>
             <h2 class="uppercase text-2xl md:text-3xl lg:text-5xl text-dark font-bold mb-4">Love and Compassion</h2>
-            <p class="text-gray-700 dark:text-gray-300 text-center">Our church system reflects our core values:
+            <p class="text-gray-700 dark:text-gray-300 text-center lg:w-[65%]">Our church system reflects our core
+                values:
                 Organization/Order,
                 Righteousness, Excellence, Accountability, Diligence,
                 Integrity, and Loyalty (OREADILY). We serve God with our talents, skills, resources, and time.</p>
@@ -675,8 +676,8 @@
 
     <!-- Footer Start -->
     <footer class="bg-dark-blue-900 mt-8 mb-0 py-8">
-        <div class="mx-auto max-w-7xl px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-            <div class="flex flex-col gap-4">
+        <div class="w-full mx-auto max-w-7xl px-2 grid grid-cols-12 gap-4">
+            <div class="flex flex-col gap-4 col-span-12 lg:col-span-4">
                 <!-- Logo -->
                 <div class="flex items-start justify-start">
                     <img src="/asset/logo/logo.png" alt="" srcset="" class="w-20 h-16">
@@ -691,7 +692,7 @@
 
             </div>
 
-            <div class="">
+            <div class="col-span-12 lg:col-span-2">
                 <!-- Quick Links -->
                 <div class="flex items-start justify-start mb-4">
                     <p class="text-left text-light">Quick Links</p>
@@ -707,7 +708,7 @@
                 </div>
             </div>
 
-            <div class="">
+            <div class="col-span-12 lg:col-span-2">
                 <!-- Connect -->
                 <div class="flex items-start justify-start mb-4">
                     <p class="text-left text-light">Connect</p>
@@ -723,8 +724,25 @@
                 </div>
             </div>
 
-            <div class="">
+            <div class="col-span-12 lg:col-span-4 items-center justify-center">
                 <!-- Newsletter -->
+                <div class="flex items-start justify-start mb-4">
+                    <p class="text-left text-light font-bold text-lg md:text-xl lg:text-2xl uppercase w-80">Subscribe to
+                        get
+                        Latest
+                        Updates and News</p>
+                </div>
+                <div>
+                    <form action="/subscribe" method="post">
+                        <div class="flex flex-row gap-0 items-center justify-start">
+                            <input type="email" name="email" id="email"
+                                class="bg-transparent dark:bg-dark-blue-900 rounded-xl border-l-1 border-y-1 border-light text-dark px-4 py-3 placeholder:text-light -mr-10"
+                                placeholder="Enter your email address" required>
+                            <button type="submit"
+                                class="bg-light-blue-600 text-dark border-1 border-l-0 border-light px-8 py-3 rounded-xl hover:bg-light-blue-900 uppercase">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
         </div>
@@ -748,9 +766,11 @@
             threshold: 0.1 // Trigger when 10% of element is visible
         });
 
-        // Observe all elements except those with .no-animate or .slide
-        document.querySelectorAll('*:not(.no-animate):not(.slide)').forEach(element => {
-            observer.observe(element);
+        // Observe all elements except those with .no-animate, .slide, or their descendants
+        document.querySelectorAll('*').forEach(element => {
+            if (!element.closest('.no-animate, .slide')) {
+                observer.observe(element);
+            }
         });
     </script>
 

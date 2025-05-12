@@ -129,4 +129,40 @@
   }
 }
 
+@layer components {
+  /* Linear gradient: transparent top center, fading inward to opaque white at sides and bottom */
+  .bg-linear-top {
+    background-image: linear-gradient(
+        to top right,
+        rgba(255, 255, 255) 60%,
+        rgba(255, 255, 255) 60%,
+        var(--color-light) 60%
+      ),
+      radial-gradient(
+        circle at top center,
+        rgba(255, 255, 255, 0.7) 60%,
+        rgba(255, 255, 255, 0.4) 60%,
+        rgba(255, 255, 255, 0.7) 60%,
+        var(--color-light) 60%
+      );
+  }
+
+  /* Dark mode: transparent top center, fading inward to opaque dark at sides and bottom */
+  .dark .bg-linear-top {
+    background-image: linear-gradient(
+        to top right,
+        rgba(43, 43, 43) 60%,
+        rgba(43, 43, 43) 60%,
+        var(--color-dark) 60%
+      ),
+      radial-gradient(
+        circle at top center,
+        rgba(43, 43, 43, 0.7) 60%,
+        rgba(43, 43, 43, 0.4) 60%,
+        rgba(43, 43, 43, 0.7) 60%,
+        var(--color-dark) 60%
+      );
+  }
+}
+
 @custom-variant dark (&:where(.dark, .dark *));

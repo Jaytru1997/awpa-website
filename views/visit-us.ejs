@@ -137,8 +137,117 @@
     </nav>
     <!-- Navigation Bar End -->
 
+    <!-- Header Start -->
+    <section class="relative w-full h-[90vh] sm:h-[483px] overflow-hidden bg-white">
+        <!-- Slides -->
+        <div class="slideshow-container flex h-full transition-transform duration-500 ease-in-out">
+            <!-- Slide 3 -->
+            <div class="slide flex-none w-full h-full relative">
+                <!-- Desktop -->
+                <img src="/asset/images/general-header.png" alt="Header Image"
+                    class="w-full h-full object-cover object-[100%_25%] hidden xl:block">
+                <!-- Tablet -->
+                <img src="/asset/images/general-header.png" alt="Header Image"
+                    class="w-full h-full object-cover object-[75%_75%] hidden sm:block xl:hidden">
+                <!-- Mobile -->
+                <img src="/asset/images/general-header.png" alt="Header Image"
+                    class="w-full h-full object-cover object-[75%_75%] sm:hidden">
+                <div class="absolute inset-0 bg-dark-blue-900/50 flex items-center justify-center sm:justify-start">
+                    <div
+                        class="sm:ml-18 md:w-[50%] xl:w-[40%] text-center sm:text-left prose prose-lg text-blue-600 font-roboto">
+                        <p class="text-md md:text-lg uppercase">Visit Us</p>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl mb-4 font-extrabold text-white uppercase">Get in
+                            touch with our church</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Header End -->
 
 
+    <!-- Visiting Hours Start -->
+    <section class="mt-8 py-8 grid grid-cols-1 sm:grid-cols-2 gap-0 items-center justify-center">
+        <div
+            class="bg-[url('../asset/images/bg-visiting-hours.png')] bg-cover object-cover sm:h-[736px] px-8 py-8 flex flex-col items-center justify-center">
+            <div
+                class="bg-light dark:bg-dark-blue-900 p-6 border-b-[16px] border-light-blue-600  mx-8 flex flex-col items-start justify-center">
+                <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
+                    <h2 class="uppercase text-2xl md:text-3xl lg:text-5xl text-dark font-bold mb-4">Visiting
+                        Hours</h2>
+                    </h2>
+                </div>
+                <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <!-- Day 1 -->
+                        <div
+                            class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[300px] flex flex-col items-start justify-center gap-4 pl-12">
+                            <p class="uppercase text-light-blue-900 font-bold text-xs">Monday - Saturday
+                            </p>
+                            <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Office Hours</h2>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">We are available at the administrative
+                                office to answer your requests on weekdays.</p>
+                            <p class="text-gray-700 font-normal flex gap-1 items-center justify-start text-sm"><img
+                                    src="/asset/icons/clock-filled.svg" alt="date icon"> 8:00 AM - 6:00 PM</p>
+                        </div>
+                        <!-- Day 2 -->
+                        <div
+                            class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[300px] flex flex-col items-start justify-center gap-4 pl-12">
+                            <p class="uppercase text-light-blue-900 font-bold text-xs">Wednesday
+                            </p>
+                            <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Prayers & Counselling</h2>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">A one-on-one counseling and prayers
+                                session.</p>
+                            <p class="text-gray-700 font-normal flex gap-1 items-center justify-start text-sm"><img
+                                    src="/asset/icons/clock-filled.svg" alt="date icon"> 9:00 AM - 3:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="/asset/images/campuses/hq.png" alt=""
+            class="sm:h-[736px] w-full object-cover object-[100%_25%] cursor-pointer">
+
+    </section>
+
+    <!-- Visiting Hours End -->
+
+
+    <!-- Contact Form Start -->
+    <section class="mt-8 py-8">
+        <div class="container mx-auto max-w-7xl px-4 flex items-start justify-center flex-col gap-3">
+            <h2 class="uppercase text-2xl md:text-2xl lg:text-3xl text-dark font-bold mb-4">Contact Form:</h2>
+        </div>
+        <div
+            class="container mx-auto max-w-7xl px-4 flex sm:flex-row items-start justify-start flex-col gap-10 sm:gap-36">
+            <form action="/contact" method="post"
+                class="w-full max-w-lg flex flex-col items-start justify-center gap-4">
+                <input type="text" name="name" id="name" placeholder="Name"
+                    class="bg-light-blue-200 rounded-md px-4 py-2 w-full" required>
+                <input type="email" name="email" id="email" placeholder="Email"
+                    class="bg-light-blue-200 rounded-md px-4 py-2 w-full" required>
+                <textarea name="message" id="message" rows="4" placeholder="Message"
+                    class="bg-light-blue-200 rounded-md px-4 py-2 mt-4 w-full" required></textarea>
+                <button type="submit"
+                    class="bg-blue-600 text-dark rounded-md px-4 py-2 mt-4 hover:bg-blue-700 w-full cursor-pointer">Send
+                    Message</button>
+            </form>
+            <div class="flex items-start justify-start flex-col gap-3">
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Address</p>
+                <p class="text-gray-700 dark:text-gray-300 text-lg font-bold uppercase w-[65%]">
+                    17, Angel Wings Avenue, Off Kess College Road, Ekredjebor, Ughelli, Delta State.</p>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Contact Details</p>
+                <p class="text-gray-700 dark:text-gray-300 text-lg font-bold uppercase -mb-3">+234 (803) 647 6292</p>
+                <p class="text-gray-700 dark:text-gray-300 text-lg font-bold uppercase -mb-3">+234 (803) 854 4919</p>
+                <p class="text-gray-700 dark:text-gray-300 text-lg font-bold uppercase ">contact@<%= url %>
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Find us here</p>
+                <a href="https://facebook.com"><img src="/asset/icons/fb.svg" alt=""></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form End -->
 
 
     <!-- Footer Start -->

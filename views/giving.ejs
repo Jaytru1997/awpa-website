@@ -137,7 +137,83 @@
     </nav>
     <!-- Navigation Bar End -->
 
+    <!-- Giving Start -->
+    <section class="mt-8 py-8">
+        <div
+            class="container mx-auto max-w-7xl px-4 flex sm:flex-row items-start justify-start flex-col gap-10 sm:gap-36">
+            <form action="/giving" method="post" class="w-full max-w-lg flex flex-col items-start justify-center gap-4">
+                <input type="text" name="name" id="name" placeholder="Name"
+                    class="bg-light-blue-200 rounded-md px-4 py-2 w-full" required>
+                <input type="email" name="email" id="email" placeholder="Email"
+                    class="bg-light-blue-200 rounded-md px-4 py-2 w-full" required>
+                <!-- options input -->
+                <select name="reason" id="reason" class="bg-light-blue-200 rounded-md px-4 py-2 w-full appearance-none"
+                    value="">
+                    <option value="">Reason for giving</option>
+                    <option value="Offering">Offering</option>
+                    <option value="Tithe">Tithe</option>
+                    <option value="First Fruit">First Fruit</option>
+                    <option value="Pastor's Offering">Pastor's Offering</option>
 
+                </select>
+                <textarea name="message" id="message" rows="4" placeholder="Prayer Request"
+                    class="bg-light-blue-200 rounded-md px-4 py-2 mt-4 w-full" required></textarea>
+                <button type="submit"
+                    class="bg-blue-600 text-dark rounded-md px-4 py-2 mt-4 hover:bg-blue-700 w-full cursor-pointer uppercase">Give</button>
+            </form>
+            <div class="flex items-start justify-start flex-col gap-3">
+                <img src="/asset/images/giving-image.png" alt="Giving Image" class="w-[574px] h-60 object-cover ">
+                <p class="text-light-blue-900 text-lg font-bold">Luke 6:38</p>
+                <p
+                    class="text-gray-700 dark:text-gray-300 text-lg font-normal border-l-2 border-light-blue-900 pl-4 pt-2 text-wrap">
+                    Give, and it shall be given unto you; good measure, pressed down, and shaken together, and running
+                    over, shall men give
+                    into your bosom. For with the same measure that ye mete withal it shall be measured to you again.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Giving End -->
+
+    <!-- Account Details Start -->
+    <section class="mt-8 py-8">
+        <div class="container mx-auto max-w-7xl px-4 flex items-center justify-center flex-col gap-3">
+            <h2 class="uppercase text-2xl md:text-2xl lg:text-3xl text-dark font-bold mb-4">Local Bank Transfer</h2>
+        </div>
+        <div class="container mx-auto max-w-7xl px-4 flex sm:flex-row items-start justify-between flex-col gap-10">
+            <div class="flex items-start justify-start flex-col gap-3 w-full">
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Bank Name</p>
+                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
+                    Access Bank</p>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Account Name</p>
+                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
+                    Angel Wings Power Assembly</p>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Account Number</p>
+                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
+                    0095065107</p>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Swift Code</p>
+                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
+                    ABNGNGLA</p>
+            </div>
+            <div class="flex items-start justify-start w-full flex-col gap-3">
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Bank Name</p>
+                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
+                    United Bank For Africa (UBA)</p>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Account Name</p>
+                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
+                    Angel Wings Power Assembly</p>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Account Number</p>
+                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
+                    1026068362</p>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Swift Code</p>
+                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
+                    UNAFNGLA</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Account Detail End -->
 
 
 

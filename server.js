@@ -3,7 +3,8 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const sessions = require("express-session");
+// const sessions = require("express-session");
+const sessionManager = require("./middleware/sessionManager");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const helmet = require("helmet");
@@ -54,15 +55,7 @@ const morganFormat =
   ":method :url :status :res[content-length] - :response-time ms"; // Customize format
 app.use(morgan(morganFormat));
 
-const expires = 1000 * 60 * 60 * 24;
-app.use(
-  sessions({
-    secret: "YHadz6yXTBqanjD$4rBm6q?zgmq5CaQ4MbAsN8qR",
-    saveUninitialized: true,
-    cookie: { maxAge: expires },
-    resave: false,
-  })
-);
+app.use(sessionManager());
 
 app.use(cors());
 

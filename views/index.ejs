@@ -40,6 +40,77 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Slideshow Javascript -->
+    <script>
+        const slideshow = document.getElementById('slideshow');
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+
+        // Configure auto-rotation duration (in milliseconds)
+        const autoSlideDuration = 7000; // Change this value to adjust rotation time (e.g., 3000 for 3 seconds)
+
+        function showSlide(index) {
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
+
+            slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('bg-white', i === currentSlide);
+                dot.classList.toggle('bg-grey-400', i !== currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, autoSlideDuration);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        // Event Listeners
+        nextBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            nextSlide();
+            startAutoSlide();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            prevSlide();
+            startAutoSlide();
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                stopAutoSlide();
+                showSlide(parseInt(dot.dataset.slide));
+                startAutoSlide();
+            });
+        });
+
+        // Initialize
+        showSlide(0);
+        startAutoSlide();
+
+        // Pause on hover
+        slideshow.parentElement.addEventListener('mouseenter', stopAutoSlide);
+        slideshow.parentElement.addEventListener('mouseleave', startAutoSlide);
+    </script>
 </head>
 
 <body class="font-roboto bg-white dark:bg-black text-dark dark:text-white">
@@ -781,77 +852,7 @@
         });
     </script>
 
-    <!-- Slideshow Javascript -->
-    <script>
-        const slideshow = document.getElementById('slideshow');
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        let currentSlide = 0;
-        const totalSlides = slides.length;
-        let autoSlideInterval;
 
-        // Configure auto-rotation duration (in milliseconds)
-        const autoSlideDuration = 7000; // Change this value to adjust rotation time (e.g., 3000 for 3 seconds)
-
-        function showSlide(index) {
-            if (index >= totalSlides) currentSlide = 0;
-            else if (index < 0) currentSlide = totalSlides - 1;
-            else currentSlide = index;
-
-            slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('bg-white', i === currentSlide);
-                dot.classList.toggle('bg-grey-400', i !== currentSlide);
-            });
-        }
-
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        function prevSlide() {
-            showSlide(currentSlide - 1);
-        }
-
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(nextSlide, autoSlideDuration);
-        }
-
-        function stopAutoSlide() {
-            clearInterval(autoSlideInterval);
-        }
-
-        // Event Listeners
-        nextBtn.addEventListener('click', () => {
-            stopAutoSlide();
-            nextSlide();
-            startAutoSlide();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            stopAutoSlide();
-            prevSlide();
-            startAutoSlide();
-        });
-
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                stopAutoSlide();
-                showSlide(parseInt(dot.dataset.slide));
-                startAutoSlide();
-            });
-        });
-
-        // Initialize
-        showSlide(0);
-        startAutoSlide();
-
-        // Pause on hover
-        slideshow.parentElement.addEventListener('mouseenter', stopAutoSlide);
-        slideshow.parentElement.addEventListener('mouseleave', startAutoSlide);
-    </script>
 
     <!-- JavaScript for mobile menu and dropdown -->
     <script>

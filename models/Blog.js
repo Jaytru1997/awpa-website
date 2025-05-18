@@ -16,7 +16,7 @@ const BlogSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    auhor: String,
+    author: String,
     categories: {
       type: String,
       enum: ["sermon", "devotional", "teaching"],
@@ -31,27 +31,6 @@ const BlogSchema = new mongoose.Schema(
       enum: ["en", "fr", "es", "de", "ha", "yo", "ig"], // languages
       default: "en",
     },
-    comments: [
-      {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
-        text: {
-          type: String,
-          required: true,
-        },
-        status: {
-          type: String,
-          enum: ["approved", "pending", "rejected"],
-          default: "pending",
-        },
-        createdAt: {
-          type: Date,
-          default: Date.now,
-        },
-      },
-    ],
     priceStatus: {
       type: String,
       enum: ["free", "paid"],
@@ -74,7 +53,7 @@ const BlogSchema = new mongoose.Schema(
         },
       },
     ],
-    video: [
+    videos: [
       {
         url: {
           type: String,

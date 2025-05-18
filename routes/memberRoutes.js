@@ -2,10 +2,6 @@ const express = require("express");
 const authMiddleware = require("../middleware/authMiddleware");
 const { checkRole } = require("../middleware/rbacMiddleware");
 const { access } = require("../config/access");
-const {
-  renderAdminDashboard,
-  toggleUserStatus,
-} = require("../controllers/adminController");
 
 const router = express.Router();
 
@@ -16,13 +12,14 @@ const router = express.Router();
  *   description: Admin management
  */
 
-router.get("/", authMiddleware, checkRole(access.admin), renderAdminDashboard);
-
-router.post(
-  "/users/:id/update-status",
-  authMiddleware,
-  checkRole(access.admin),
-  toggleUserStatus
-);
+router.get("/", authMiddleware, checkRole([access.member]), (req, res) => {
+  res.status(200).render("admin/index", {
+    app_name: process.env.APP_NAME,
+    url: process.env.URL,
+    title: "Admin Dashboard",
+    description: "Admin Dashboard",
+    keywords: "admin, dashboard, church, Angel Wings Power Assembly",
+  });
+});
 
 module.exports = router;

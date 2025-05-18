@@ -38,7 +38,7 @@
 
 </head>
 
-<body class="font-roboto bg-white dark:bg-black text-dark dark:text-white">
+<body class="font-roboto bg-dark-blue-900 text-white">
 
     <!-- Navigation Bar Start-->
     <nav class="bg-dark-blue-900">
@@ -67,10 +67,10 @@
                             <a href="/church-media"
                                 class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Media</a>
                             <a href="/resources"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Resources</a>
-                            <a href="/giving"
                                 class="rounded-md px-3 py-2 text-sm font-medium hover:bg-dark-blue-800 text-white"
-                                aria-current="page">Giving</a>
+                                aria-current="page">Resources</a>
+                            <a href="/giving"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Giving</a>
                         </div>
                     </div>
                 </div>
@@ -121,10 +121,10 @@
                 <a href="/church-media"
                     class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Media</a>
                 <a href="/resources"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Resources</a>
+                    class="block rounded-md px-3 py-2 text-base font-medium hover:bg-dark-blue-800 text-white"
+                    aria-current="page">Resources</a>
                 <a href="/giving"
-                    class="block rounded-md px-3 py-2 text-base font-medium  hover:bg-dark-blue-800 text-white"
-                    aria-current="page">Giving</a>
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Giving</a>
                 <a href="https://live.angelwingspowerassembly.org"
                     class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Live
                     Service</a>
@@ -133,112 +133,44 @@
     </nav>
     <!-- Navigation Bar End -->
 
-    <!-- Header Start -->
-    <section class="relative w-full h-[90vh] sm:h-[483px] overflow-hidden bg-white">
-        <!-- Slides -->
-        <div class="slideshow-container flex h-full transition-transform duration-500 ease-in-out">
-            <!-- Slide 3 -->
-            <div class="slide flex-none w-full h-full relative">
-                <!-- Desktop -->
-                <img src="/asset/images/general-header.png" alt="Header Image"
-                    class="w-full h-full object-cover object-[100%_25%] hidden xl:block">
-                <!-- Tablet -->
-                <img src="/asset/images/general-header.png" alt="Header Image"
-                    class="w-full h-full object-cover object-[75%_75%] hidden sm:block xl:hidden">
-                <!-- Mobile -->
-                <img src="/asset/images/general-header.png" alt="Header Image"
-                    class="w-full h-full object-cover object-[75%_75%] sm:hidden">
-                <div class="absolute inset-0  bg-dark-blue-900/50 flex items-center justify-center sm:justify-start">
-                    <div
-                        class="sm:ml-18 md:w-[50%] xl:w-[50%] text-center sm:text-left prose prose-lg text-blue-600 font-roboto xl:pl-56">
-                        <p class="text-md md:text-lg uppercase">Giving</p>
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl mb-4 font-extrabold text-white uppercase">Give
-                            securely online or make local bank transfers</h1>
+    <div class="flex flex-col justify-center mx-auto max-w-7xl px-2 py-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+            <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Sign in to your account</h2>
+        </div>
+
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <form class="space-y-6" action="/auth/login" method="POST">
+                <div>
+                    <label for="email" class="block text-sm/6 font-medium text-white">Email address</label>
+                    <div class="mt-2">
+                        <input type="email" name="email" id="email" autocomplete="email" required
+                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-grey-400 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- Header End -->
 
-    <!-- Giving Start -->
-    <section class="mt-8 py-8">
-        <div
-            class="container mx-auto max-w-7xl px-4 flex sm:flex-row items-start justify-start flex-col gap-10 sm:gap-36">
-            <form action="/giving" method="post" class="w-full max-w-lg flex flex-col items-start justify-center gap-4">
-                <input type="text" name="name" id="name" placeholder="Name"
-                    class="bg-light-blue-200 rounded-md px-4 py-2 w-full" required>
-                <input type="email" name="email" id="email" placeholder="Email"
-                    class="bg-light-blue-200 rounded-md px-4 py-2 w-full" required>
-                <!-- options input -->
-                <select name="reason" id="reason" class="bg-light-blue-200 rounded-md px-4 py-2 w-full appearance-none"
-                    value="">
-                    <option value="">Reason for giving</option>
-                    <option value="Offering">Offering</option>
-                    <option value="Tithe">Tithe</option>
-                    <option value="First Fruit">First Fruit</option>
-                    <option value="Pastor's Offering">Pastor's Offering</option>
+                <div>
+                    <div class="flex items-center justify-between">
+                        <label for="password" class="block text-sm/6 font-medium text-white">Password</label>
+                    </div>
+                    <div class="mt-2">
+                        <input type="password" name="password" id="password" autocomplete="current-password" required
+                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-grey-400 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                    </div>
+                </div>
 
-                </select>
-                <textarea name="message" id="message" rows="4" placeholder="Prayer Request"
-                    class="bg-light-blue-200 rounded-md px-4 py-2 mt-4 w-full" required></textarea>
-                <button type="submit"
-                    class="bg-blue-600 text-dark rounded-md px-4 py-2 mt-4 hover:bg-blue-700 w-full cursor-pointer uppercase">Give</button>
+                <div>
+                    <button type="submit"
+                        class="flex w-full justify-center rounded-md bg-light-blue-600 uppercase px-3 py-1.5 text-sm/6 font-semibold text-dark shadow-xs hover:bg-light-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign
+                        in</button>
+                </div>
             </form>
-            <div class="flex items-start justify-start flex-col gap-3">
-                <img src="/asset/images/giving-image.png" alt="Giving Image" class="w-[574px] h-60 object-cover ">
-                <p class="text-light-blue-900 text-lg font-bold">Luke 6:38</p>
-                <p
-                    class="text-gray-700 dark:text-gray-300 text-lg font-normal border-l-2 border-light-blue-900 pl-4 pt-2 text-wrap">
-                    Give, and it shall be given unto you; good measure, pressed down, and shaken together, and running
-                    over, shall men give
-                    into your bosom. For with the same measure that ye mete withal it shall be measured to you again.
-                </p>
-            </div>
+
+            <p class="mt-10 text-center text-sm/6 text-white">
+                Not a member?
+                <a href="/auth/register" class="font-semibold text-light-blue-600 hover:text-light-blue-500">Sign up</a>
+            </p>
         </div>
-    </section>
-
-    <!-- Giving End -->
-
-    <!-- Account Details Start -->
-    <section class="mt-8 py-8">
-        <div class="container mx-auto max-w-7xl px-4 flex items-center justify-center flex-col gap-3">
-            <h2 class="uppercase text-2xl md:text-2xl lg:text-3xl text-dark font-bold mb-4">Local Bank Transfer</h2>
-        </div>
-        <div class="container mx-auto max-w-7xl px-4 flex sm:flex-row items-start justify-between flex-col gap-10">
-            <div class="flex items-start justify-start flex-col gap-3 w-full">
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Bank Name</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    Access Bank</p>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Account Name</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    Angel Wings Power Assembly</p>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Account Number</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    0095065107</p>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Swift Code</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    ABNGNGLA</p>
-            </div>
-            <div class="flex items-start justify-start w-full flex-col gap-3">
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Bank Name</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    United Bank For Africa (UBA)</p>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Account Name</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    Angel Wings Power Assembly</p>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Account Number</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    1026068362</p>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Swift Code</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    UNAFNGLA</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Account Detail End -->
-
+    </div>
 
 
     <!-- Footer Start -->

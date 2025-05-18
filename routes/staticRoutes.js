@@ -34,7 +34,7 @@ router.get("/visit-us", (req, res) => {
   });
 });
 
-router.get("/media", (req, res) => {
+router.get("/church-media", (req, res) => {
   res.status(200).render("media", {
     app_name: process.env.APP_NAME,
     url: process.env.URL,

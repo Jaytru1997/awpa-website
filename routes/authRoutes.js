@@ -4,6 +4,8 @@ const { check, validationResult } = require("express-validator");
 const authMiddleware = require("../middleware/authMiddleware");
 require("dotenv").config();
 const { blacklistToken } = require("../controllers/blacklistController");
+require("dotenv").config();
+const { config } = require("../config/config");
 
 const router = express.Router();
 
@@ -13,6 +15,16 @@ const router = express.Router();
  *   name: Authentication
  *   description: User Authentication management
  */
+
+router.get("/register", (req, res) => {
+  res.status(200).render("auth/register", {
+    app_name: process.env.APP_NAME,
+    url: process.env.URL,
+    title: "Home",
+    description: config.page_desc,
+    keywords: "sign up, welcome, church, Angel Wings Power Assembly",
+  });
+});
 
 /**
  * @swagger
@@ -60,6 +72,15 @@ router.post(
   register
 );
 
+router.get("/login", (req, res) => {
+  res.status(200).render("auth/login", {
+    app_name: process.env.APP_NAME,
+    url: process.env.URL,
+    title: "Home",
+    description: config.page_desc,
+    keywords: "sign up, welcome, church, Angel Wings Power Assembly",
+  });
+});
 /**
  * @swagger
  * /auth/login:

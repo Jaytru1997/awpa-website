@@ -4,27 +4,8 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const { asyncWrapper } = require("../utils/async");
 const { sendEmail } = require("../services/emailService");
-
-exports.login = asyncWrapper(async (req, res) => {
-  const { email, password } = req.body;
-
-  // Check if user exists
-  const user = await User.findOne({ email });
-  if (!user) return res.status(400).json({ message: "Invalid credentials" });
-
-  // Compare password
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
-
-  // Generate token
-  const token = jwt.sign(
-    { id: user._id, role: user.role },
-    process.env.JWT_SECRET,
-    { expiresIn: process.env.JWT_EXPIRES_IN }
-  );
-
-  res.status(200).json({ token });
-});
+require("dotenv").config();
+const { config } = require("../config/config");
 
 const signToken = (id, role) => {
   return jwt.sign({ id, role }, process.env.JWT_SECRET, {
@@ -47,30 +28,52 @@ const createSendToken = (user, statusCode, res) => {
 
   user.password = undefined;
 
-  res.status(statusCode).json({
-    status: "success",
-    token,
-    data: user,
-  });
+  res.status(statusCode);
 };
 
 exports.register = asyncWrapper(async (req, res, next) => {
   const { email, password, name } = req.body;
 
-  const message_1 = `Welcome to ${process.env.APP_NAME}! We're delighted to have you with us. You're now part of a community of people who are passionate about their faith and are committed to living a godly lifestyle.`;
+  const message_1 = `Welcome to ${process.env.APP_NAME}! We’re overjoyed to have you join our church family. You’re now part of a vibrant community dedicated to growing in faith, worshiping together, and serving with love.`;
 
-  const message_2 = `If you need assistance, contact our team at [contact@${process.env.URL}]. We're here to ensure you have a smooth onboarding experience.`;
+  const message_2 = `Need help getting started? Our ministry team is here for you at contact@${process.env.URL}. We’re committed to supporting your spiritual journey every step of the way.`;
+
+  const message_3 = `Join us for our next worship service or community event! Check your email for details on upcoming gatherings and ways to connect with our ${process.env.APP_NAME} family.`;
 
   try {
+    // Check if user already exists
+    const existingUser = await User.find({ email });
+    if (existingUser.length > 0) {
+      return res.status(400).render("status/status", {
+        app_name: process.env.APP_NAME,
+        url: process.env.URL,
+        title: "Home",
+        description: config.page_desc,
+        keywords: "home, welcome, church, Angel Wings Power Assembly",
+        status: 400,
+        message_title: "User already exists",
+        message: "User already exists with this email!",
+        actionUrl: "/auth/login",
+        actionText: "Go back to login",
+      });
+    }
     const user = await User.create({
       name,
       email,
       password,
     });
     if (!user) {
-      return res.status(400).json({
-        status: "failed",
-        message: "User not created",
+      return res.status(400).render("status/status", {
+        app_name: process.env.APP_NAME,
+        url: process.env.URL,
+        title: "Home",
+        description: config.page_desc,
+        keywords: "home, welcome, church, Angel Wings Power Assembly",
+        status: 400,
+        message_title: "User not created",
+        message: "User not created!",
+        actionUrl: "/auth/register",
+        actionText: "Go back to login",
       });
     }
     await sendEmail({
@@ -79,9 +82,21 @@ exports.register = asyncWrapper(async (req, res, next) => {
       header: `Welcome to ${process.env.APP_NAME}!`,
       message_1,
       message_2,
+      message_3,
+      cta: "Login",
+      ctaLink: `${process.env.URL}/auth/login`,
     });
 
     createSendToken(user, 201, res);
+    if (user.role === "admin") {
+      return res.redirect("/admin");
+    }
+    if (user.role === "manager") {
+      return res.redirect("/manager");
+    }
+    if (user.role === "member") {
+      return res.redirect("/member");
+    }
   } catch (err) {
     logger.error(err);
     return next(
@@ -95,26 +110,59 @@ exports.login = asyncWrapper(async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return next(new AppError("Please provide email and password!", 400));
+    return res.status(400).render("status/status", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      title: "Home",
+      description: config.page_desc,
+      keywords: "home, welcome, church, Angel Wings Power Assembly",
+      status: 400,
+      message_title: "Invalid credentials",
+      message: "Please provide email and password!",
+      actionUrl: "/auth/login",
+      actionText: "Go back to login",
+    });
   }
 
   const user = await User.findOne({ email }).select("+password");
 
   if (!user || !(await user.comparePassword(password))) {
-    return next(new AppError("Invalid email or password!", 401));
+    return res.status(400).render("status/status", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      title: "Home",
+      description: config.page_desc,
+      keywords: "home, welcome, church, Angel Wings Power Assembly",
+      status: 400,
+      message_title: "Invalid credentials",
+      message: "Incorrect email or password!",
+      actionUrl: "/auth/login",
+      actionText: "Go back to login",
+    });
   }
   if (user.isActive === true) {
-    const token = signToken(user._id, user.role);
-
-    res.status(200).json({
-      status: "success",
-      token,
-      data: user,
-    });
+    createSendToken(user, 200, res);
+    if (user.role === "admin") {
+      return res.redirect("/admin");
+    }
+    if (user.role === "manager") {
+      return res.redirect("/manager");
+    }
+    if (user.role === "member") {
+      return res.redirect("/member");
+    }
   } else {
-    res.status(400).json({
-      status: "failed",
-      message: "USer account deactivated",
+    res.status(400).render("status/status", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      title: "Home",
+      description: config.page_desc,
+      keywords: "home, welcome, church, Angel Wings Power Assembly",
+      status: 400,
+      message_title: "Account not active",
+      message: "Your account is not active. Please contact the admin.",
+      actionUrl: "/auth/login",
+      actionText: "Go back to login",
     });
   }
 });

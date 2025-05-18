@@ -1,8 +1,10 @@
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
+const User = require("../models/User");
 const Blacklist = require("../models/Blacklist");
 const { asyncWrapper } = require("../utils/async");
 const logger = require("../services/logger");
+require("dotenv").config();
 
 const authMiddleware = asyncWrapper(async (req, res, next) => {
   //get token from header
@@ -26,7 +28,7 @@ const authMiddleware = asyncWrapper(async (req, res, next) => {
   }
 
   //verify token
-  const decoded = await promisify(jwt.verify)(token, config.JWT_SECRET);
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
   //check if user still exists
   let currentUser = await User.findById(decoded.id).select("-password");

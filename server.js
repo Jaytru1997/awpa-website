@@ -15,6 +15,8 @@ const authRoutes = require("./routes/authRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const managerRoutes = require("./routes/managerRoutes");
+const memberRoutes = require("./routes/memberRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 
 const logger = require("./services/logger");
@@ -122,6 +124,8 @@ app.use("/auth", authRoutes);
 app.use("/bookings", bookingRoutes);
 app.use("/payments", paymentRoutes);
 app.use("/admin", adminRoutes);
+app.use("/manager", managerRoutes);
+app.use("/member", memberRoutes);
 app.use("/blog", blogRoutes);
 
 // Swagger Docs

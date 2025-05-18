@@ -38,7 +38,7 @@
 
 </head>
 
-<body class="font-roboto bg-white dark:bg-black text-dark dark:text-white">
+<body class="font-roboto bg-dark-blue-900 text-white">
 
     <!-- Navigation Bar Start-->
     <nav class="bg-dark-blue-900">
@@ -67,10 +67,10 @@
                             <a href="/church-media"
                                 class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Media</a>
                             <a href="/resources"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Resources</a>
-                            <a href="/giving"
                                 class="rounded-md px-3 py-2 text-sm font-medium hover:bg-dark-blue-800 text-white"
-                                aria-current="page">Giving</a>
+                                aria-current="page">Resources</a>
+                            <a href="/giving"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Giving</a>
                         </div>
                     </div>
                 </div>
@@ -121,10 +121,10 @@
                 <a href="/church-media"
                     class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Media</a>
                 <a href="/resources"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Resources</a>
+                    class="block rounded-md px-3 py-2 text-base font-medium hover:bg-dark-blue-800 text-white"
+                    aria-current="page">Resources</a>
                 <a href="/giving"
-                    class="block rounded-md px-3 py-2 text-base font-medium  hover:bg-dark-blue-800 text-white"
-                    aria-current="page">Giving</a>
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Giving</a>
                 <a href="https://live.angelwingspowerassembly.org"
                     class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Live
                     Service</a>
@@ -133,112 +133,60 @@
     </nav>
     <!-- Navigation Bar End -->
 
-    <!-- Header Start -->
-    <section class="relative w-full h-[90vh] sm:h-[483px] overflow-hidden bg-white">
-        <!-- Slides -->
-        <div class="slideshow-container flex h-full transition-transform duration-500 ease-in-out">
-            <!-- Slide 3 -->
-            <div class="slide flex-none w-full h-full relative">
-                <!-- Desktop -->
-                <img src="/asset/images/general-header.png" alt="Header Image"
-                    class="w-full h-full object-cover object-[100%_25%] hidden xl:block">
-                <!-- Tablet -->
-                <img src="/asset/images/general-header.png" alt="Header Image"
-                    class="w-full h-full object-cover object-[75%_75%] hidden sm:block xl:hidden">
-                <!-- Mobile -->
-                <img src="/asset/images/general-header.png" alt="Header Image"
-                    class="w-full h-full object-cover object-[75%_75%] sm:hidden">
-                <div class="absolute inset-0  bg-dark-blue-900/50 flex items-center justify-center sm:justify-start">
-                    <div
-                        class="sm:ml-18 md:w-[50%] xl:w-[50%] text-center sm:text-left prose prose-lg text-blue-600 font-roboto xl:pl-56">
-                        <p class="text-md md:text-lg uppercase">Giving</p>
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl mb-4 font-extrabold text-white uppercase">Give
-                            securely online or make local bank transfers</h1>
-                    </div>
-                </div>
-            </div>
+    <div class="flex flex-col justify-center mx-auto max-w-7xl px-2 py-8">
+        <div class="max-w-md w-full bg-white dark:bg-dark-blue-800 rounded-xl shadow-lg p-8 text-center">
+            <!-- Icon based on status -->
+            <% if (status===404) { %>
+                <svg class="w-16 h-16 mx-auto mb-4 text-red-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <% } else if (status===200) { %>
+                    <svg class="w-16 h-16 mx-auto mb-4 text-light-blue-900" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                        </path>
+                    </svg>
+                    <% } else if (status===500) { %>
+                        <svg class="w-16 h-16 mx-auto mb-4 text-red-900" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                            </path>
+                        </svg>
+                        <% } else { %>
+                            <svg class="w-16 h-16 mx-auto mb-4 text-grey-600" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <% } %>
+
+                                <!-- Status Code -->
+                                <h1 class="text-5xl font-roboto font-bold text-dark-blue-900 dark:text-white mb-2">
+                                    <%= status===200? "Success" : status===404? "Not Found" : status===500 ? "Error"
+                                        : "" %>
+                                </h1>
+
+                                <!-- Title -->
+                                <h2
+                                    class="text-2xl font-roboto font-semibold text-dark-blue-900 dark:text-grey-200 mb-4">
+                                    <%= message_title %>
+                                </h2>
+
+                                <!-- Message -->
+                                <p class="text-grey-600 dark:text-grey-400 font-roboto mb-6">
+                                    <%= message %>
+                                </p>
+
+                                <!-- Action Button -->
+                                <a href="<%= actionUrl || '/' %>"
+                                    class="inline-block bg-red-900 text-white px-6 py-3 rounded-xl hover:bg-red-800 font-roboto uppercase transition-colors">
+                                    <%= actionText || 'Back to Home' %>
+                                </a>
         </div>
-    </section>
-    <!-- Header End -->
-
-    <!-- Giving Start -->
-    <section class="mt-8 py-8">
-        <div
-            class="container mx-auto max-w-7xl px-4 flex sm:flex-row items-start justify-start flex-col gap-10 sm:gap-36">
-            <form action="/giving" method="post" class="w-full max-w-lg flex flex-col items-start justify-center gap-4">
-                <input type="text" name="name" id="name" placeholder="Name"
-                    class="bg-light-blue-200 rounded-md px-4 py-2 w-full" required>
-                <input type="email" name="email" id="email" placeholder="Email"
-                    class="bg-light-blue-200 rounded-md px-4 py-2 w-full" required>
-                <!-- options input -->
-                <select name="reason" id="reason" class="bg-light-blue-200 rounded-md px-4 py-2 w-full appearance-none"
-                    value="">
-                    <option value="">Reason for giving</option>
-                    <option value="Offering">Offering</option>
-                    <option value="Tithe">Tithe</option>
-                    <option value="First Fruit">First Fruit</option>
-                    <option value="Pastor's Offering">Pastor's Offering</option>
-
-                </select>
-                <textarea name="message" id="message" rows="4" placeholder="Prayer Request"
-                    class="bg-light-blue-200 rounded-md px-4 py-2 mt-4 w-full" required></textarea>
-                <button type="submit"
-                    class="bg-blue-600 text-dark rounded-md px-4 py-2 mt-4 hover:bg-blue-700 w-full cursor-pointer uppercase">Give</button>
-            </form>
-            <div class="flex items-start justify-start flex-col gap-3">
-                <img src="/asset/images/giving-image.png" alt="Giving Image" class="w-[574px] h-60 object-cover ">
-                <p class="text-light-blue-900 text-lg font-bold">Luke 6:38</p>
-                <p
-                    class="text-gray-700 dark:text-gray-300 text-lg font-normal border-l-2 border-light-blue-900 pl-4 pt-2 text-wrap">
-                    Give, and it shall be given unto you; good measure, pressed down, and shaken together, and running
-                    over, shall men give
-                    into your bosom. For with the same measure that ye mete withal it shall be measured to you again.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Giving End -->
-
-    <!-- Account Details Start -->
-    <section class="mt-8 py-8">
-        <div class="container mx-auto max-w-7xl px-4 flex items-center justify-center flex-col gap-3">
-            <h2 class="uppercase text-2xl md:text-2xl lg:text-3xl text-dark font-bold mb-4">Local Bank Transfer</h2>
-        </div>
-        <div class="container mx-auto max-w-7xl px-4 flex sm:flex-row items-start justify-between flex-col gap-10">
-            <div class="flex items-start justify-start flex-col gap-3 w-full">
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Bank Name</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    Access Bank</p>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Account Name</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    Angel Wings Power Assembly</p>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Account Number</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    0095065107</p>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Swift Code</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    ABNGNGLA</p>
-            </div>
-            <div class="flex items-start justify-start w-full flex-col gap-3">
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Bank Name</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    United Bank For Africa (UBA)</p>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Account Name</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    Angel Wings Power Assembly</p>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Account Number</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    1026068362</p>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Swift Code</p>
-                <p class="text-gray-700 dark:text-gray-300 text-2xl font-bold uppercase">
-                    UNAFNGLA</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Account Detail End -->
-
+    </div>
 
 
     <!-- Footer Start -->

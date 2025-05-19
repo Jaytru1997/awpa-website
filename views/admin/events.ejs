@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="icon" href="/asset/logo/logo.png" type="image/png">
+    <meta name="description" content="<%= description %>">
+    <meta name="keywords" content="<%= keywords %>">
+    <title>
+        <%= app_name %>
+    </title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="<%= app_name %>">
+    <meta property="og:description" content="<%= description %>">
+    <meta property="og:image" content="https://awpa-website.onrender.com/asset/images/banner.png">
+    <meta property="og:image:alt" content="Angel Wings Power Assembly Logo">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://<%= url %>">
+    <meta property="og:site_name" content="<%= app_name %>">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= app_name %>">
+    <meta name="twitter:description" content="<%= description %>">
+    <meta name="twitter:image" content="/asset/images/banner.png">
+    <meta name="twitter:image:alt" content="Angel Wings Power Assembly Logo">
+
+    <!-- Font Awesome (if used, ensure it's installed) -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="/css/tailwind.css">
+
+
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .modal {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .modal.hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+    </style>
+</head>
+
+<body class="font-roboto bg-white dark:bg-black text-dark dark:text-white">
+    <div class="min-h-screen flex bg-grey-200 dark:bg-dark-blue-900">
+        <!-- Sidebar -->
+        <div id="sidebar"
+            class="w-64 bg-dark-blue-900 text-white flex flex-col fixed inset-y-0 left-0 transform transition-transform duration-300 ease-in-out md:translate-x-0 z-30">
+            <!-- Logo -->
+            <div class="p-4 flex items-center gap-2">
+                <svg class="w-8 h-8 text-red-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                </svg>
+                <h1 class="text-xl font-roboto font-bold">Church Admin</h1>
+            </div>
+            <!-- Navigation -->
+            <nav class="flex-1 p-4 scrollbar-hide overflow-y-auto"
+                style="-ms-overflow-style: none; scrollbar-width: none;">
+                <a href="/admin/dashboard"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2 ">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Dashboard</span>
+                </a>
+                <a href="/events"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 bg-red-900 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Events</span>
+                </a>
+                <a href="/blog" class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Articles</span>
+                </a>
+                <a href="/media" class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Media</span>
+                </a>
+                <a href="/admin/church-details"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a2 2 0 012-2h2a2 2 0 012 2v5m-4 0h4">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Church Details</span>
+                </a>
+                <a href="/auth/logout"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Logout</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 ml-0 md:ml-64">
+            <!-- Top Bar -->
+            <header class="bg-white dark:bg-dark-blue-800 shadow p-4 flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <!-- Hamburger Menu for Mobile -->
+                    <button id="menuBtn" class="md:hidden text-dark dark:text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16">
+                            </path>
+                        </svg>
+                    </button>
+                    <h2 class="text-xl font-roboto font-bold text-dark-blue-900 dark:text-white">Dashboard</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-dark dark:text-grey-200 font-roboto">Admin User</span>
+                    <img src="/asset/logo/logo.png" alt="User Avatar" class="w-10 h-10 rounded-full object-cover">
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <main class="p-6 dark:bg-dark-blue-900 min-h-[calc(100vh-64px)]">
+                <!-- Header -->
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
+                    <h1 class="sm:text-3xl font-roboto font-bold text-dark-blue-900 dark:text-white">Manage Events</h1>
+                    <button id="addEventBtn"
+                        class="bg-red-900 text-white px-4 py-2 rounded-xl hover:bg-red-800 flex items-center gap-2 font-roboto uppercase transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4">
+                            </path>
+                        </svg>
+                        Add Event
+                    </button>
+                </div>
+
+                <!-- Events Table -->
+                <div class="bg-white dark:bg-dark-blue-800 rounded-xl shadow-lg overflow-x-scroll scrollbar-hide flex items-center justify-center"
+                    style="-ms-overflow-style: none; scrollbar-width: none;">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-dark-blue-900 text-white text-sm">
+                                <th class="p-4 font-roboto font-semibold">Title</th>
+                                <th class="p-4 font-roboto font-semibold">Start Date</th>
+                                <th class="p-4 font-roboto font-semibold">End Date</th>
+                                <th class="p-4 font-roboto font-semibold">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (events && events.length> 0) { %>
+                                <% events.forEach(event=> { %>
+                                    <tr
+                                        class="border-b dark:border-dark-blue-600 hover:bg-grey-100 dark:hover:bg-dark-blue-700 text-xs">
+                                        <td class="p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                            <%= event.title %>
+                                        </td>
+                                        <td class="p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                            <%= new Date(event.startDate).toLocaleString() %>
+                                        </td>
+                                        <td class="p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                            <%= new Date(event.endDate).toLocaleString() %>
+                                        </td>
+                                        <td class="p-4">
+                                            <button
+                                                class="updateEventBtn bg-light-blue-900 text-white px-3 py-1 rounded-lg hover:bg-light-blue-800 flex items-center gap-2 font-roboto"
+                                                data-id="<%= event.id %>" data-title="<%= event.title %>"
+                                                data-start-date="<%= event.startDate %>"
+                                                data-end-date="<%= event.endDate %>"
+                                                data-location="<%= event.location %>"
+                                                data-description="<%= event.description %>"
+                                                data-tags="<%= event.tags.join(',') %>"
+                                                data-price-status="<%= event.priceStatus %>"
+                                                data-price="<%= event.price %>" data-banner="<%= event.banner %>">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15.828l-5.657-5.657a2 2 0 112.828-2.828l2.829 2.829">
+                                                    </path>
+                                                </svg>
+                                                Update
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                        <% } else { %>
+                                            <tr>
+                                                <td colspan="6"
+                                                    class="p-4 text-center text-grey-600 dark:text-grey-400 font-roboto">
+                                                    No
+                                                    events found.</td>
+                                            </tr>
+                                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Modal for Add/Update Event -->
+                <div id="eventModal"
+                    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+                    <div class="bg-white dark:bg-dark-blue-800 rounded-xl p-6 w-full max-w-md">
+                        <h2 id="modalTitle"
+                            class="text-2xl font-roboto font-bold text-dark-blue-900 dark:text-white mb-4">Add Event
+                        </h2>
+                        <form id="eventForm" action="/events" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" id="eventId" name="id">
+                            <div class="mb-4">
+                                <label for="title"
+                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Title</label>
+                                <input type="text" id="title" name="title"
+                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                    required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="startDate"
+                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Start
+                                    Date</label>
+                                <input type="datetime-local" id="startDate" name="startDate"
+                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                    required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="endDate"
+                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">End
+                                    Date</label>
+                                <input type="datetime-local" id="endDate" name="endDate"
+                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                    required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="location"
+                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Location</label>
+                                <input type="text" id="location" name="location"
+                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                    required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="description"
+                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Description</label>
+                                <textarea id="description" name="description"
+                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                    rows="4" required></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label for="tags"
+                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Tags
+                                    (comma-separated)</label>
+                                <input type="text" id="tags" name="tags"
+                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                    placeholder="e.g., worship, seminar">
+                            </div>
+                            <div class="mb-4">
+                                <label for="priceStatus"
+                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Price
+                                    Status</label>
+                                <select id="priceStatus" name="priceStatus"
+                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                    required>
+                                    <option value="free">Free</option>
+                                    <option value="paid">Paid</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="price"
+                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Price
+                                    ($)</label>
+                                <input type="number" id="price" name="price" step="0.01"
+                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                    disabled>
+                            </div>
+                            <div class="mb-4">
+                                <label for="banner"
+                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Banner
+                                    Image</label>
+                                <input type="file" id="banner" name="banner" accept="image/*"
+                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                            </div>
+                            <div class="flex justify-end gap-4">
+                                <button type="button" id="closeModalBtn"
+                                    class="bg-grey-400 text-dark-blue-900 px-4 py-2 rounded-lg hover:bg-grey-500 font-roboto">Cancel</button>
+                                <button type="submit"
+                                    class="bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-800 font-roboto">Save
+                                    Event</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript for Mobile Sidebar Toggle -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const menuBtn = document.getElementById('menuBtn');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+    </script>
+
+    <!-- JavaScript for Modal and Form Handling -->
+    <script>
+        const addEventBtn = document.getElementById('addEventBtn');
+        const eventModal = document.getElementById('eventModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const eventForm = document.getElementById('eventForm');
+        const modalTitle = document.getElementById('modalTitle');
+        const eventIdInput = document.getElementById('eventId');
+        const priceStatusSelect = document.getElementById('priceStatus');
+        const priceInput = document.getElementById('price');
+        const updateEventBtns = document.querySelectorAll('.updateEventBtn');
+
+        // Enable/disable price input based on priceStatus
+        function togglePriceInput() {
+            priceInput.disabled = priceStatusSelect.value !== 'Paid';
+            if (priceInput.disabled) priceInput.value = '';
+        }
+        priceStatusSelect.addEventListener('change', togglePriceInput);
+
+        // Open modal for adding new event
+        addEventBtn.addEventListener('click', () => {
+            modalTitle.textContent = 'Add Event';
+            eventForm.action = '/events';
+            eventForm.reset();
+            eventIdInput.value = '';
+            priceStatusSelect.value = 'free';
+            togglePriceInput();
+            eventModal.classList.remove('hidden');
+        });
+
+        // Open modal for updating event
+        updateEventBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modalTitle.textContent = 'Update Event';
+                eventForm.action = `/events/${btn.dataset.id}`;
+                eventIdInput.value = btn.dataset.id;
+                document.getElementById('title').value = btn.dataset.title;
+                document.getElementById('startDate').value = new Date(btn.dataset.startDate).toISOString().slice(0, 16);
+                document.getElementById('endDate').value = new Date(btn.dataset.endDate).toISOString().slice(0, 16);
+                document.getElementById('location').value = btn.dataset.location;
+                document.getElementById('description').value = btn.dataset.description;
+                document.getElementById('tags').value = btn.dataset.tags;
+                document.getElementById('priceStatus').value = btn.dataset.priceStatus;
+                document.getElementById('price').value = btn.dataset.price;
+                togglePriceInput();
+                eventModal.classList.remove('hidden');
+            });
+        });
+
+        // Close modal
+        closeModalBtn.addEventListener('click', () => {
+            eventModal.classList.add('hidden');
+        });
+
+        // Close modal on outside click
+        eventModal.addEventListener('click', (e) => {
+            if (e.target === eventModal) {
+                eventModal.classList.add('hidden');
+            }
+        });
+
+        // Form submission (client-side validation)
+        eventForm.addEventListener('submit', (e) => {
+            const title = document.getElementById('title').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const location = document.getElementById('location').value;
+            const description = document.getElementById('description').value;
+            const priceStatus = document.getElementById('priceStatus').value;
+            const price = document.getElementById('price').value;
+            if (!title || !startDate || !endDate || !location || !description) {
+                e.preventDefault();
+                alert('Please fill out all required fields.');
+            } else if (priceStatus === 'Paid' && (!price || price <= 0)) {
+                e.preventDefault();
+                alert('Please enter a valid price for a Paid event.');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

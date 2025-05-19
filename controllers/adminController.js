@@ -29,6 +29,16 @@ exports.renderAdminDashboard = asyncWrapper(async (req, res) => {
   });
 });
 
+exports.renderChurchDetailsDashboard = asyncWrapper(async (req, res) => {
+  return res.status(StatusCodes.OK).render("admin/church-details", {
+    app_name: process.env.APP_NAME,
+    url: process.env.URL,
+    title: "Admin Dashboard",
+    description: config.page_desc,
+    keywords: "home, welcome, church, Angel Wings Power Assembly",
+  });
+});
+
 // User Controls
 // deactivate User
 exports.toggleUserStatus = asyncWrapper(async (req, res) => {

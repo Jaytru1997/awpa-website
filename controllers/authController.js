@@ -79,7 +79,6 @@ exports.register = asyncWrapper(async (req, res, next) => {
     await sendEmail({
       email,
       subject: `Welcome to ${process.env.APP_NAME}!`,
-      header: `Welcome to ${process.env.APP_NAME}!`,
       message_1,
       message_2,
       message_3,

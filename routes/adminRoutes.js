@@ -4,6 +4,7 @@ const { checkRole } = require("../middleware/rbacMiddleware");
 const { access } = require("../config/access");
 const {
   renderAdminDashboard,
+  renderChurchDetailsDashboard,
   toggleUserStatus,
 } = require("../controllers/adminController");
 
@@ -23,6 +24,13 @@ router.post(
   authMiddleware,
   checkRole(access.admin),
   toggleUserStatus
+);
+
+router.get(
+  "/church-details",
+  authMiddleware,
+  checkRole(access.admin),
+  renderChurchDetailsDashboard
 );
 
 module.exports = router;

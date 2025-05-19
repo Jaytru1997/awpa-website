@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   createPost,
+  renderBlogsDashboard,
   getAllPosts,
   getPostById,
   updatePost,
@@ -39,7 +40,12 @@ const router = express.Router();
  *       500:
  *         description: Server error
  */
-router.get("/", getAllPosts);
+router.get(
+  "/",
+  authMiddleware,
+  checkRole(access.manager),
+  renderBlogsDashboard
+);
 
 /**
  * @swagger

@@ -133,7 +133,7 @@
     </nav>
     <!-- Navigation Bar End -->
 
-    <div class="flex flex-col justify-center mx-auto max-w-7xl px-2 py-8">
+    <div class="flex flex-col justify-center mx-auto max-w-7xl px-2 py-8 items-center">
         <div class="max-w-md w-full bg-white dark:bg-dark-blue-800 rounded-xl shadow-lg p-8 text-center">
             <!-- Icon based on status -->
             <% if (status===404) { %>
@@ -142,49 +142,49 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <% } else if (status===200) { %>
-                    <svg class="w-16 h-16 mx-auto mb-4 text-light-blue-900" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
-                        </path>
-                    </svg>
-                    <% } else if (status===500) { %>
-                        <svg class="w-16 h-16 mx-auto mb-4 text-red-900" fill="none" stroke="currentColor"
+                <% } else if (status>=200 && status<300) { %>
+                        <svg class="w-16 h-16 mx-auto mb-4 text-light-blue-900" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
                             </path>
                         </svg>
-                        <% } else { %>
-                            <svg class="w-16 h-16 mx-auto mb-4 text-grey-600" fill="none" stroke="currentColor"
+                        <% } else if (status>=500) { %>
+                            <svg class="w-16 h-16 mx-auto mb-4 text-red-900" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                                </path>
                             </svg>
-                            <% } %>
+                            <% } else { %>
+                                <svg class="w-16 h-16 mx-auto mb-4 text-grey-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <% } %>
 
-                                <!-- Status Code -->
-                                <h1 class="text-5xl font-roboto font-bold text-dark-blue-900 dark:text-white mb-2">
-                                    <%= status===200? "Success" : status===404? "Not Found" : status===500 ? "Error"
-                                        : "" %>
-                                </h1>
+                                    <!-- Status Code -->
+                                    <h1 class="text-5xl font-roboto font-bold text-dark-blue-900 dark:text-white mb-2">
+                                        <%= status===200? "Success" : status===404? "Not Found" : status===500 ? "Error"
+                                            : "" %>
+                                    </h1>
 
-                                <!-- Title -->
-                                <h2
-                                    class="text-2xl font-roboto font-semibold text-dark-blue-900 dark:text-grey-200 mb-4">
-                                    <%= message_title %>
-                                </h2>
+                                    <!-- Title -->
+                                    <h2
+                                        class="text-2xl font-roboto font-semibold text-dark-blue-900 dark:text-grey-200 mb-4">
+                                        <%= message_title %>
+                                    </h2>
 
-                                <!-- Message -->
-                                <p class="text-grey-600 dark:text-grey-400 font-roboto mb-6">
-                                    <%= message %>
-                                </p>
+                                    <!-- Message -->
+                                    <p class="text-grey-600 dark:text-grey-400 font-roboto mb-6">
+                                        <%= message %>
+                                    </p>
 
-                                <!-- Action Button -->
-                                <a href="<%= actionUrl || '/' %>"
-                                    class="inline-block bg-red-900 text-white px-6 py-3 rounded-xl hover:bg-red-800 font-roboto uppercase transition-colors">
-                                    <%= actionText || 'Back to Home' %>
-                                </a>
+                                    <!-- Action Button -->
+                                    <a href="<%= actionUrl || '/' %>"
+                                        class="inline-block bg-red-900 text-white px-6 py-3 rounded-xl hover:bg-red-800 font-roboto uppercase transition-colors">
+                                        <%= actionText || 'Back to Home' %>
+                                    </a>
         </div>
     </div>
 

@@ -53,18 +53,6 @@ const BlogSchema = new mongoose.Schema(
         },
       },
     ],
-    videos: [
-      {
-        url: {
-          type: String,
-          required: true,
-        },
-        description: {
-          type: String,
-          default: "",
-        },
-      },
-    ],
     createdAt: {
       type: Date,
       default: Date.now,

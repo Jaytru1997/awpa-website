@@ -10,17 +10,10 @@ const MediaSchema = new mongoose.Schema(
       required: true,
     },
     url: { type: String, required: true },
+    image: String,
     status: { type: String, enum: ["active", "inactive"], default: "active" },
     tags: [{ type: String }],
     category: String,
-    views: { type: Number, default: 0 },
-    ratings: [
-      {
-        userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-        rating: { type: Number, min: 1, max: 5 },
-        createdAt: { type: Date, default: Date.now },
-      },
-    ],
     favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     priceStatus: {
       type: String,
@@ -31,7 +24,7 @@ const MediaSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    author: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
   },

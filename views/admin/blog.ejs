@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="icon" href="/asset/logo/logo.png" type="image/png">
+    <meta name="description" content="<%= description %>">
+    <meta name="keywords" content="<%= keywords %>">
+    <title>
+        <%= app_name %>
+    </title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="<%= app_name %>">
+    <meta property="og:description" content="<%= description %>">
+    <meta property="og:image" content="https://awpa-website.onrender.com/asset/images/banner.png">
+    <meta property="og:image:alt" content="Angel Wings Power Assembly Logo">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://<%= url %>">
+    <meta property="og:site_name" content="<%= app_name %>">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= app_name %>">
+    <meta name="twitter:description" content="<%= description %>">
+    <meta name="twitter:image" content="/asset/images/banner.png">
+    <meta name="twitter:image:alt" content="Angel Wings Power Assembly Logo">
+
+    <!-- Font Awesome (if used, ensure it's installed) -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="/css/tailwind.css">
+
+
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .modal {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .modal.hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .ql-container {
+            font-family: 'Roboto Condensed', sans-serif;
+            background-color: #f3f4f6;
+            /* bg-grey-100 */
+            color: #1e3a8a;
+            /* text-dark-blue-900 */
+            border: 1px solid #9ca3af;
+            /* border-grey-400 */
+            border-radius: 0.5rem;
+        }
+
+        .dark .ql-container {
+            background-color: #1e293b;
+            /* bg-dark-blue-900 */
+            color: #d1d5db;
+            /* text-grey-200 */
+            border-color: #475569;
+            /* border-dark-blue-600 */
+        }
+
+        .ql-toolbar {
+            position: relative;
+            /* Ensure toolbar establishes stacking context */
+            background-color: #f3f4f6;
+            /* bg-grey-100 */
+            border: 1px solid #9ca3af;
+            /* border-grey-400 */
+            border-radius: 0.5rem 0.5rem 0 0;
+            z-index: 10;
+            /* Higher than editor */
+        }
+
+        .dark .ql-toolbar {
+            background-color: #1e293b;
+            /* bg-dark-blue-900 */
+            border-color: #475569;
+            /* border-dark-blue-600 */
+        }
+
+        .ql-editor {
+            min-height: 100px;
+        }
+
+        .ql-picker-options {
+            z-index: 20;
+            /* Ensure dropdowns appear above editor and toolbar */
+            background-color: #f3f4f6;
+            /* Match toolbar */
+            border: 1px solid #9ca3af;
+            border-radius: 0.5rem;
+        }
+
+        .dark .ql-picker-options {
+            background-color: #1e293b;
+            border-color: #475569;
+            color: #d1d5db;
+        }
+
+        .modal-content {
+            overflow: visible;
+            /* Prevent clipping of dropdowns */
+        }
+    </style>
+
+    <!-- Quill CDN and JavaScript -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+
+<body class="font-roboto bg-white dark:bg-black text-dark dark:text-white">
+    <div class="min-h-screen flex bg-grey-200 dark:bg-dark-blue-900">
+        <!-- Sidebar -->
+        <div id="sidebar"
+            class="w-64 bg-dark-blue-900 text-white flex flex-col fixed inset-y-0 left-0 transform transition-transform duration-300 ease-in-out md:translate-x-0 z-30">
+            <!-- Logo -->
+            <div class="p-4 flex items-center gap-2">
+                <svg class="w-8 h-8 text-red-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                </svg>
+                <h1 class="text-xl font-roboto font-bold">Church Admin</h1>
+            </div>
+            <!-- Navigation -->
+            <nav class="flex-1 p-4 scrollbar-hide overflow-y-auto"
+                style="-ms-overflow-style: none; scrollbar-width: none;">
+                <a href="/admin/dashboard"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2 ">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Dashboard</span>
+                </a>
+                <a href="/events" class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Events</span>
+                </a>
+                <a href="/blog"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2 bg-red-900">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Articles</span>
+                </a>
+                <a href="/media" class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Media</span>
+                </a>
+                <a href="/admin/church-details"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a2 2 0 012-2h2a2 2 0 012 2v5m-4 0h4">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Church Details</span>
+                </a>
+                <a href="/auth/logout"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Logout</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 ml-0 md:ml-64">
+            <!-- Top Bar -->
+            <header class="bg-white dark:bg-dark-blue-800 shadow p-4 flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <!-- Hamburger Menu for Mobile -->
+                    <button id="menuBtn" class="md:hidden text-dark dark:text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16">
+                            </path>
+                        </svg>
+                    </button>
+                    <h2 class="text-xl font-roboto font-bold text-dark-blue-900 dark:text-white">Articles</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-dark dark:text-grey-200 font-roboto">Admin User</span>
+                    <img src="/asset/logo/logo.png" alt="User Avatar" class="w-10 h-10 rounded-full object-cover">
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <main class="p-6  dark:bg-dark-blue-900 min-h-[calc(100vh-64px)]">
+                <!-- Header -->
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-md sm:text-3xl font-roboto font-bold text-dark-blue-900 dark:text-white">Manage
+                        Articles</h1>
+                    <button id="addArticleBtn"
+                        class="bg-red-900 text-white px-4 py-2 rounded-xl hover:bg-red-800 flex items-center gap-2 font-roboto uppercase transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4">
+                            </path>
+                        </svg>
+                        New Article
+                    </button>
+                </div>
+
+                <!-- Articles Table -->
+                <div class="bg-white dark:bg-dark-blue-800 rounded-xl shadow-lg overflow-x-scroll scrollbar-hide"
+                    style="-ms-overflow-style: none; scrollbar-width: none;">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-dark-blue-900 text-white text-xs">
+                                <th class="p-4 font-roboto font-semibold cursor-pointer" data-sort="title">Title</th>
+                                <th class="p-4 font-roboto font-semibold cursor-pointer" data-sort="author">Author</th>
+                                <th class="p-4 font-roboto font-semibold cursor-pointer" data-sort="categories">Category
+                                </th>
+                                <th class="p-4 font-roboto font-semibold cursor-pointer" data-sort="priceStatus">Price
+                                    Status</th>
+                                <th class="p-4 font-roboto font-semibold">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (articles && articles.length> 0) { %>
+                                <% articles.forEach(article=> { %>
+                                    <tr
+                                        class="text-xs border-b dark:border-dark-blue-600 hover:bg-grey-100 dark:hover:bg-dark-blue-700">
+                                        <td class="p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                            <%= article.title %>
+                                        </td>
+                                        <td class="p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                            <%= article.author || 'N/A' %>
+                                        </td>
+                                        <td class="p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                            <%= article.categories %>
+                                        </td>
+                                        <td class="p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                            <%= article.priceStatus==='free' ? 'Free' : `Paid ($${article.price})` %>
+                                        </td>
+                                        <td class="p-4 flex gap-2">
+                                            <a href="/admin/articles/<%= article._id %>"
+                                                class="bg-green-900 text-white px-3 py-1 rounded-lg hover:bg-green-800 flex items-center gap-2 font-roboto">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm6 0c0 5.523-4.477 10-10 10S1 17.523 1 12 5.477 2 11 2s10 4.477 10 10z">
+                                                    </path>
+                                                </svg>
+                                                View
+                                            </a>
+                                            <button
+                                                class="updateArticleBtn bg-light-blue-900 text-white px-3 py-1 rounded-lg hover:bg-light-blue-800 flex items-center gap-2 font-roboto"
+                                                data-id="<%= article._id %>" data-title="<%= article.title %>"
+                                                data-content="<%= article.content %>"
+                                                data-author="<%= article.author %>"
+                                                data-categories="<%= article.categories %>"
+                                                data-tags="<%= article.tags.join(',') %>"
+                                                data-language="<%= article.language %>"
+                                                data-price-status="<%= article.priceStatus %>"
+                                                data-price="<%= article.price %>">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15.828l-5.657-5.657a2 2 0 112.828-2.828l2.829 2.829">
+                                                    </path>
+                                                </svg>
+                                                Edit
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                        <% } else { %>
+                                            <tr>
+                                                <td colspan="7"
+                                                    class="p-4 text-center text-grey-600 dark:text-grey-400 font-roboto">
+                                                    No
+                                                    articles found.</td>
+                                            </tr>
+                                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Modal for Add/Update Article -->
+                <div id="articleModal"
+                    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+                    <div class="bg-white dark:bg-dark-blue-800 rounded-xl p-6 w-full max-w-lg">
+                        <h2 id="modalTitle"
+                            class="text-2xl font-roboto font-bold text-dark-blue-900 dark:text-white mb-4">Write New
+                            Article</h2>
+                        <form id="articleForm" action="/blog" method="POST" enctype="multipart/form-data"
+                            class="flex flex-col gap-2">
+                            <input type="hidden" id="articleId" name="id">
+                            <div class="mb-4">
+                                <label for="title"
+                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Title</label>
+                                <input type="text" id="title" name="title"
+                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                    required>
+                            </div>
+                            <!-- <div class="mb-4">
+                                <label for="content"
+                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Content</label>
+                                <textarea id="content" name="content"
+                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                    rows="6" required></textarea>
+                            </div> -->
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="mb-4">
+                                    <label for="author"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Author</label>
+                                    <input type="text" id="author" name="author"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="tags"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Tags
+                                        (comma-separated)</label>
+                                    <input type="text" id="tags" name="tags"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                        placeholder="e.g., faith, prayer">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="mb-4">
+                                    <label for="categories"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Category</label>
+                                    <select id="categories" name="categories"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                        required>
+                                        <option value="sermon">Sermon</option>
+                                        <option value="devotional">Devotional</option>
+                                        <option value="teaching">Teaching</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="language"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Language</label>
+                                    <select id="language" name="language"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                        required>
+                                        <option value="en">English</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="mb-4">
+                                    <label for="priceStatus"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Price
+                                        Status</label>
+                                    <select id="priceStatus" name="priceStatus"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                        required>
+                                        <option value="free">Free</option>
+                                        <option value="paid">Paid</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="price"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Price
+                                        ($)</label>
+                                    <input type="number" id="price" name="price" step="0.01"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                        disabled>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="mb-4">
+                                    <label for="thumbnail"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Thumbnail
+                                        Image</label>
+                                    <input type="file" id="thumbnail" name="thumbnail" accept="image/*"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                    <input type="hidden" name="imageDescriptions" value="thumbnail">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="banner"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Banner
+                                        Image</label>
+                                    <input type="file" id="banner" name="banner" accept="image/*"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                    <input type="hidden" name="imageDescriptions" value="banner">
+                                </div>
+                            </div>
+                            <div class="mb-4 sm:col-span-2">
+                                <label for="content"
+                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Content</label>
+                                <div id="quillEditor"></div>
+                                <input type="hidden" id="content" name="content">
+                            </div>
+                            <div class="flex justify-end gap-4">
+                                <button type="button" id="closeModalBtn"
+                                    class="bg-grey-400 text-dark-blue-900 px-4 py-2 rounded-lg hover:bg-grey-500 font-roboto">Cancel</button>
+                                <button type="submit"
+                                    class="bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-800 font-roboto">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript for Mobile Sidebar Toggle -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const menuBtn = document.getElementById('menuBtn');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+    </script>
+
+    <!-- JavaScript for Modal, Form Handling, and Sorting -->
+    <script>
+        // Initialize Quill with Roboto Condensed
+        const quill = new Quill('#quillEditor', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline'],
+                    ['link', 'image'],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    ['clean']
+                ]
+            }
+        });
+
+        // Sync Quill content with hidden input
+        const contentInput = document.getElementById('content');
+        quill.on('text-change', () => {
+            contentInput.value = quill.root.innerHTML;
+        });
+
+        const addArticleBtn = document.getElementById('addArticleBtn');
+        const articleModal = document.getElementById('articleModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const articleForm = document.getElementById('articleForm');
+        const modalTitle = document.getElementById('modalTitle');
+        const articleIdInput = document.getElementById('articleId');
+        const priceStatusSelect = document.getElementById('priceStatus');
+        const priceInput = document.getElementById('price');
+        const updateArticleBtns = document.querySelectorAll('.updateArticleBtn');
+        const tableHeaders = document.querySelectorAll('th[data-sort]');
+
+        // Enable/disable price input based on priceStatus
+        function togglePriceInput() {
+            priceInput.disabled = priceStatusSelect.value !== 'paid';
+            if (priceInput.disabled) priceInput.value = '';
+        }
+        priceStatusSelect.addEventListener('change', togglePriceInput);
+
+        // Open modal for adding new article
+        addArticleBtn.addEventListener('click', () => {
+            modalTitle.textContent = 'Write New Article';
+            articleForm.action = '/blog';
+            articleForm.reset();
+            articleIdInput.value = '';
+            priceStatusSelect.value = 'free';
+            togglePriceInput();
+            quill.root.innerHTML = '';
+            contentInput.value = '';
+            articleModal.classList.remove('hidden');
+        });
+
+        // Open modal for updating article
+        updateArticleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modalTitle.textContent = 'Edit Article';
+                articleForm.action = `/blog/${btn.dataset.id}`;
+                articleIdInput.value = btn.dataset.id;
+                document.getElementById('title').value = btn.dataset.title;
+                quill.root.innerHTML = decodeURIComponent(btn.dataset.content);
+                contentInput.value = decodeURIComponent(btn.dataset.content);
+                document.getElementById('author').value = btn.dataset.author || '';
+                document.getElementById('categories').value = btn.dataset.categories;
+                document.getElementById('tags').value = btn.dataset.tags;
+                document.getElementById('language').value = btn.dataset.language;
+                document.getElementById('priceStatus').value = btn.dataset.priceStatus;
+                document.getElementById('price').value = btn.dataset.price;
+                togglePriceInput();
+                articleModal.classList.remove('hidden');
+            });
+        });
+
+        // Close modal
+        closeModalBtn.addEventListener('click', () => {
+            articleModal.classList.add('hidden');
+        });
+
+        // Close modal on outside click
+        articleModal.addEventListener('click', (e) => {
+            if (e.target === articleModal) {
+                articleModal.classList.add('hidden');
+            }
+        });
+
+        // Form submission (client-side validation)
+        articleForm.addEventListener('submit', (e) => {
+            const title = document.getElementById('title').value;
+            const content = contentInput.value;
+            const categories = document.getElementById('categories').value;
+            const language = document.getElementById('language').value;
+            const priceStatus = document.getElementById('priceStatus').value;
+            const price = document.getElementById('price').value;
+            if (!title || !content || !categories || !language) {
+                e.preventDefault();
+                alert('Please fill out all required fields.');
+            } else if (priceStatus === 'paid' && (!price || price <= 0)) {
+                e.preventDefault();
+                alert('Please enter a valid price for a Paid article.');
+            }
+        });
+
+        // Table sorting
+        let sortDirection = {};
+        tableHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const key = header.dataset.sort;
+                sortDirection[key] = !sortDirection[key];
+                const tbody = header.closest('table').querySelector('tbody');
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+                rows.sort((a, b) => {
+                    const aText = a.querySelector(`td:nth-child(${Array.from(header.parentNode.children).indexOf(header) + 1})`).textContent;
+                    const bText = b.querySelector(`td:nth-child(${Array.from(header.parentNode.children).indexOf(header) + 1})`).textContent;
+                    return sortDirection[key] ? aText.localeCompare(bText) : bText.localeCompare(aText);
+                });
+                tbody.innerHTML = '';
+                rows.forEach(row => tbody.appendChild(row));
+            });
+        });
+    </script>
+
+</body>
+
+</html>

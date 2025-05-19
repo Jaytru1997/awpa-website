@@ -3,13 +3,13 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-// const sessions = require("express-session");
 const sessionManager = require("./middleware/sessionManager");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const mongoSanitize = require("express-mongo-sanitize");
+const fileUpload = require("express-fileupload");
 const staticRoutes = require("./routes/staticRoutes");
 const authRoutes = require("./routes/authRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
@@ -18,6 +18,8 @@ const adminRoutes = require("./routes/adminRoutes");
 const managerRoutes = require("./routes/managerRoutes");
 const memberRoutes = require("./routes/memberRoutes");
 const blogRoutes = require("./routes/blogRoutes");
+const eventRoutes = require("./routes/eventRoutes");
+const mediaRoutes = require("./routes/mediaRoutes");
 
 const logger = require("./services/logger");
 const { swaggerSpec, swaggerUi } = require("./config/swagger");
@@ -35,20 +37,21 @@ const app = express();
 // Set security HTTP headers
 app.set("trust proxy", "127.0.0.1");
 app.use(helmet());
+app.use(fileUpload());
 
 // Middleware
 app.use(express.json());
-
-//Serve Static Files
-app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
 
+app.disable("view cache");
+
 // Logging Requests
 app.use((req, res, next) => {
   logger.info(`${req.method} Request to ${req.url} from ${req.ip}`);
-  //   logger.info(`${req.method} ${req.url}`);
   next();
 });
 
@@ -61,13 +64,10 @@ app.use(sessionManager());
 
 app.use(cors());
 
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.disable("view cache");
-
 app.use(function (req, res, next) {
   const allowedOrigins = [
     "http://localhost:10000",
+    "https://awpa-website.onrender.com",
     "https://angelwingspowerassembly.org",
   ];
 
@@ -127,24 +127,41 @@ app.use("/admin", adminRoutes);
 app.use("/manager", managerRoutes);
 app.use("/member", memberRoutes);
 app.use("/blog", blogRoutes);
+app.use("/events", eventRoutes);
+app.use("/media", mediaRoutes);
 
 // Swagger Docs
 app.use("/awpa-api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-//ERROR LOGGING MIDDLEWARES
-if (process) {
-  process.on("uncaughtException", (error) => {
-    logger.error("Uncaught Exception:", error);
-    // Optionally, perform some cleanup before exiting the application
-    process.exit(1);
-  });
+//Serve Static Files
+app.use(express.static("public"));
 
-  process.on("unhandledRejection", (reason, promise) => {
-    logger.error("Unhandled Rejection:", reason);
-    process.exit(1);
-    // Optionally, handle the rejection gracefully or perform some cleanup
+// Error Handling
+app.use((err, req, res, next) => {
+  logger.error("Server error:", err);
+  res.status(err.statusCode || 500).render("status/status", {
+    app_name: process.env.APP_NAME,
+    url: process.env.URL,
+    title: "Server Error",
+    description: "An error occurred",
+    keywords: "error",
+    status: err.statusCode || 500,
+    message_title: "Server Error",
+    message: err.message || "Something went wrong. Please try again later.",
+    actionUrl: "/",
+    actionText: "Go to Home",
   });
-}
+});
+
+// Process Error Handlers
+process.on("uncaughtException", (error) => {
+  logger.error("Uncaught Exception:", error);
+  process.exit(1);
+});
+process.on("unhandledRejection", (reason) => {
+  logger.error("Unhandled Rejection:", reason);
+  process.exit(1);
+});
 
 // Start server
 const PORT = process.env.PORT || 10000;

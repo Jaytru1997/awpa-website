@@ -33,6 +33,13 @@
     <!-- Font Awesome (if used, ensure it's installed) -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Puritan:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/css/tailwind.css">
 
@@ -268,27 +275,7 @@
     <!-- Footer End -->
 
 
-    <!-- FadeInSlideUp Animation Observer Script -->
-    <script>
-        // Intersection Observer for viewport-based animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                    observer.unobserve(entry.target); // Stop observing after animation
-                }
-            });
-        }, {
-            threshold: 0.1 // Trigger when 10% of element is visible
-        });
 
-        // Observe all elements except those with .no-animate, .slide, or their descendants
-        document.querySelectorAll('*').forEach(element => {
-            if (!element.closest('.no-animate, .slide')) {
-                observer.observe(element);
-            }
-        });
-    </script>
 
 
     <!-- JavaScript for mobile menu and dropdown -->

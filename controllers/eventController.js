@@ -33,7 +33,7 @@ exports.addEvent = asyncWrapper(async (req, res) => {
     endDate,
   } = req.body;
   let banner = ""; // Initialize banner variable
-  console.log(title, req.files.banner);
+  // console.log(title, req.files.banner);
 
   // Handle banner file upload
   if (req.files) {

@@ -33,8 +33,17 @@
     <!-- Font Awesome (if used, ensure it's installed) -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Puritan:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/css/tailwind.css">
+
 
     <!-- Slideshow Javascript -->
     <script>
@@ -396,60 +405,23 @@
         </div>
         <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <!-- Sermon 1 -->
-                <a href="/resources/sermon/1">
-                    <div class="bg-dark dark:bg-dark  h-96 flex flex-col items-start gap-4 pt-0">
-                        <img src="/asset/images/sermons/thumbnail_1.png" alt="Sermon 1"
+                <% blog.forEach(item=> { %>
+                    <!-- Sermon  -->
+                    <div class="bg-dark dark:bg-dark  max-h-84 flex flex-col items-start gap-4 pt-0 pb-4">
+                        <img src="<%=item.images[0].url%>" alt="<%= item.title %>"
                             class="w-full h-[169px] object-cover object-center mt-0">
-                        <h2 class="text-xl lg:text-2xl text-white font-bold mb-4 uppercase pl-10">Breaking
-                            negative
-                            family pattern</h2>
-                        <p class="text-white pl-10 pr-4">We have seen from our focal scripture what light is.
-                            Light has
-                            a
-                            great
-                            effect
-                            on darkness...</p>
+                        <h2
+                            class="text-xl lg:text-2xl text-white font-bold uppercase pl-10 line-clamp-2 hover:line-clamp-none">
+                            <%= item.title %>
+                        </h2>
+                        <a href="/resources/articles/<%= item._id %>"
+                            class="flex items-center justify-start pl-10 w-full">
+                            <p
+                                class="inline-flex items-center justify-center gap-1 hover:text-light-blue-600 ease-in-out cursor-pointer text-white">
+                                Read article</p>
+                        </a>
                     </div>
-                </a>
-
-                <!-- Sermon 2 -->
-                <a href="/resources/sermon/2">
-                    <div class="bg-dark dark:bg-dark  h-96 flex flex-col items-start gap-4 pt-0">
-                        <img src="/asset/images/sermons/thumbnail_2.png" alt="Sermon 1"
-                            class="w-full h-[169px] object-cover object-center mt-0">
-                        <h2 class="text-xl lg:text-2xl text-white font-bold mb-4 uppercase pl-10">You can stand
-                            out</h2>
-                        <p class="text-white pl-10 pr-4">From our text we could see a man with many limitations
-                            trying
-                            to...</p>
-                    </div>
-                </a>
-
-                <!-- Sermon 3 -->
-                <a href="/resources/sermon/3">
-                    <div class="bg-dark dark:bg-dark  h-96 flex flex-col items-start gap-4 pt-0">
-                        <img src="/asset/images/sermons/thumbnail_3.png" alt="Sermon 1"
-                            class="w-full h-[169px] object-cover object-center mt-0">
-                        <h2 class="text-xl lg:text-2xl text-white font-bold mb-4 uppercase pl-10">The showers of
-                            blessing</h2>
-                        <p class="text-white pl-10 pr-4">From our focal scripture we could see that God is so much
-                            interested in us...</p>
-                    </div>
-                </a>
-
-                <!-- Sermon 4 -->
-                <a href="/resources/sermon/4">
-                    <div class="bg-dark dark:bg-dark  h-96 flex flex-col items-start gap-4 pt-0">
-                        <img src="/asset/images/sermons/thumbnail_4.png" alt="Sermon 1"
-                            class="w-full h-[169px] object-cover object-center mt-0">
-                        <h2 class="text-xl lg
-                            :text-2xl text-white font-bold mb-4 uppercase pl-10">Responsibility</h2>
-                        <p class="text-white pl-10 pr-4">From our scripture, we could see clearly that Man did nothing
-                            to have the garden, God...
-                        </p>
-                    </div>
-                </a>
+                    <% }); %>
             </div>
         </div>
     </section>
@@ -467,40 +439,97 @@
         </div>
         <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
             <div class="grid grid-cols-1 gap-3">
-                <!-- Event -->
-                <a href="/programs-and-events/1">
+                <% if (event) {%>
+                    <!-- Event -->
                     <div class=" h-[512px] flex flex-col md:flex-row items-start gap-0 pt-0">
                         <div
                             class="bg-blue-200 dark:bg-dark-blue-900 h-full flex-1 flex flex-col items-start justify-center py-4 sm:py-0 pl-10 pr-4">
                             <div class="w-full flex flex-row justify-between items-baseline-last mb-4">
                                 <p class="uppercase text-light-blue-900 font-bold text-sm">Upcoming event
                                 </p>
-                                <p class="font-bold text-2xl flex flex-col gap-0 items-center justify-center">02 <span
-                                        class="font-normal text-lg mt-[-10px]">APR</span></p>
-                            </div>
-                            <h2 class="text-xl lg:text-2xl text-black font-bold uppercase mb-4">Jesus; The Game Changer
-                            </h2>
-                            <p class="text-dark font-normal mb-4">Join us for an exciting time in God's presence. Jesus;
-                                The
-                                Game
-                                Changer is much more than a tag line, it is an experience of a lifetime</p>
-                            <div class="flex flex-col gap-2 w-[70%] mb-6">
-                                <p class="text-dark font-normal flex gap-2 items-center justify-start">
-                                    <img src="/asset/icons/clock.svg" alt="date icon"> 2nd April, 2024 12:00PM
+                                <p class="font-bold text-2xl flex flex-col gap-0 items-center justify-center">
+                                    <%= new Date(event.startDate).getDate() %>
+                                        <span class="font-normal text-lg mt-[-10px]">
+                                            <%= new Date(event.startDate).toLocaleString('en-US', { month: 'short'
+                                                }).toUpperCase()%>
+                                        </span>
                                 </p>
-                                <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
-                                        src="/asset/icons/location-pin.svg" alt="date icon">
-                                    Ogele Primary School Field,
-                                    Ughelli,
-                                    Delta State.</p>
                             </div>
-                            <a href="/programs-and-events/1"
+                            <h2 class="text-xl lg:text-2xl text-black font-bold uppercase mb-4">
+                                <%= event.title %>
+                            </h2>
+                            <p class="text-dark font-normal mb-4">
+                                <%= event.description %>
+                            </p>
+                            <div class="flex flex-col gap-2 w-[70%] mb-6">
+                                <% const formatDate=(dateString)=> {
+                                    if (!dateString || isNaN(new Date(dateString))) return 'Invalid Date';
+                                    const d = new Date(dateString);
+                                    const ord = (n) => {
+                                    if (n > 3 && n < 21) return 'th' ; return ['th', 'st' , 'nd' , 'rd' ][n % 10]
+                                        || 'th' ; }; const day=d.getDate(); const hours=d.getHours(); const
+                                        minutes=d.getMinutes().toString().padStart(2, '0' ); return `${day}${ord(day)}
+                                        ${d.toLocaleString('en-US', { month: 'long' })}, ${d.getFullYear()} ${hours % 12
+                                        || 12}:${minutes}${hours>= 12 ?
+                                        'PM' : 'AM'}`;
+                                        };
+                                        const formattedDate = formatDate(event.startDate);
+                                        %>
+                                        <p
+                                            class="text-dark font-normal flex gap-2 items-center justify-start custom-typography">
+                                            <img src="/asset/icons/clock.svg" alt="date icon">
+                                            <%= formattedDate %>
+                                        </p>
+                                        <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
+                                                src="/asset/icons/location-pin.svg" alt="date icon">
+                                            <%= event.location %>
+                                        </p>
+                            </div>
+                            <a href="/programs-and-events/<%= event._id %>"
                                 class="inline-block bg-dark text-blue-600 px-8 py-3 rounded-xl hover:text-blue-400 uppercase">Register</a>
                         </div>
-                        <img src="/asset/images/events/upcoming.png" alt="Event 1"
-                            class="sm:w-[500px] h-full object-cover object-center mt-0 flex-2">
+                        <img src="<%= event.banner || '/asset/images/events/coming-soon.jpg' %>" alt="Event 1"
+                            class="sm:w-[854px] h-full object-cover object-center mt-0 flex-2">
                     </div>
-                </a>
+                    <% } else { %>
+                        <a href="/programs-and-events/1">
+                            <div class=" h-[512px] flex flex-col md:flex-row items-start gap-0 pt-0">
+                                <div
+                                    class="bg-blue-200 dark:bg-dark-blue-900 h-full flex-1 flex flex-col items-start justify-center py-4 sm:py-0 pl-10 pr-4">
+                                    <div class="w-full flex flex-row justify-between items-baseline-last mb-4">
+                                        <p class="uppercase text-light-blue-900 font-bold text-sm">Past event
+                                        </p>
+                                        <p class="font-bold text-2xl flex flex-col gap-0 items-center justify-center">02
+                                            <span class="font-normal text-lg mt-[-10px]">APR</span>
+                                        </p>
+                                    </div>
+                                    <h2 class="text-xl lg:text-2xl text-black font-bold uppercase mb-4">Jesus; The Game
+                                        Changer
+                                    </h2>
+                                    <p class="text-dark font-normal mb-4">Join us for an exciting time in God's
+                                        presence. Jesus;
+                                        The
+                                        Game
+                                        Changer is much more than a tag line, it is an experience of a lifetime</p>
+                                    <div class="flex flex-col gap-2 w-[70%] mb-6">
+                                        <p class="text-dark font-normal flex gap-2 items-center justify-start">
+                                            <img src="/asset/icons/clock.svg" alt="date icon"> 2nd April, 2024 12:00PM
+                                        </p>
+                                        <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
+                                                src="/asset/icons/location-pin.svg" alt="date icon">
+                                            Ogele Primary School Field,
+                                            Ughelli,
+                                            Delta State.</p>
+                                    </div>
+                                    <a href="#"
+                                        class="inline-block bg-dark text-blue-600 px-8 py-3 rounded-xl hover:text-blue-400 uppercase"
+                                        disabled>Registration Closed</a>
+                                </div>
+                                <img src="/asset/images/events/upcoming.png" alt="Event 1"
+                                    class="sm:w-[500px] h-full object-cover object-center mt-0 flex-2">
+                            </div>
+                        </a>
+                        <% } %>
             </div>
             <!-- Arrow -->
             <a href="/programs-and-events" class="flex items-center justify-end w-full">
@@ -590,58 +619,39 @@
         </div>
         <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <!-- Blog 1 -->
-                <a href="/resources/articles/1">
+                <% features.forEach(item=> { %>
+                    <!-- Blog 1 -->
                     <div
-                        class="bg-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[367px] flex flex-col items-start justify-center gap-4 pl-12">
+                        class="bg-blue-200 dark:bg-dark-blue-900 p-6 first:border-b-[16px] border-blue-300 h-[300px] flex flex-col items-start justify-center gap-4 pl-12">
                         <p class="uppercase text-light-blue-900 font-bold text-xs">Gratitude
                         </p>
                         <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Gratitude - a provoker of unusual favour
                         </h2>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">From our scripture we could see how out of
-                            ten lepers healed, only one returned to give thanks...</p>
-                        <p class="text-gray-700 font-normal text-sm">By Rev. Samson Bodjor <br> Tuesday 14 May, 2024</p>
+                        <!-- <p class="text-gray-700 dark:text-gray-300 text-sm">From our scripture we could see how out of
+                            ten lepers healed, only one returned to give thanks...</p> -->
+                        <a href="/resources/articles/<%= item._id %>" class="flex items-center justify-start w-full">
+                            <p
+                                class="inline-flex items-center justify-center gap-1 hover:text-blue-600 ease-in-out cursor-pointer text-gray-700">
+                                Read article</p>
+                        </a>
+                        <% const formatDate=(dateString)=> {
+                            if (!dateString || isNaN(new Date(dateString))) return 'Invalid Date';
+                            const d = new Date(dateString);
+                            const ord = (n) => {
+                            if (n > 3 && n < 21) return 'th' ; return ['th', 'st' , 'nd' , 'rd' ][n % 10] || 'th' ; };
+                                const day=d.getDate(); const hours=d.getHours(); const
+                                minutes=d.getMinutes().toString().padStart(2, '0' ); return `${day}${ord(day)}
+                                ${d.toLocaleString('en-US', { month: 'long' })}, ${d.getFullYear()} ${hours % 12 ||
+                                12}:${minutes}${hours>= 12 ?
+                                'PM' : 'AM'}`;
+                                };
+                                const formattedDate = formatDate(item.createdAt);
+                                %>
+                                <p class="text-gray-700 font-normal text-sm">By Rev. Samson Bodjor <br>
+                                    <%= formattedDate %>
+                                </p>
                     </div>
-                </a>
-                <!-- Blog 2 -->
-                <a href="/resources/articles/2">
-                    <div
-                        class="bg-blue-200 dark:bg-dark-blue-900 p-6  h-[367px] flex flex-col items-start justify-center gap-4 pl-12">
-                        <p class="uppercase text-light-blue-900 font-bold text-xs">Gratitude
-                        </p>
-                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Gratitude - a provoker of unusual favour
-                        </h2>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">From our scripture we could see how out of
-                            ten lepers healed, only one returned to give thanks...</p>
-                        <p class="text-gray-700 font-normal text-sm">By Rev. Samson Bodjor <br> Tuesday 14 May, 2024</p>
-                    </div>
-                </a>
-                <!-- Blog 3 -->
-                <a href="/resources/articles/3">
-                    <div
-                        class="bg-blue-200 dark:bg-dark-blue-900 p-6  h-[367px] flex flex-col items-start justify-center gap-4 pl-12">
-                        <p class="uppercase text-light-blue-900 font-bold text-xs">Gratitude
-                        </p>
-                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Gratitude - a provoker of unusual favour
-                        </h2>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">From our scripture we could see how out of
-                            ten lepers healed, only one returned to give thanks...</p>
-                        <p class="text-gray-700 font-normal text-sm">By Rev. Samson Bodjor <br> Tuesday 14 May, 2024</p>
-                    </div>
-                </a>
-                <!-- Blog 4 -->
-                <a href="/resources/articles/4">
-                    <div
-                        class="bg-blue-200 dark:bg-dark-blue-900 p-6  h-[367px] flex flex-col items-start justify-center gap-4 pl-12">
-                        <p class="uppercase text-light-blue-900 font-bold text-xs">Gratitude
-                        </p>
-                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Gratitude - a provoker of unusual favour
-                        </h2>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">From our scripture we could see how out of
-                            ten lepers healed, only one returned to give thanks...</p>
-                        <p class="text-gray-700 font-normal text-sm">By Rev. Samson Bodjor <br> Tuesday 14 May, 2024</p>
-                    </div>
-                </a>
+                    <% }); %>
             </div>
         </div>
     </section>
@@ -824,31 +834,6 @@
     </footer>
 
     <!-- Footer End -->
-
-
-    <!-- FadeInSlideUp Animation Observer Script -->
-    <script>
-        // Intersection Observer for viewport-based animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                    observer.unobserve(entry.target); // Stop observing after animation
-                }
-            });
-        }, {
-            threshold: 0.1 // Trigger when 10% of element is visible
-        });
-
-        // Observe all elements except those with .no-animate, .slide, or their descendants
-        document.querySelectorAll('*').forEach(element => {
-            if (!element.closest('.no-animate, .slide')) {
-                observer.observe(element);
-            }
-        });
-    </script>
-
-
 
     <!-- JavaScript for mobile menu and dropdown -->
     <script>

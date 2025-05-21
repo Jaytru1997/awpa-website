@@ -2,10 +2,13 @@ const Feedback = require("../models/Feedback");
 const { asyncWrapper } = require("../utils/async");
 
 exports.submitFeedback = asyncWrapper(async (req, res) => {
-  const { rating, comment } = req.body;
+  const { name, email, title, comment } = req.body;
   const feedback = await Feedback.create({
-    userId: req.user.id,
-    rating,
+    user: {
+      name,
+      email,
+    },
+    title,
     comment,
   });
 

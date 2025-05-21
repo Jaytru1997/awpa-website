@@ -33,6 +33,13 @@
     <!-- Font Awesome (if used, ensure it's installed) -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Puritan:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/css/tailwind.css">
 
@@ -71,7 +78,7 @@
             <!-- Navigation -->
             <nav class="flex-1 p-4 scrollbar-hide overflow-y-auto"
                 style="-ms-overflow-style: none; scrollbar-width: none;">
-                <a href="/admin/dashboard"
+                <a href="/admin/"
                     class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2 ">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -240,35 +247,75 @@
                         </h2>
                         <form id="eventForm" action="/events" method="POST" enctype="multipart/form-data">
                             <input type="hidden" id="eventId" name="id">
-                            <div class="mb-4">
-                                <label for="title"
-                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Title</label>
-                                <input type="text" id="title" name="title"
-                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
-                                    required>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="mb-4">
+                                    <label for="title"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Title</label>
+                                    <input type="text" id="title" name="title"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                        required>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="location"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Location</label>
+                                    <input type="text" id="location" name="location"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                        required>
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <label for="startDate"
-                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Start
-                                    Date</label>
-                                <input type="datetime-local" id="startDate" name="startDate"
-                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
-                                    required>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="mb-4">
+                                    <label for="startDate"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Start
+                                        Date</label>
+                                    <input type="datetime-local" id="startDate" name="startDate"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="endDate"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">End
+                                        Date</label>
+                                    <input type="datetime-local" id="endDate" name="endDate"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <label for="endDate"
-                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">End
-                                    Date</label>
-                                <input type="datetime-local" id="endDate" name="endDate"
-                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
-                                    required>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="mb-4">
+                                    <label for="tags"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Tags
+                                        (comma-separated)</label>
+                                    <input type="text" id="tags" name="tags"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                        placeholder="e.g., worship, seminar">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="banner"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Banner
+                                        Image</label>
+                                    <input type="file" id="banner" name="banner" accept="image/*"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <label for="location"
-                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Location</label>
-                                <input type="text" id="location" name="location"
-                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
-                                    required>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="mb-4">
+                                    <label for="priceStatus"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Price
+                                        Status</label>
+                                    <select id="priceStatus" name="priceStatus"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                        required>
+                                        <option value="free">Free</option>
+                                        <option value="paid">Paid</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="price"
+                                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Price
+                                        ($)</label>
+                                    <input type="number" id="price" name="price" step="0.01"
+                                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                                        disabled>
+                                </div>
                             </div>
                             <div class="mb-4">
                                 <label for="description"
@@ -276,40 +323,6 @@
                                 <textarea id="description" name="description"
                                     class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
                                     rows="4" required></textarea>
-                            </div>
-                            <div class="mb-4">
-                                <label for="tags"
-                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Tags
-                                    (comma-separated)</label>
-                                <input type="text" id="tags" name="tags"
-                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
-                                    placeholder="e.g., worship, seminar">
-                            </div>
-                            <div class="mb-4">
-                                <label for="priceStatus"
-                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Price
-                                    Status</label>
-                                <select id="priceStatus" name="priceStatus"
-                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
-                                    required>
-                                    <option value="free">Free</option>
-                                    <option value="paid">Paid</option>
-                                </select>
-                            </div>
-                            <div class="mb-4">
-                                <label for="price"
-                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Price
-                                    ($)</label>
-                                <input type="number" id="price" name="price" step="0.01"
-                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
-                                    disabled>
-                            </div>
-                            <div class="mb-4">
-                                <label for="banner"
-                                    class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Banner
-                                    Image</label>
-                                <input type="file" id="banner" name="banner" accept="image/*"
-                                    class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto">
                             </div>
                             <div class="flex justify-end gap-4">
                                 <button type="button" id="closeModalBtn"

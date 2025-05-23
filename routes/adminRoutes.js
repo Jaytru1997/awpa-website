@@ -6,6 +6,7 @@ const {
   renderAdminDashboard,
   renderChurchDetailsDashboard,
   toggleUserStatus,
+  adminSubmitFeedBack,
 } = require("../controllers/adminController");
 
 const router = express.Router();
@@ -31,6 +32,13 @@ router.get(
   authMiddleware,
   checkRole(access.admin),
   renderChurchDetailsDashboard
+);
+
+router.post(
+  "/feedback",
+  authMiddleware,
+  checkRole(access.admin),
+  adminSubmitFeedBack
 );
 
 module.exports = router;

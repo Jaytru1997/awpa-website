@@ -2,6 +2,7 @@ const Media = require("../models/Media");
 const Blog = require("../models/Blog");
 const Event = require("../models/Event");
 const User = require("../models/User");
+const Feedback = require("../models/Feedback");
 const { asyncWrapper } = require("../utils/async");
 const { StatusCodes } = require("http-status-codes");
 const { config } = require("../config/config");
@@ -81,5 +82,30 @@ exports.toggleUserStatus = asyncWrapper(async (req, res) => {
     message: "This user's status has been updated successfully.",
     actionUrl: "/admin/users",
     actionText: "Back to users",
+  });
+});
+
+exports.adminSubmitFeedBack = asyncWrapper(async (req, res) => {
+  const { name, email, title, comment } = req.body;
+  const feedback = await Feedback.create({
+    user: {
+      name,
+      email,
+    },
+    title,
+    comment,
+  });
+
+  return res.status(StatusCodes.CREATED).render("status/status", {
+    app_name: process.env.APP_NAME,
+    url: process.env.URL,
+    title: "Feedback Success",
+    description: config.page_desc,
+    keywords: "home, welcome, church, Angel Wings Power Assembly",
+    status: 201,
+    message_title: "Testimony Submitted",
+    message: "Testimony has been recorded successfully",
+    actionUrl: "/admin/",
+    actionText: "Back to dashboard",
   });
 });

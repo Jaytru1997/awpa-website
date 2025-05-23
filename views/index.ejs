@@ -710,7 +710,14 @@
                         that something was in for
                         me but since I didn't have any money with me to sow, I came out and knelt down to pray to God to
                         still confirm the word
-                        of our father (lead pastor) through me and when it happen, I will sow to Him.</p>
+                        of our father (lead pastor) through me and when it happen, I will sow to Him. <br> Fastforword
+                        to the next day, a contact wrote me up to order for a fabric but what she proposed for, i
+                        recommended a
+                        higher quantity which she agreed to, she paid for all the materials available and also paid
+                        upfront for the ones I
+                        didn't have. What i thought, will take me weeks to sell was sold in a minute.
+                        The God of Rev Samson Bodjor made it happened and i give Him all the praise.
+                    </p>
                 </div>
             </div>
             <!-- Testimony 3 -->
@@ -749,11 +756,59 @@
                 </div>
             </div>
             <!-- Share Testimony -->
-            <p
+            <p id="shareTestimony"
                 class="w-full inline-flex flex-end items-center justify-end gap-1 hover:gap-3 ease-in-out cursor-pointer">
                 Share your testimony <img src="/asset/icons/arrow-right.svg" alt="" srcset=""></p>
         </div>
     </section>
+
+    <div id="testimonyModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden modal">
+        <div class="bg-white dark:bg-dark-blue-800 rounded-xl p-6 w-full max-w-md">
+            <h2 id="modalTitle" class="text-2xl font-roboto font-bold text-dark-blue-900 dark:text-white mb-4">Share
+                Testimony
+            </h2>
+            <form id="testimonyForm" action="/feedback" method="POST" enctype="multipart/form-data">
+                <input type="hidden" id="testimonyId" name="id">
+                <div class="mb-4">
+                    <label for="title"
+                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Title</label>
+                    <input type="text" id="title" name="title"
+                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                        placeholder="e.g Divine Healing" required>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="mb-4">
+                        <label for="email"
+                            class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Email</label>
+                        <input type="email" id="email" name="email"
+                            class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                            required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="name"
+                            class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Name</label>
+                        <input type="text" id="name" name="name"
+                            class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                            placeholder="e.g., Your Name">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="comment"
+                        class="block text-dark-blue-900 dark:text-grey-200 font-roboto mb-2">Testimony</label>
+                    <textarea id="comment" name="comment"
+                        class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto"
+                        rows="4" required></textarea>
+                </div>
+                <div class="flex justify-end gap-4">
+                    <button type="button" id="closeModalBtn"
+                        class="bg-grey-400 text-dark-blue-900 px-4 py-2 rounded-lg hover:bg-grey-500 font-roboto">Cancel</button>
+                    <button type="submit"
+                        class="bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-800 font-roboto">Share
+                        Testimony</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Testimonies End -->
 
@@ -849,6 +904,50 @@
             mobileMenu.classList.toggle('hidden');
             menuOpenIcon.classList.toggle('hidden');
             menuCloseIcon.classList.toggle('hidden');
+        });
+    </script>
+
+
+    <!-- JavaScript for Modal and Form Handling -->
+    <script>
+        const shareTestimony = document.getElementById('shareTestimony');
+        const testimonyModal = document.getElementById('testimonyModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const testimonyForm = document.getElementById('testimonyForm');
+        const modalTitle = document.getElementById('modalTitle');
+        const testimonyIdInput = document.getElementById('testimonyId');
+
+        // Open modal for adding new testimony
+        shareTestimony.addEventListener('click', () => {
+            modalTitle.textContent = 'Share Testimony';
+            testimonyForm.action = '/feedback';
+            testimonyForm.reset();
+            testimonyIdInput.value = '';
+            testimonyModal.classList.remove('hidden');
+        });
+
+        // Close modal
+        closeModalBtn.addEventListener('click', () => {
+            testimonyModal.classList.add('hidden');
+        });
+
+        // Close modal on outside click
+        testimonyModal.addEventListener('click', (e) => {
+            if (e.target === testimonyModal) {
+                testimonyModal.classList.add('hidden');
+            }
+        });
+
+        // Form submission (client-side validation)
+        testimonyForm.addEventListener('submit', (e) => {
+            const title = document.getElementById('title').value;
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value;
+            const comment = document.getElementById('comment').value;
+            if (!title || !email || !name || !comment) {
+                e.preventDefault();
+                alert('Please fill out all required fields.');
+            }
         });
     </script>
 </body>

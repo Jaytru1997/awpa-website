@@ -88,7 +88,6 @@
     --font-roboto: "Roboto Condensed", sans-serif;
     --font-raleway: "Raleway", sans-serif;
     --font-puritan: "Puritan", sans-serif;
-    --spacing-72: 18rem;
     --spacing-84: 21rem;
     --spacing-96: 24rem;
   }
@@ -328,9 +327,6 @@
       max-width: 1536px;
     }
   }
-  .m-4 {
-    margin: calc(var(--spacing) * 4);
-  }
   .mx-8 {
     margin-inline: calc(var(--spacing) * 8);
   }
@@ -412,12 +408,6 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
-  .line-clamp-3 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-  }
   .line-clamp-4 {
     overflow: hidden;
     display: -webkit-box;
@@ -488,12 +478,6 @@
   .h-60 {
     height: calc(var(--spacing) * 60);
   }
-  .h-72 {
-    height: var(--spacing-72);
-  }
-  .h-80 {
-    height: calc(var(--spacing) * 80);
-  }
   .h-96 {
     height: var(--spacing-96);
   }
@@ -536,9 +520,6 @@
   .max-h-84 {
     max-height: var(--spacing-84);
   }
-  .max-h-\[350px\] {
-    max-height: 350px;
-  }
   .min-h-\[calc\(100vh-64px\)\] {
     min-height: calc(100vh - 64px);
   }
@@ -572,9 +553,6 @@
   .w-20 {
     width: calc(var(--spacing) * 20);
   }
-  .w-24 {
-    width: calc(var(--spacing) * 24);
-  }
   .w-64 {
     width: calc(var(--spacing) * 64);
   }
@@ -590,9 +568,6 @@
   .w-\[80\%\] {
     width: 80%;
   }
-  .w-\[100vw\] {
-    width: 100vw;
-  }
   .w-\[152px\] {
     width: 152px;
   }
@@ -604,9 +579,6 @@
   }
   .w-\[574px\] {
     width: 574px;
-  }
-  .w-\[707px\] {
-    width: 707px;
   }
   .w-auto {
     width: auto;
@@ -626,9 +598,6 @@
   .max-w-\[250px\] {
     max-width: 250px;
   }
-  .max-w-\[300px\] {
-    max-width: 300px;
-  }
   .max-w-\[707px\] {
     max-width: 707px;
   }
@@ -643,9 +612,6 @@
   }
   .max-w-xl {
     max-width: var(--container-xl);
-  }
-  .min-w-\[100vw\] {
-    min-width: 100vw;
   }
   .min-w-\[435px\] {
     min-width: 435px;
@@ -747,9 +713,6 @@
   .items-center {
     align-items: center;
   }
-  .items-end {
-    align-items: flex-end;
-  }
   .items-start {
     align-items: flex-start;
   }
@@ -820,12 +783,6 @@
       margin-inline-start: calc(calc(var(--spacing) * 4) * var(--tw-space-x-reverse));
       margin-inline-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-x-reverse)));
     }
-  }
-  .self-end {
-    align-self: flex-end;
-  }
-  .justify-self-end {
-    justify-self: flex-end;
   }
   .overflow-hidden {
     overflow: hidden;
@@ -929,6 +886,12 @@
   .bg-black {
     background-color: var(--color-black);
   }
+  .bg-black\/50 {
+    background-color: color-mix(in srgb, #000000 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
+    }
+  }
   .bg-blue-200 {
     background-color: var(--color-blue-200);
   }
@@ -1011,18 +974,6 @@
   .bg-\[url\(\/asset\/images\/listner-2\.png\)\] {
     background-image: url(/asset/images/listner-2.png);
   }
-  .bg-\[url\(\/asset\/images\/sermons\/thumbnail_1\.png\)\] {
-    background-image: url(/asset/images/sermons/thumbnail_1.png);
-  }
-  .bg-\[url\(\/asset\/images\/sermons\/thumbnail_2\.png\)\] {
-    background-image: url(/asset/images/sermons/thumbnail_2.png);
-  }
-  .bg-\[url\(\/asset\/images\/sermons\/thumbnail_3\.png\)\] {
-    background-image: url(/asset/images/sermons/thumbnail_3.png);
-  }
-  .bg-\[url\(\/asset\/images\/sermons\/thumbnail_4\.png\)\] {
-    background-image: url(/asset/images/sermons/thumbnail_4.png);
-  }
   .from-light-blue-900 {
     --tw-gradient-from: var(--color-light-blue-900);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -1042,9 +993,6 @@
   }
   .bg-\[100\%_75\%\] {
     background-position: 100% 75%;
-  }
-  .bg-center {
-    background-position: center;
   }
   .bg-no-repeat {
     background-repeat: no-repeat;
@@ -1231,15 +1179,8 @@
     --tw-tracking: var(--tracking-tight);
     letter-spacing: var(--tracking-tight);
   }
-  .text-balance {
-    text-wrap: balance;
-  }
   .text-wrap {
     text-wrap: wrap;
-  }
-  .break-normal {
-    overflow-wrap: normal;
-    word-break: normal;
   }
   .text-black {
     color: var(--color-black);
@@ -1413,42 +1354,12 @@
       }
     }
   }
-  .hover\:scale-103 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-scale-x: 103%;
-        --tw-scale-y: 103%;
-        --tw-scale-z: 103%;
-        scale: var(--tw-scale-x) var(--tw-scale-y);
-      }
-    }
-  }
   .hover\:scale-105 {
     &:hover {
       @media (hover: hover) {
         --tw-scale-x: 105%;
         --tw-scale-y: 105%;
         --tw-scale-z: 105%;
-        scale: var(--tw-scale-x) var(--tw-scale-y);
-      }
-    }
-  }
-  .hover\:scale-120 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-scale-x: 120%;
-        --tw-scale-y: 120%;
-        --tw-scale-z: 120%;
-        scale: var(--tw-scale-x) var(--tw-scale-y);
-      }
-    }
-  }
-  .hover\:scale-200 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-scale-x: 200%;
-        --tw-scale-y: 200%;
-        --tw-scale-z: 200%;
         scale: var(--tw-scale-x) var(--tw-scale-y);
       }
     }
@@ -1471,13 +1382,6 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-blue-800);
-      }
-    }
-  }
-  .hover\:bg-dark {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-dark);
       }
     }
   }
@@ -1743,11 +1647,6 @@
   .sm\:w-\[512px\] {
     @media (width >= 640px) {
       width: 512px;
-    }
-  }
-  .sm\:w-\[852px\] {
-    @media (width >= 640px) {
-      width: 852px;
     }
   }
   .sm\:w-\[854px\] {

@@ -20,6 +20,7 @@ const memberRoutes = require("./routes/memberRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const eventRoutes = require("./routes/eventRoutes");
 const mediaRoutes = require("./routes/mediaRoutes");
+const feedbackRoutes = require("./routes/feedbackRoutes");
 
 const logger = require("./services/logger");
 const { swaggerSpec, swaggerUi } = require("./config/swagger");
@@ -129,6 +130,7 @@ app.use("/member", memberRoutes);
 app.use("/blog", blogRoutes);
 app.use("/events", eventRoutes);
 app.use("/media", mediaRoutes);
+app.use("/feedback", feedbackRoutes);
 
 // Swagger Docs
 app.use("/awpa-api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));

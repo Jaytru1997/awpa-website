@@ -27,6 +27,9 @@ router.get(
 
     const features = Array.from(blog).slice(-1); // last four items in blog array
 
+    const isApproved = true;
+    const testimonies = await Feedback.find({ isApproved });
+
     res.status(200).render("index", {
       app_name: process.env.APP_NAME,
       url: process.env.URL,

@@ -208,10 +208,8 @@ exports.addMedia = asyncWrapper(async (req, res) => {
 
     // Define upload directory
     const uploadDir = path.join("public", "asset", "media", type);
-    const thumbnailDir = path.join("public", "asset", "media", "thumbnails");
     try {
       await fs.mkdir(uploadDir, { recursive: true }); // Create directory if it doesn't exist
-      await fs.mkdir(thumbnailDir, { recursive: true });
     } catch (error) {
       throw new CustomError(
         "Failed to create upload directory",
@@ -221,24 +219,16 @@ exports.addMedia = asyncWrapper(async (req, res) => {
 
     // Generate unique filename
     const fileExtension = path.extname(mediaFile.name);
-    const thumbnailFileExtension = path.extname(thumbnailFile.name);
     const fileName = `${Date.now()}-${mediaFile.name.replace(
       /[^a-zA-Z0-9]/g,
       ""
     )}`;
-    const thumbnailFileName = `${Date.now()}-${thumbnailFile.name.replace(
-      /[^a-zA-Z0-9]/g,
-      ""
-    )}`;
     const filePath = path.join(uploadDir, fileName);
-    const thumnailFilePath = path.join(thumbnailDir, thumbnailFileName);
 
     // Save file
     try {
       await mediaFile.mv(filePath); // Move file to destination
       url = `/asset/media/${type}/${fileName}`; // Store relative URL path
-      await thumbnailFile.mv(thumnailFilePath);
-      image = `/asset/media/thumbnails/${thumbnailFileName}`;
     } catch (error) {
       throw new CustomError(
         "Failed to save media file",

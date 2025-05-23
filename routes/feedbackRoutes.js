@@ -41,7 +41,7 @@ const router = express.Router();
  *       500:
  *         description: Server error
  */
-router.post("/", authMiddleware, checkRole(access.all), submitFeedback);
+router.post("/", submitFeedback);
 
 /**
  * @swagger

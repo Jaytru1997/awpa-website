@@ -42,6 +42,7 @@
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/css/tailwind.css">
+    <link rel="stylesheet" href="/css/book.css">
 
 </head>
 
@@ -226,8 +227,8 @@
                                 <h3 class="text-lg font-roboto  font-bold mb-2 text-dark line-clamp-1 text-center">
                                     <%= item.title %>
                                 </h3>
-                                <button
-                                    class="addToCart bg-light-blue-900 text-white px-3 py-1 rounded-lg hover:bg-light-blue-800 flex items-center gap-2 font-roboto"
+                                <button id="addToCart"
+                                    class=" bg-light-blue-900 text-white px-3 py-1 rounded-lg hover:bg-light-blue-800 flex items-center gap-2 font-roboto"
                                     data-id="<%= item._id %>" data-title="<%= item.title %>"
                                     data-description="<%= item.description %>" data-type="<%= item.type %>"
                                     data-status="<%= item.status %>" data-tags="<%= item.tags.join(',') %>"
@@ -256,14 +257,39 @@
 
                         <% videos.forEach(item=> { %>
                             <!-- Video -->
-                            <div class="w-full max-w-[707px] h-[350px]">
-                                <iframe class="w-full" height="350" src="<%= item.url %>" title="YouTube video player"
-                                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+                            <div class="max-w-[707px] h-[350px]">
+                                <iframe class="hidden xl:block" width="707" height="350" src="<%= item.url %>"
+                                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
                                     gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                </iframe>
+                                <iframe class="hidden sm:block xl:hidden" width="707" height="350" src="<%= item.url %>"
+                                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+                                                                    gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                </iframe>
+                                <iframe class="sm:hidden" width="360" height="350" src="<%= item.url %>"
+                                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+                                                                    gyroscope; picture-in-picture; web-share"
                                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                                 </iframe>
                             </div>
                             <% }); %>
+                    </div>
+                </div>
+
+                <!-- Ebooks -->
+                <div class="container mx-auto max-w-7xl gap-4 mt-8">
+                    <h2 class="font-bold mb-4">Ebooks and Publications</h2>
+                    <!-- Carousel Container -->
+                    <div class="scrollbar-hide flex flex-row gap-4 overflow-x-scroll overflow-y-hidden snap-x snap-mandatory pt-4"
+                        style="-ms-overflow-style: none; scrollbar-width: none;">
+                        <!-- Ebook Item 1 -->
+                        <a class="book-container" href="#" rel="noreferrer noopener">
+                            <div class="book">
+                                <img alt="" src="/asset/media/thumbnails/1747656515057-g2copom66q7.png" />
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -287,7 +313,21 @@
                                     <%= item.author %>
                                 </p>
                             </div>
-                            <img src="/asset/icons/heart.svg" alt="" class="w-8 h-8 sm:w-10 sm:h-10 mr-4">
+                            <button id="addToCart"
+                                class=" bg-light-blue-900 text-white px-3 py-1 rounded-lg hover:bg-light-blue-800 flex items-center gap-2 font-roboto"
+                                data-id="<%= item._id %>" data-title="<%= item.title %>"
+                                data-description="<%= item.description %>" data-type="<%= item.type %>"
+                                data-status="<%= item.status %>" data-tags="<%= item.tags.join(',') %>"
+                                data-category="<%= item.category %>" data-price-status="<%= item.priceStatus %>"
+                                data-price="<%= item.price %>" data-author="<%= item.author %>">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15.828l-5.657-5.657a2 2 0 112.828-2.828l2.829 2.829">
+                                    </path>
+                                </svg>
+                                Buy Message
+                            </button>
                         </div>
                         <% }); %>
 

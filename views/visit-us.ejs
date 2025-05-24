@@ -174,17 +174,19 @@
         <div
             class="bg-[url('../asset/images/bg-visiting-hours.png')] bg-cover object-cover sm:h-[736px] px-8 py-8 flex flex-col items-center justify-center">
             <div
-                class="bg-light dark:bg-dark-blue-900 p-6 border-b-[16px] border-light-blue-600  mx-8 flex flex-col items-start justify-center">
-                <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
+                class="bg-light dark:bg-dark-blue-900 p-6 border-b-[16px] border-light-blue-600  sm:mx-8 flex flex-col items-start justify-center">
+                <div
+                    class="container mx-auto max-w-7xl sm:px-4 sm:py-6 flex items-center justify-center flex-col gap-3">
                     <h2 class="uppercase text-2xl md:text-3xl lg:text-5xl text-dark font-bold mb-4">Visiting
                         Hours</h2>
                     </h2>
                 </div>
-                <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
+                <div
+                    class="container mx-auto max-w-7xl sm:px-4 sm:py-6 flex items-center justify-center flex-col gap-3">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <!-- Day 1 -->
                         <div
-                            class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[300px] flex flex-col items-start justify-center gap-4 pl-12">
+                            class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 sm:h-[300px] flex flex-col items-start justify-center gap-4 sm:pl-12">
                             <p class="uppercase text-light-blue-900 font-bold text-xs">Monday - Saturday
                             </p>
                             <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Office Hours</h2>
@@ -195,7 +197,7 @@
                         </div>
                         <!-- Day 2 -->
                         <div
-                            class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[300px] flex flex-col items-start justify-center gap-4 pl-12">
+                            class="bg-light-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 sm:h-[300px] flex flex-col items-start justify-center gap-4 sm:pl-12">
                             <p class="uppercase text-light-blue-900 font-bold text-xs">Wednesday
                             </p>
                             <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Prayers & Counselling</h2>
@@ -226,11 +228,11 @@
             <form action="/contact" method="post"
                 class="w-full max-w-lg flex flex-col items-start justify-center gap-4">
                 <input type="text" name="name" id="name" placeholder="Name"
-                    class="bg-light-blue-200 rounded-md px-4 py-2 w-full" required>
+                    class="bg-light-blue-200 rounded-md px-4 py-2 w-full focus:outline-none" required>
                 <input type="email" name="email" id="email" placeholder="Email"
-                    class="bg-light-blue-200 rounded-md px-4 py-2 w-full" required>
+                    class="bg-light-blue-200 rounded-md px-4 py-2 w-full focus:outline-none" required>
                 <textarea name="message" id="message" rows="4" placeholder="Message"
-                    class="bg-light-blue-200 rounded-md px-4 py-2 mt-4 w-full" required></textarea>
+                    class="bg-light-blue-200 rounded-md px-4 py-2 mt-4 w-full focus:outline-none" required></textarea>
                 <button type="submit"
                     class="bg-blue-600 text-dark rounded-md px-4 py-2 mt-4 hover:bg-blue-700 w-full cursor-pointer">Send
                     Message</button>
@@ -317,7 +319,7 @@
                     <form action="/subscribe" method="post">
                         <div class="flex flex-row gap-0 items-center justify-start">
                             <input type="email" name="email" id="email"
-                                class="bg-transparent dark:bg-dark-blue-900 rounded-xl border-l-1 border-y-1 border-light text-dark px-4 py-3 placeholder:text-light -mr-10"
+                                class="bg-transparent dark:bg-dark-blue-900 rounded-xl border-l-1 border-y-1 border-light text-light px-4 py-3 placeholder:text-light -mr-10 focus:outline-none"
                                 placeholder="Enter your email address" required>
                             <button type="submit"
                                 class="bg-light-blue-600 text-dark border-1 border-l-0 border-light px-8 py-3 rounded-xl hover:bg-light-blue-900 uppercase">Subscribe</button>

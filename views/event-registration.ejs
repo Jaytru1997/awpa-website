@@ -48,7 +48,7 @@
 <body class="font-roboto bg-white dark:bg-black text-dark dark:text-white">
 
     <!-- Navigation Bar Start-->
-    <nav class="bg-dark-blue-900">
+    <nav class="bg-dark-blue-900 no-animate">
         <div class="mx-auto max-w-7xl px-2">
             <div class="relative flex h-20 items-center justify-between">
                 <!-- Logo -->
@@ -66,7 +66,8 @@
                                 class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Who
                                 we are</a>
                             <a href="/programs-and-events"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Programs
+                                class="rounded-md px-3 py-2 text-sm font-medium hover:bg-dark-blue-800 text-white"
+                                aria-current="page">Programs
                                 & Events</a>
                             <a href="/visit-us"
                                 class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Visit
@@ -74,8 +75,7 @@
                             <a href="/church-media"
                                 class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Media</a>
                             <a href="/resources"
-                                class="rounded-md px-3 py-2 text-sm font-medium hover:bg-dark-blue-800 text-white"
-                                aria-current="page">Resources</a>
+                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Resources</a>
                             <a href="/giving"
                                 class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Giving</a>
                         </div>
@@ -120,7 +120,8 @@
                     class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Who
                     we are</a>
                 <a href="/programs-and-events"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Programs
+                    class="block rounded-md px-3 py-2 text-base font-medium hover:bg-dark-blue-800 text-white"
+                    aria-current="page">Programs
                     & Events</a>
                 <a href="/visit-us"
                     class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Visit
@@ -128,8 +129,7 @@
                 <a href="/church-media"
                     class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Media</a>
                 <a href="/resources"
-                    class="block rounded-md px-3 py-2 text-base font-medium hover:bg-dark-blue-800 text-white"
-                    aria-current="page">Resources</a>
+                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Resources</a>
                 <a href="/giving"
                     class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Giving</a>
                 <a href="https://live.angelwingspowerassembly.org"
@@ -140,72 +140,129 @@
     </nav>
     <!-- Navigation Bar End -->
 
-
-    <section class="mt-8 py-8">
-        <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3 mb-8">
-            <p class="text-md text-dark uppercase">Our Blog</p>
-            <h2 class="uppercase text-2xl md:text-3xl lg:text-5xl text-dark font-bold mb-4 max-w-xl text-center">Most
-                Recent Post
-            </h2>
-        </div>
-        <% const recentBlog=blogs[0]; %>
-            <div class="grid grid-cols-1 md:grid-cols-2 items-center justify-start mx-auto max-w-7xl px-4">
-                <img src="<%= recentBlog.images[0].url %>" alt="" class="w-full h-96 object-cover">
-                <div class="flex flex-col gap-4 px-4 py-6">
-                    <div class="flex items-center justify-between w-full uppercase">
-                        <p class="text-dark text-sm">
-                            <%= recentBlog.createdAt %>
-                        </p>
-                        <p class="text-dark text-sm">By <%= recentBlog.author %>
-                        </p>
-                    </div>
-                    <h2 class="text-dark text-3xl font-bold uppercase">
-                        <%= recentBlog.title %>
-                    </h2>
-                    <p id="content" class="text-dark line-clamp-4"><%- recentBlog.content %></p>
-                    <a href="/resources/articles/<%= recentBlog._id %>"
-                        class="bg-blue-600 text-dark max-w-52 h-16 px-4 py-2 rounded-md hover:bg-blue-800 uppercase flex items-center justify-center">Read
-                        More</a>
-                </div>
+    <!-- Upcoming Events Start -->
+    <section class=" mt-8 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 items-start justify-start mx-auto max-w-7xl px-4 gap-8">
+            <div class="flex flex-col sm:max-w-lg gap-2">
+                <img src="<%= currentEvent.banner || '/asset/images/events/coming-soon.jpg' %>" alt=""
+                    class="w-full h-96 object-cover">
+                <p
+                    class="text-gray-700 dark:text-gray-300 text-lg font-normal border-l-2 border-light-blue-900 pl-4 pt-2 text-wrap">
+                    <%= currentEvent.description %>
+                </p>
             </div>
-
+            <div class="flex flex-col gap-4 px-4 h-96">
+                <form action="/events/<%= currentEvent._id %>/register" method="POST"
+                    class="w-full sm:max-w-md flex flex-col items-start justify-center gap-4 bg-blue-200 px-8 py-8">
+                    <h2 class="font-bold uppercase text-3xl">Register</h2>
+                    <div class="flex justify-start gap-4 items-center w-full">
+                        <% const formatDate=(dateString)=> {
+                            if (!dateString || isNaN(new Date(dateString))) return 'Invalid Date';
+                            const d = new Date(dateString);
+                            const ord = (n) => {
+                            if (n > 3 && n < 21) return 'th' ; return ['th', 'st' , 'nd' , 'rd' ][n % 10] || 'th' ; };
+                                const day=d.getDate(); const hours=d.getHours(); const
+                                minutes=d.getMinutes().toString().padStart(2, '0' ); return `${day}${ord(day)}
+                                ${d.toLocaleString('en-US', { month: 'long' })}, ${d.getFullYear()} ${hours % 12 ||
+                                12}:${minutes}${hours>= 12 ?
+                                'PM' : 'AM'}`;
+                                };
+                                const formattedDate = formatDate(currentEvent.startDate);
+                                %>
+                                <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
+                                        src="/asset/icons/location-pin.svg" alt="date icon">
+                                    <%= currentEvent.location %>
+                                </p>
+                                <p class="text-dark font-normal flex gap-2 items-center justify-start">
+                                    <img src="/asset/icons/clock.svg" alt="date icon">
+                                    <%= formattedDate || "To be disclosed" %>
+                                </p>
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="name">Full Name</label>
+                        <input type="text" name="name" id="name" placeholder="Name"
+                            class="px-4 py-2 w-84 border-0 border-b-1 focus:outline-none border-dark pl-0" required>
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="your_email@example.com"
+                            class="px-4 py-2 w-84 border-0 border-b-1 focus:outline-none border-dark pl-0 " required>
+                    </div>
+                    <button type="submit"
+                        class="bg-blue-600 text-dark rounded-md px-4 py-2 mt-4 hover:bg-blue-400 cursor-pointer uppercase">Register
+                        Now</button>
+                </form>
+            </div>
+        </div>
     </section>
+    <!-- Upcoming Events End -->
 
-    <!-- All Sermons Starts -->
+
+    <!-- All Events Start -->
     <section class="mt-8 py-8">
         <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
-            <h2 class="uppercase text-2xl md:text-3xl lg:text-5xl text-dark font-bold mb-4">
-                More Sermon Posts
+            <p class="text-md text-dark uppercase">More Events</p>
+            <h2 class="uppercase text-2xl md:text-3xl lg:text-5xl text-dark font-bold mb-4">View All Events
             </h2>
         </div>
+
         <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <% blogs.forEach(item=> { %>
-                    <!-- Blog 1 -->
-                    <div
-                        class="bg-blue-200 dark:bg-dark-blue-900 p-6 first:border-b-[16px] border-blue-300 h-[300px] flex flex-col items-start justify-center gap-4 pl-12">
-                        <p class="uppercase text-light-blue-900 font-bold text-xs">
-                            <%= item.tags[0] %>
-                        </p>
-                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">
-                            <%= item.title %>
-                        </h2>
-                        <a href="/resources/articles/<%= item._id %>" class="flex items-center justify-start w-full">
-                            <p
-                                class="inline-flex items-center justify-center gap-1 hover:text-blue-600 ease-in-out cursor-pointer text-gray-700">
-                                Read article</p>
-                        </a>
-                        <p class="text-gray-700 font-normal text-sm">By <%= item.author %> <br>
-                                <%= item.createdAt %>
-                        </p>
-                    </div>
+                <% events.forEach(item=> { %>
+
+                    <a href="/programs-and-events/<%= item._id %>">
+                        <div
+                            class="bg-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[450px] flex flex-col items-start justify-center gap-4 px-4 sm:pl-12 hover:scale-102 transition-transform duration-300 ease-in-out">
+                            <div class="w-full flex flex-row justify-between items-baseline-last mb-4">
+                                <p class="uppercase text-light-blue-900 font-bold text-sm">Upcoming event
+                                </p>
+                                <p class="font-bold text-2xl flex flex-col gap-0 items-center justify-center">
+                                    <%= new Date(item.startDate).getDate() %>
+                                        <span class="font-normal text-lg mt-[-10px]">
+                                            <%= new Date(item.startDate).toLocaleString('en-US', { month: 'short'
+                                                }).toUpperCase()%>
+                                        </span>
+                                </p>
+                            </div>
+                            <h2 class="text-xl lg:text-2xl text-black font-bold uppercase mb-4">
+                                <%= item.title %>
+                            </h2>
+                            <p class="text-dark font-normal mb-4">
+                                <%= item.description %>
+                            </p>
+                            <div class="flex flex-col gap-2  mb-6">
+                                <% const formatDate=(dateString)=> {
+                                    if (!dateString || isNaN(new Date(dateString))) return 'Invalid Date';
+                                    const d = new Date(dateString);
+                                    const ord = (n) => {
+                                    if (n > 3 && n < 21) return 'th' ; return ['th', 'st' , 'nd' , 'rd' ][n % 10]
+                                        || 'th' ; }; const day=d.getDate(); const hours=d.getHours(); const
+                                        minutes=d.getMinutes().toString().padStart(2, '0' ); return `${day}${ord(day)}
+                                        ${d.toLocaleString('en-US', { month: 'long' })}, ${d.getFullYear()} ${hours % 12
+                                        || 12}:${minutes}${hours>= 12 ?
+                                        'PM' : 'AM'}`;
+                                        };
+                                        const formattedDate = formatDate(item.startDate);
+                                        %>
+                                        <p class="text-dark font-normal flex gap-2 items-center justify-start">
+                                            <img src="/asset/icons/clock.svg" alt="date icon">
+                                            <%= formattedDate || "To be disclosed" %>
+                                        </p>
+                                        <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
+                                                src="/asset/icons/location-pin.svg" alt="date icon">
+                                            <%= item.location %>
+                                        </p>
+                            </div>
+                        </div>
+                    </a>
                     <% }); %>
             </div>
         </div>
     </section>
 
-    <!-- All Sermons Ends -->
 
+
+    <!-- All Events End -->
 
 
     <!-- Footer Start -->
@@ -287,34 +344,7 @@
     <!-- Footer End -->
 
 
-    <!-- Content Formatter -->
-    <script>
-        // prettier-ignore
-        document.addEventListener('DOMContentLoaded', () => {
-            const contentDiv = document.getElementById('content');
 
-            if (contentDiv) {
-                // Get the raw HTML string from innerText
-                const rawHtml = contentDiv.innerText.trim();
-
-                if (rawHtml) {
-                    // Parse the HTML string into DOM elements
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(rawHtml, 'text/html');
-                    const elements = doc.body.childNodes;
-
-                    // Clear the div and append parsed elements as innerHTML
-                    contentDiv.innerHTML = '';
-                    contentDiv.innerHTML = rawHtml;
-                } else {
-                    // Fallback for empty content
-                    contentDiv.innerHTML = '<p>No content available.</p>';
-                }
-            } else {
-                console.error('Content div not found');
-            }
-        });
-    </script>
 
 
     <!-- JavaScript for mobile menu and dropdown -->

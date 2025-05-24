@@ -331,6 +331,27 @@ exports.updateEvent = asyncWrapper(async (req, res) => {
 // Register for an event
 exports.registerForEvent = asyncWrapper(async (req, res) => {
   const { id } = req.params;
+  let { name, email } = req.body;
+
+  // Validate and normalize inputs
+  if (!name || !email) {
+    return res.status(StatusCodes.BAD_REQUEST).render("status/status", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      title: "Programs and Events",
+      description: config.page_desc,
+      keywords: "home, welcome, church, Angel Wings Power Assembly",
+      status: 400,
+      message_title: "Invalid Input",
+      message: "Name and email are required.",
+      actionUrl: "/programs-and-events",
+      actionText: "Go back to events",
+    });
+  }
+
+  // Trim and lowercase name, trim email
+  name = name.trim().toLowerCase();
+  email = email.trim();
 
   // Find event
   const event = await Event.findById(id);
@@ -349,9 +370,10 @@ exports.registerForEvent = asyncWrapper(async (req, res) => {
     });
   }
 
-  // Check if user is already registered
+  // Check if user is already registered (case-insensitive name)
   const existingRegistration = await Registration.findOne({
-    user: { email: req.body.email, name: req.body.name },
+    "user.email": email,
+    "user.name": name,
     event: id,
   });
   if (existingRegistration) {
@@ -362,7 +384,7 @@ exports.registerForEvent = asyncWrapper(async (req, res) => {
       description: config.page_desc,
       keywords: "home, welcome, church, Angel Wings Power Assembly",
       status: 400,
-      message_title: "Already registered",
+      message_title: "Already Registered",
       message: "You are already registered for this event.",
       actionUrl: "/programs-and-events",
       actionText: "Go back to events",
@@ -378,7 +400,7 @@ exports.registerForEvent = asyncWrapper(async (req, res) => {
       description: config.page_desc,
       keywords: "home, welcome, church, Angel Wings Power Assembly",
       status: 400,
-      message_title: "Event passed",
+      message_title: "Event Passed",
       message: "Cannot register for past events.",
       actionUrl: "/programs-and-events",
       actionText: "Go back to events",
@@ -386,18 +408,37 @@ exports.registerForEvent = asyncWrapper(async (req, res) => {
   }
 
   // Create registration
-  await Registration.create({
-    user: { name: req.body.name, email: req.body.email },
-    event: id,
-  });
+  try {
+    await Registration.create({
+      user: { name, email },
+      event: id,
+    });
+  } catch (error) {
+    if (error.code === 11000) {
+      // Duplicate key error
+      return res.status(StatusCodes.BAD_REQUEST).render("status/status", {
+        app_name: process.env.APP_NAME,
+        url: process.env.URL,
+        title: "Programs and Events",
+        description: config.page_desc,
+        keywords: "home, welcome, church, Angel Wings Power Assembly",
+        status: 400,
+        message_title: "Already Registered",
+        message: "You are already registered for this event.",
+        actionUrl: "/programs-and-events",
+        actionText: "Go back to events",
+      });
+    }
+    throw error; // Rethrow other errors
+  }
 
+  // Send confirmation email
   const message_1 = `We are thrilled to confirm your successful registration for "${event.title}" at Angel Wings Power Assembly! Your participation in this special event on ${event.startDate} is a blessing, and we look forward to sharing a time of worship and fellowship with you.`;
-  const message_2 = `Please mark your calendar for ${event.startDate} and keep an eye on your inbox for additional details, including any updates or reminders about the event. Your presence will make this occasion even more meaningful as we come together to glorify God.
-`;
+  const message_2 = `Please mark your calendar for ${event.startDate} and keep an eye on your inbox for additional details, including any updates or reminders about the event. Your presence will make this occasion even more meaningful as we come together to glorify God.`;
   const message_3 = `If you have any questions or need assistance, please don’t hesitate to reach out to us at contact@${process.env.URL}. We can’t wait to welcome you to "${event.title}" and celebrate God’s goodness together!`;
 
   await sendEmail({
-    email: req.body.email,
+    email,
     subject: `Event Registration`,
     message_1,
     message_2,
@@ -413,7 +454,7 @@ exports.registerForEvent = asyncWrapper(async (req, res) => {
     description: config.page_desc,
     keywords: "home, welcome, church, Angel Wings Power Assembly",
     status: 201,
-    message_title: "Registration successful",
+    message_title: "Registration Successful",
     message: "Successfully registered for the event.",
     actionUrl: "/programs-and-events",
     actionText: "Go back to events",

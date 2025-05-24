@@ -45,77 +45,7 @@
     <link rel="stylesheet" href="/css/tailwind.css">
 
 
-    <!-- Slideshow Javascript -->
-    <script>
-        const slideshow = document.getElementById('slideshow');
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        let currentSlide = 0;
-        const totalSlides = slides.length;
-        let autoSlideInterval;
 
-        // Configure auto-rotation duration (in milliseconds)
-        const autoSlideDuration = 7000; // Change this value to adjust rotation time (e.g., 3000 for 3 seconds)
-
-        function showSlide(index) {
-            if (index >= totalSlides) currentSlide = 0;
-            else if (index < 0) currentSlide = totalSlides - 1;
-            else currentSlide = index;
-
-            slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('bg-white', i === currentSlide);
-                dot.classList.toggle('bg-grey-400', i !== currentSlide);
-            });
-        }
-
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        function prevSlide() {
-            showSlide(currentSlide - 1);
-        }
-
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(nextSlide, autoSlideDuration);
-        }
-
-        function stopAutoSlide() {
-            clearInterval(autoSlideInterval);
-        }
-
-        // Event Listeners
-        nextBtn.addEventListener('click', () => {
-            stopAutoSlide();
-            nextSlide();
-            startAutoSlide();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            stopAutoSlide();
-            prevSlide();
-            startAutoSlide();
-        });
-
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                stopAutoSlide();
-                showSlide(parseInt(dot.dataset.slide));
-                startAutoSlide();
-            });
-        });
-
-        // Initialize
-        showSlide(0);
-        startAutoSlide();
-
-        // Pause on hover
-        slideshow.parentElement.addEventListener('mouseenter', stopAutoSlide);
-        slideshow.parentElement.addEventListener('mouseleave', startAutoSlide);
-    </script>
 </head>
 
 <body class="font-roboto bg-white dark:bg-black text-dark dark:text-white">
@@ -313,7 +243,7 @@
     </section>
     <!-- Slideshow End -->
 
-    <!-- QUick Links Start -->
+    <!-- Quick Links Start -->
     <section class=" mt-8 py-8">
         <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
             <p class="text-md text-dark uppercase">Join us</p>
@@ -492,43 +422,41 @@
                             class="sm:w-[854px] h-full object-cover object-center mt-0 flex-2">
                     </div>
                     <% } else { %>
-                        <a href="/programs-and-events/1">
-                            <div class=" h-[512px] flex flex-col md:flex-row items-start gap-0 pt-0">
-                                <div
-                                    class="bg-blue-200 dark:bg-dark-blue-900 h-full flex-1 flex flex-col items-start justify-center py-4 sm:py-0 pl-10 pr-4">
-                                    <div class="w-full flex flex-row justify-between items-baseline-last mb-4">
-                                        <p class="uppercase text-light-blue-900 font-bold text-sm">Past event
-                                        </p>
-                                        <p class="font-bold text-2xl flex flex-col gap-0 items-center justify-center">02
-                                            <span class="font-normal text-lg mt-[-10px]">APR</span>
-                                        </p>
-                                    </div>
-                                    <h2 class="text-xl lg:text-2xl text-black font-bold uppercase mb-4">Jesus; The Game
-                                        Changer
-                                    </h2>
-                                    <p class="text-dark font-normal mb-4">Join us for an exciting time in God's
-                                        presence. Jesus;
-                                        The
-                                        Game
-                                        Changer is much more than a tag line, it is an experience of a lifetime</p>
-                                    <div class="flex flex-col gap-2 w-[70%] mb-6">
-                                        <p class="text-dark font-normal flex gap-2 items-center justify-start">
-                                            <img src="/asset/icons/clock.svg" alt="date icon"> 2nd April, 2024 12:00PM
-                                        </p>
-                                        <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
-                                                src="/asset/icons/location-pin.svg" alt="date icon">
-                                            Ogele Primary School Field,
-                                            Ughelli,
-                                            Delta State.</p>
-                                    </div>
-                                    <a href="#"
-                                        class="inline-block bg-dark text-blue-600 px-8 py-3 rounded-xl hover:text-blue-400 uppercase"
-                                        disabled>Registration Closed</a>
+                        <div class=" h-[512px] flex flex-col md:flex-row items-start gap-0 pt-0">
+                            <div
+                                class="bg-blue-200 dark:bg-dark-blue-900 h-full flex-1 flex flex-col items-start justify-center py-4 sm:py-0 pl-10 pr-4">
+                                <div class="w-full flex flex-row justify-between items-baseline-last mb-4">
+                                    <p class="uppercase text-light-blue-900 font-bold text-sm">Past event
+                                    </p>
+                                    <p class="font-bold text-2xl flex flex-col gap-0 items-center justify-center">02
+                                        <span class="font-normal text-lg mt-[-10px]">APR</span>
+                                    </p>
                                 </div>
-                                <img src="/asset/images/events/upcoming.png" alt="Event 1"
-                                    class="sm:w-[500px] h-full object-cover object-center mt-0 flex-2">
+                                <h2 class="text-xl lg:text-2xl text-black font-bold uppercase mb-4">Jesus; The Game
+                                    Changer
+                                </h2>
+                                <p class="text-dark font-normal mb-4">Join us for an exciting time in God's
+                                    presence. Jesus;
+                                    The
+                                    Game
+                                    Changer is much more than a tag line, it is an experience of a lifetime</p>
+                                <div class="flex flex-col gap-2 w-[70%] mb-6">
+                                    <p class="text-dark font-normal flex gap-2 items-center justify-start">
+                                        <img src="/asset/icons/clock.svg" alt="date icon"> 2nd April, 2024 12:00PM
+                                    </p>
+                                    <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
+                                            src="/asset/icons/location-pin.svg" alt="date icon">
+                                        Ogele Primary School Field,
+                                        Ughelli,
+                                        Delta State.</p>
+                                </div>
+                                <a href="#"
+                                    class="inline-block bg-dark text-blue-600 px-8 py-3 rounded-xl hover:text-blue-400 uppercase"
+                                    disabled>Registration Closed</a>
                             </div>
-                        </a>
+                            <img src="/asset/images/events/upcoming.png" alt="Event 1"
+                                class="sm:w-[500px] h-full object-cover object-center mt-0 flex-2">
+                        </div>
                         <% } %>
             </div>
             <!-- Arrow -->
@@ -559,7 +487,8 @@
                         <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Church at home</h2>
                         <p class="text-gray-700 dark:text-gray-300 text-sm">Join us every tuesday for cell fellowship
                             meetings.
-                            Visit the church admin ofice or call our lines to find out which cell fellowship location is
+                            Visit the church admin office or call our lines to find out which cell fellowship location
+                            is
                             closest to you.</p>
                         <p class="text-gray-700 font-normal flex gap-1 items-center justify-start text-sm"><img
                                 src="/asset/icons/clock-filled.svg" alt="date icon"> 5:00 PM</p>
@@ -570,10 +499,8 @@
                         <p class="uppercase text-light-blue-900 font-bold text-xs">Thursdays
                         </p>
                         <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Hour Of Divine Touch</h2>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">Join us every tuesday for cell fellowship
-                            meetings.
-                            Visit the church admin ofice or call our lines to find out which cell fellowship location is
-                            closest to you.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Join us every thursday at the church
+                            auditorium for an hour of fasting, prayer and fellowship.</p>
                         <p class="text-gray-700 font-normal flex gap-1 items-center justify-start text-sm"><img
                                 src="/asset/icons/clock-filled.svg" alt="date icon"> 5:30 PM</p>
                     </div>
@@ -583,10 +510,8 @@
                         <p class="uppercase text-light-blue-900 font-bold text-xs">Sundays
                         </p>
                         <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">School Of Success</h2>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">Join us every tuesday for cell fellowship
-                            meetings.
-                            Visit the church admin ofice or call our lines to find out which cell fellowship location is
-                            closest to you.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Join us for our first service on sunday
+                            morning.</p>
                         <p class="text-gray-700 font-normal flex gap-1 items-center justify-start text-sm"><img
                                 src="/asset/icons/clock-filled.svg" alt="date icon"> 7:30 AM</p>
                     </div>
@@ -596,10 +521,8 @@
                         <p class="uppercase text-light-blue-900 font-bold text-xs">Sundays
                         </p>
                         <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Glorious Service</h2>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">Join us every tuesday for cell fellowship
-                            meetings.
-                            Visit the church admin ofice or call our lines to find out which cell fellowship location is
-                            closest to you.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Join us for the second service on sunday
+                            morning.</p>
                         <p class="text-gray-700 font-normal flex gap-1 items-center justify-start text-sm"><img
                                 src="/asset/icons/clock-filled.svg" alt="date icon"> 9:00 AM</p>
                     </div>
@@ -623,12 +546,12 @@
                     <!-- Blog 1 -->
                     <div
                         class="bg-blue-200 dark:bg-dark-blue-900 p-6 first:border-b-[16px] border-blue-300 h-[300px] flex flex-col items-start justify-center gap-4 pl-12">
-                        <p class="uppercase text-light-blue-900 font-bold text-xs">Gratitude
+                        <p class="uppercase text-light-blue-900 font-bold text-xs">
+                            <%= item.tags[0] %>
                         </p>
-                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">Gratitude - a provoker of unusual favour
+                        <h2 class="text-lg lg:text-xl font-bold mb-4 uppercase">
+                            <%= item.title %>
                         </h2>
-                        <!-- <p class="text-gray-700 dark:text-gray-300 text-sm">From our scripture we could see how out of
-                            ten lepers healed, only one returned to give thanks...</p> -->
                         <a href="/resources/articles/<%= item._id %>" class="flex items-center justify-start w-full">
                             <p
                                 class="inline-flex items-center justify-center gap-1 hover:text-blue-600 ease-in-out cursor-pointer text-gray-700">
@@ -641,14 +564,10 @@
                             if (n > 3 && n < 21) return 'th' ; return ['th', 'st' , 'nd' , 'rd' ][n % 10] || 'th' ; };
                                 const day=d.getDate(); const hours=d.getHours(); const
                                 minutes=d.getMinutes().toString().padStart(2, '0' ); return `${day}${ord(day)}
-                                ${d.toLocaleString('en-US', { month: 'long' })}, ${d.getFullYear()} ${hours % 12 ||
-                                12}:${minutes}${hours>= 12 ?
-                                'PM' : 'AM'}`;
-                                };
-                                const formattedDate = formatDate(item.createdAt);
-                                %>
-                                <p class="text-gray-700 font-normal text-sm">By Rev. Samson Bodjor <br>
-                                    <%= formattedDate %>
+                                ${d.toLocaleString('en-US', { month: 'long' })}, ${d.getFullYear()}`; }; const
+                                formattedDate=formatDate(item.createdAt); %>
+                                <p class="text-gray-700 font-normal text-sm">By <%= item.author %> <br>
+                                        <%= formattedDate %>
                                 </p>
                     </div>
                     <% }); %>
@@ -671,94 +590,45 @@
             </h2>
         </div>
         <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
-            <!-- Testimony 1 -->
-            <div class="flex flex-col md:flex-row items-center justify-center gap-1 pt-0">
-                <div class="flex-1">
-                    <h2 class="text-xl lg:text-2xl text-dark font-bold mb-4 uppercase">Divine Healing</h2>
-                    <p class="text-dark">During the week of emphasis, I discovered a big boil on one of my breast. I was
-                        gripped in fear with the thought that it
-                        might be cancerous, but because Reverend (the lead pastor) has prayed for me before time, I said
-                        to myself that this
-                        will not stand. One of the days of the week of emphasis when Reverend (lead pastor) was praying;
-                        He made mentioned
-                        emphatically that every arrow shot at us will be returned back to sender. I claimed it by faith
-                        and that night i had a
-                        dream. A man was standing by my side pointing to the boil on my breast and declaring this will
-                        not stand. He went ahead
-                        to place His hand on it and the boil melted immediately. When i woke up from the dream, i
-                        realized the boil was no
-                        longer there.</p>
-                </div>
-                <img src="/asset/images/testimonies/testimony.jpg" alt="Testimony 1"
-                    class="w-full h-full object-contain object-center mt-0 flex-1">
-            </div>
-            <!-- Testimony 2 -->
-            <div
-                class="flex flex-col md:flex-row items-center justify-center gap-1 pt-0 even:gap-4 even:my-4 even:sm:my-0">
-                <img src="/asset/images/testimonies/testimony.jpg" alt="Testimony 1"
-                    class="w-full h-full object-contain object-center mt-0 flex-1">
-                <div class="flex-1">
-                    <h2 class="text-xl lg:text-2xl text-dark font-bold mb-4 uppercase">Prophecy Fulfilled</h2>
-                    <p class="text-dark">One of the services, Reverend (lead pastor) made an altar call to pray for
-                        those that would love to involve in kingdom
-                        projects but don't have a financial base. And he said before the next service, we will come to
-                        testify because God will
-                        surprise us with money from nowhere.
-                        Before then, I have been believing God for a financial base for my business over some months and
-                        since it was not coming
-                        as expected, I decided to start small. When Reverend made that altar call, i knew in my spirit
-                        that something was in for
-                        me but since I didn't have any money with me to sow, I came out and knelt down to pray to God to
-                        still confirm the word
-                        of our father (lead pastor) through me and when it happen, I will sow to Him. <br> Fastforword
-                        to the next day, a contact wrote me up to order for a fabric but what she proposed for, i
-                        recommended a
-                        higher quantity which she agreed to, she paid for all the materials available and also paid
-                        upfront for the ones I
-                        didn't have. What i thought, will take me weeks to sell was sold in a minute.
-                        The God of Rev Samson Bodjor made it happened and i give Him all the praise.
-                    </p>
-                </div>
-            </div>
-            <!-- Testimony 3 -->
-            <div class="flex flex-col md:flex-row items-center justify-center gap-1 pt-0">
-                <div class="flex-1">
-                    <h2 class="text-xl lg:text-2xl text-dark font-bold mb-4 uppercase">Long term chest pain and
-                        respiratory seizures ended</h2>
-                    <p class="text-dark">Over some months now, i have been experiencing pains in my chest and severe
-                        headache. Most times, i have respiratory
-                        seizure that deprive me from breathing well even when ministering. I decided to plan for a scan
-                        so i could know what was
-                        wrong but before then I met with our father (the lead pastor) and i told him about it and he
-                        prayed on water for me to
-                        drink. Immediately, i drank the water, the pain, the heaviness and the headachedisappeared. And
-                        from that moment till
-                        now, i have not experience it again and its gone for good in Jesus name! Amen.</p>
-                </div>
-                <img src="/asset/images/testimonies/testimony.jpg" alt="Testimony 1"
-                    class="w-full h-full object-contain object-center mt-0 flex-1">
-            </div>
-            <!-- Testimony 4 -->
-            <div
-                class="flex flex-col md:flex-row items-center justify-center gap-1 pt-0 even:gap-4 even:my-4 even:sm:my-0">
-                <img src="/asset/images/testimonies/testimony.jpg" alt="Testimony 1"
-                    class="w-full h-full object-contain object-center mt-0 flex-1">
-                <div class="flex-1">
-                    <h2 class="text-xl lg:text-2xl text-dark font-bold mb-4 uppercase">Lack Ended by the impact of
-                        divine instruction</h2>
-                    <p class="text-dark">When we entered 2024, our father (lead pastor) told us that it was our year of
-                        greatness and for greatness to manifest,
-                        we must constantly be in our place of service. I held unto the instruction even when I didn't
-                        feel like serving and God
-                        really showed up for me. My prayer constantly was for me not to lack and truly in 2024, i had no
-                        reason to beg or lack.
-                        God kept providing for me on daily basis.</p>
-                </div>
-            </div>
-            <!-- Share Testimony -->
-            <p id="shareTestimony"
-                class="w-full inline-flex flex-end items-center justify-end gap-1 hover:gap-3 ease-in-out cursor-pointer">
-                Share your testimony <img src="/asset/icons/arrow-right.svg" alt="" srcset=""></p>
+            <% if (Array.isArray(testimonies) && testimonies.length> 0) { %>
+                <% testimonies.forEach((item, index)=> { %>
+                    <% if (index % 2===0) { %>
+                        <!-- Testimony: Text Left, Image Right -->
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-4 pt-0">
+                            <div class="flex-1 ">
+                                <h2 class="text-xl lg:text-2xl text-dark font-bold mb-4 uppercase custom-typography">
+                                    <%= item.title %>
+                                </h2>
+                                <p class="text-dark custom-typography">
+                                    <%= item.comment %>
+                                </p>
+                            </div>
+                            <img src="/asset/images/testimonies/testimony.jpg" alt="<%= item.title %>"
+                                class="w-full h-auto object-contain object-center flex-1">
+                        </div>
+                        <% } else { %>
+                            <!-- Testimony: Image Left, Text Right -->
+                            <div class="flex flex-col md:flex-row-reverse items-center justify-center gap-4 pt-0">
+                                <div class="flex-1">
+                                    <h2
+                                        class="text-xl lg:text-2xl text-dark font-bold mb-4 uppercase custom-typography">
+                                        <%= item.title %>
+                                    </h2>
+                                    <p class="text-dark custom-typography">
+                                        <%= item.comment %>
+                                    </p>
+                                </div>
+                                <img src="/asset/images/testimonies/testimony.jpg" alt="<%= item.title %>"
+                                    class="w-full h-auto object-contain object-center flex-1">
+                            </div>
+                            <% } %>
+                                <% }); %>
+                                    <% } %>
+                                        <p id="shareTestimony"
+                                            class="w-full inline-flex flex-end items-center justify-end gap-1 hover:gap-3 ease-in-out cursor-pointer">
+                                            Share your testimony <img src="/asset/icons/arrow-right.svg" alt=""
+                                                srcset="">
+                                        </p>
         </div>
     </section>
 
@@ -875,7 +745,7 @@
                     <form action="/subscribe" method="post">
                         <div class="flex flex-row gap-0 items-center justify-start">
                             <input type="email" name="email" id="email"
-                                class="bg-transparent dark:bg-dark-blue-900 rounded-xl border-l-1 border-y-1 border-light text-dark px-4 py-3 placeholder:text-light -mr-10"
+                                class="bg-transparent dark:bg-dark-blue-900 rounded-xl border-l-1 border-y-1 border-light text-light px-4 py-3 placeholder:text-light -mr-10 focus:outline-none"
                                 placeholder="Enter your email address" required>
                             <button type="submit"
                                 class="bg-light-blue-600 text-dark border-1 border-l-0 border-light px-8 py-3 rounded-xl hover:bg-light-blue-900 uppercase">Subscribe</button>
@@ -889,6 +759,78 @@
     </footer>
 
     <!-- Footer End -->
+
+    <!-- Slideshow Javascript -->
+    <script>
+        const slideshow = document.getElementById('slideshow');
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+
+        // Configure auto-rotation duration (in milliseconds)
+        const autoSlideDuration = 7000; // Change this value to adjust rotation time (e.g., 3000 for 3 seconds)
+
+        function showSlide(index) {
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
+
+            slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('bg-white', i === currentSlide);
+                dot.classList.toggle('bg-grey-400', i !== currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, autoSlideDuration);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        // Event Listeners
+        nextBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            nextSlide();
+            startAutoSlide();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            prevSlide();
+            startAutoSlide();
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                stopAutoSlide();
+                showSlide(parseInt(dot.dataset.slide));
+                startAutoSlide();
+            });
+        });
+
+        // Initialize
+        showSlide(0);
+        startAutoSlide();
+
+        // Pause on hover
+        slideshow.parentElement.addEventListener('mouseenter', stopAutoSlide);
+        slideshow.parentElement.addEventListener('mouseleave', startAutoSlide);
+    </script>
 
     <!-- JavaScript for mobile menu and dropdown -->
     <script>

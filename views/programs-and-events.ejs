@@ -147,13 +147,13 @@
             <!-- Slide 3 -->
             <div class="slide flex-none w-full h-full relative">
                 <!-- Desktop -->
-                <img src="/asset/images/events/recent.png" alt="Recent Events"
+                <img src="<%= nearestEvent.banner || '/asset/images/events/coming-soon.jpg' %>" alt="Recent Events"
                     class="w-full h-full object-cover object-[100%_25%] hidden xl:block">
                 <!-- Tablet -->
-                <img src="/asset/images/events/recent.png" alt="Recent Events"
+                <img src="<%= nearestEvent.banner || '/asset/images/events/coming-soon.jpg' %>" alt="Recent Events"
                     class="w-full h-full object-cover object-[75%_75%] hidden sm:block xl:hidden">
                 <!-- Mobile -->
-                <img src="/asset/images/events/recent.png" alt="Recent Events"
+                <img src="<%= nearestEvent.banner || '/asset/images/events/coming-soon.jpg' %>" alt="Recent Events"
                     class="w-full h-full object-cover object-[75%_75%] sm:hidden">
             </div>
         </div>
@@ -172,40 +172,59 @@
         </div>
         <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
             <div class="grid grid-cols-1 gap-3">
-                <!-- Event -->
-                <a href="/programs-and-events/1">
+                <% if (nearestEvent) {%>
+                    <!-- Event -->
                     <div class=" h-[512px] flex flex-col md:flex-row items-start gap-0 pt-0">
                         <div
                             class="bg-blue-200 dark:bg-dark-blue-900 h-full flex-1 flex flex-col items-start justify-center py-4 sm:py-0 pl-10 pr-4">
                             <div class="w-full flex flex-row justify-between items-baseline-last mb-4">
                                 <p class="uppercase text-light-blue-900 font-bold text-sm">Upcoming event
                                 </p>
-                                <p class="font-bold text-2xl flex flex-col gap-0 items-center justify-center">02 <span
-                                        class="font-normal text-lg mt-[-10px]">APR</span></p>
-                            </div>
-                            <h2 class="text-xl lg:text-2xl text-black font-bold uppercase mb-4">Jesus; The Game Changer
-                            </h2>
-                            <p class="text-dark font-normal mb-4">Join us for an exciting time in God's presence. Jesus;
-                                The
-                                Game
-                                Changer is much more than a tag line, it is an experience of a lifetime</p>
-                            <div class="flex flex-col gap-2 w-[70%] mb-6">
-                                <p class="text-dark font-normal flex gap-2 items-center justify-start">
-                                    <img src="/asset/icons/clock.svg" alt="date icon"> 2nd April, 2024 12:00PM
+                                <p class="font-bold text-2xl flex flex-col gap-0 items-center justify-center">
+                                    <%= new Date(nearestEvent.startDate).getDate() %>
+                                        <span class="font-normal text-lg mt-[-10px]">
+                                            <%= new Date(nearestEvent.startDate).toLocaleString('en-US', {
+                                                month: 'short' }).toUpperCase()%>
+                                        </span>
                                 </p>
-                                <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
-                                        src="/asset/icons/location-pin.svg" alt="date icon">
-                                    Ogele Primary School Field,
-                                    Ughelli,
-                                    Delta State.</p>
                             </div>
-                            <a href="/programs-and-events/1"
+                            <h2 class="text-xl lg:text-2xl text-black font-bold uppercase mb-4">
+                                <%= nearestEvent.title %>
+                            </h2>
+                            <p class="text-dark font-normal mb-4">
+                                <%= nearestEvent.description %>
+                            </p>
+                            <div class="flex flex-col gap-2 w-[70%] mb-6">
+                                <% const formatDate=(dateString)=> {
+                                    if (!dateString || isNaN(new Date(dateString))) return 'Invalid Date';
+                                    const d = new Date(dateString);
+                                    const ord = (n) => {
+                                    if (n > 3 && n < 21) return 'th' ; return ['th', 'st' , 'nd' , 'rd' ][n % 10]
+                                        || 'th' ; }; const day=d.getDate(); const hours=d.getHours(); const
+                                        minutes=d.getMinutes().toString().padStart(2, '0' ); return `${day}${ord(day)}
+                                        ${d.toLocaleString('en-US', { month: 'long' })}, ${d.getFullYear()} ${hours % 12
+                                        || 12}:${minutes}${hours>= 12 ?
+                                        'PM' : 'AM'}`;
+                                        };
+                                        const formattedDate = formatDate(nearestEvent.startDate);
+                                        %>
+                                        <p
+                                            class="text-dark font-normal flex gap-2 items-center justify-start custom-typography">
+                                            <img src="/asset/icons/clock.svg" alt="date icon">
+                                            <%= formattedDate %>
+                                        </p>
+                                        <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
+                                                src="/asset/icons/location-pin.svg" alt="date icon">
+                                            <%= nearestEvent.location %>
+                                        </p>
+                            </div>
+                            <a href="/programs-and-events/<%= nearestEvent._id %>"
                                 class="inline-block bg-dark text-blue-600 px-8 py-3 rounded-xl hover:text-blue-400 uppercase">Register</a>
                         </div>
-                        <img src="/asset/images/events/upcoming.png" alt="Event 1"
-                            class="sm:w-[500px] h-full object-cover object-center mt-0 flex-2">
+                        <img src="<%= nearestEvent.banner || '/asset/images/events/coming-soon.jpg' %>" alt="Event 1"
+                            class="sm:w-[854px] h-full object-cover object-center mt-0 flex-2">
                     </div>
-                </a>
+                    <% } %>
             </div>
         </div>
     </section>
@@ -222,97 +241,54 @@
 
         <div class="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-center flex-col gap-3">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <a href="/programs-and-events/1">
-                    <div
-                        class="bg-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[450px] flex flex-col items-start justify-center gap-4 pl-12 hover:scale-102 transition-transform duration-300 ease-in-out">
-                        <div class="w-full flex flex-row justify-between items-baseline-last mb-4">
-                            <p class="uppercase text-light-blue-900 font-bold text-sm">Upcoming event
-                            </p>
-                            <p class="font-bold text-2xl flex flex-col gap-0 items-center justify-center">20 <span
-                                    class="font-normal text-lg mt-[-10px]">JUN</span></p>
-                        </div>
-                        <h2 class="text-xl lg:text-2xl text-black font-bold uppercase mb-4">General Church Convention
-                        </h2>
-                        <p class="text-dark font-normal mb-4">All church memebers are invited for this convention</p>
-                        <div class="flex flex-col gap-2  mb-6">
-                            <p class="text-dark font-normal flex gap-2 items-center justify-start">
-                                <img src="/asset/icons/clock.svg" alt="date icon"> 2nd April, 2024 12:00PM
-                            </p>
-                            <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
-                                    src="/asset/icons/location-pin.svg" alt="date icon">
-                                Church Headquarters</p>
-                        </div>
-                    </div>
-                </a>
+                <% events.forEach(item=> { %>
 
-                <a href="/programs-and-events/1">
-                    <div
-                        class="bg-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[450px] flex flex-col items-start justify-center gap-4 pl-12 hover:scale-102 transition-transform duration-300 ease-in-out">
-                        <div class="w-full flex flex-row justify-between items-baseline-last mb-4">
-                            <p class="uppercase text-light-blue-900 font-bold text-sm">Upcoming event
+                    <a href="/programs-and-events/<%= item._id %>">
+                        <div
+                            class="bg-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[450px] flex flex-col items-start justify-center gap-4 pl-12 hover:scale-102 transition-transform duration-300 ease-in-out">
+                            <div class="w-full flex flex-row justify-between items-baseline-last mb-4">
+                                <p class="uppercase text-light-blue-900 font-bold text-sm">Upcoming event
+                                </p>
+                                <p class="font-bold text-2xl flex flex-col gap-0 items-center justify-center">
+                                    <%= new Date(nearestEvent.startDate).getDate() %>
+                                        <span class="font-normal text-lg mt-[-10px]">
+                                            <%= new Date(nearestEvent.startDate).toLocaleString('en-US', {
+                                                month: 'short' }).toUpperCase()%>
+                                        </span>
+                                </p>
+                            </div>
+                            <h2 class="text-xl lg:text-2xl text-black font-bold uppercase mb-4">
+                                <%= item.title %>
+                            </h2>
+                            <p class="text-dark font-normal mb-4">
+                                <%= item.description %>
                             </p>
-                            <p class="font-bold text-2xl flex flex-col gap-0 items-center justify-center">20 <span
-                                    class="font-normal text-lg mt-[-10px]">JUN</span></p>
+                            <div class="flex flex-col gap-2  mb-6">
+                                <% const formatDate=(dateString)=> {
+                                    if (!dateString || isNaN(new Date(dateString))) return 'Invalid Date';
+                                    const d = new Date(dateString);
+                                    const ord = (n) => {
+                                    if (n > 3 && n < 21) return 'th' ; return ['th', 'st' , 'nd' , 'rd' ][n % 10]
+                                        || 'th' ; }; const day=d.getDate(); const hours=d.getHours(); const
+                                        minutes=d.getMinutes().toString().padStart(2, '0' ); return `${day}${ord(day)}
+                                        ${d.toLocaleString('en-US', { month: 'long' })}, ${d.getFullYear()} ${hours % 12
+                                        || 12}:${minutes}${hours>= 12 ?
+                                        'PM' : 'AM'}`;
+                                        };
+                                        const formattedDate = formatDate(item.startDate);
+                                        %>
+                                        <p class="text-dark font-normal flex gap-2 items-center justify-start">
+                                            <img src="/asset/icons/clock.svg" alt="date icon">
+                                            <%= formattedDate || "To be disclosed" %>
+                                        </p>
+                                        <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
+                                                src="/asset/icons/location-pin.svg" alt="date icon">
+                                            <%= item.location %>
+                                        </p>
+                            </div>
                         </div>
-                        <h2 class="text-xl lg:text-2xl text-black font-bold uppercase mb-4">General Church Convention
-                        </h2>
-                        <p class="text-dark font-normal mb-4">All church memebers are invited for this convention</p>
-                        <div class="flex flex-col gap-2  mb-6">
-                            <p class="text-dark font-normal flex gap-2 items-center justify-start">
-                                <img src="/asset/icons/clock.svg" alt="date icon"> 2nd April, 2024 12:00PM
-                            </p>
-                            <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
-                                    src="/asset/icons/location-pin.svg" alt="date icon">
-                                Church Headquarters</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="/programs-and-events/1">
-                    <div
-                        class="bg-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[450px] flex flex-col items-start justify-center gap-4 pl-12 hover:scale-102 transition-transform duration-300 ease-in-out">
-                        <div class="w-full flex flex-row justify-between items-baseline-last mb-4">
-                            <p class="uppercase text-light-blue-900 font-bold text-sm">Upcoming event
-                            </p>
-                            <p class="font-bold text-2xl flex flex-col gap-0 items-center justify-center">20 <span
-                                    class="font-normal text-lg mt-[-10px]">JUN</span></p>
-                        </div>
-                        <h2 class="text-xl lg:text-2xl text-black font-bold uppercase mb-4">General Church Convention
-                        </h2>
-                        <p class="text-dark font-normal mb-4">All church memebers are invited for this convention</p>
-                        <div class="flex flex-col gap-2  mb-6">
-                            <p class="text-dark font-normal flex gap-2 items-center justify-start">
-                                <img src="/asset/icons/clock.svg" alt="date icon"> 2nd April, 2024 12:00PM
-                            </p>
-                            <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
-                                    src="/asset/icons/location-pin.svg" alt="date icon">
-                                Church Headquarters</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="/programs-and-events/1">
-                    <div
-                        class="bg-blue-200 dark:bg-dark-blue-900 p-6 border-b-[16px] border-blue-300 h-[450px] flex flex-col items-start justify-center gap-4 pl-12 hover:scale-102 transition-transform duration-300 ease-in-out">
-                        <div class="w-full flex flex-row justify-between items-baseline-last mb-4">
-                            <p class="uppercase text-light-blue-900 font-bold text-sm">Upcoming event
-                            </p>
-                            <p class="font-bold text-2xl flex flex-col gap-0 items-center justify-center">20 <span
-                                    class="font-normal text-lg mt-[-10px]">JUN</span></p>
-                        </div>
-                        <h2 class="text-xl lg:text-2xl text-black font-bold uppercase mb-4">General Church Convention
-                        </h2>
-                        <p class="text-dark font-normal mb-4">All church memebers are invited for this convention</p>
-                        <div class="flex flex-col gap-2  mb-6">
-                            <p class="text-dark font-normal flex gap-2 items-center justify-start">
-                                <img src="/asset/icons/clock.svg" alt="date icon"> 2nd April, 2024 12:00PM
-                            </p>
-                            <p class="text-dark font-normal flex gap-2 items-center justify-start"><img
-                                    src="/asset/icons/location-pin.svg" alt="date icon">
-                                Church Headquarters</p>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                    <% }); %>
             </div>
         </div>
     </section>
@@ -385,7 +361,7 @@
                     <form action="/subscribe" method="post">
                         <div class="flex flex-row gap-0 items-center justify-start">
                             <input type="email" name="email" id="email"
-                                class="bg-transparent dark:bg-dark-blue-900 rounded-xl border-l-1 border-y-1 border-light text-dark px-4 py-3 placeholder:text-light -mr-10"
+                                class="bg-transparent dark:bg-dark-blue-900 rounded-xl border-l-1 border-y-1 border-light text-light px-4 py-3 placeholder:text-light -mr-10 focus:outline-none"
                                 placeholder="Enter your email address" required>
                             <button type="submit"
                                 class="bg-light-blue-600 text-dark border-1 border-l-0 border-light px-8 py-3 rounded-xl hover:bg-light-blue-900 uppercase">Subscribe</button>

@@ -16,6 +16,6 @@ router.get("/", authMiddleware, renderEventsDashboard);
 router.post("/", authMiddleware, addEvent); // Create a new event
 router.delete("/:id", authMiddleware, checkRole(access.manager), deleteEvent); // Delete an event
 router.post("/:id", authMiddleware, checkRole(access.manager), updateEvent); // Update an event
-router.post("/:id/register", authMiddleware, registerForEvent); // Register for an event
+router.post("/:id/register", registerForEvent); // Register for an event
 
 module.exports = router;

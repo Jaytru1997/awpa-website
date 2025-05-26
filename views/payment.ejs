@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/asset/logo/logo.png" type="image/png">
+    <meta name="description" content="<%= description %>">
+    <meta name="keywords" content="<%= keywords %>">
+    <title>
+        <%= app_name %> - Payment Confirmation
+    </title>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Puritan:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/tailwind.css">
+</head>
+
+<body class="font-roboto bg-grey-200 dark:bg-dark-blue-900 text-dark dark:text-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-white dark:bg-dark-blue-800 shadow p-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <a href="/" class="text-xl font-roboto font-bold text-dark-blue-900 dark:text-white">
+                <%= app_name %>
+            </a>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="/cart" class="relative">
+                <svg class="w-6 h-6 text-dark-blue-900 dark:text-grey-200" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="p-4 sm:p-6 max-w-3xl mx-auto">
+        <h1 class="text-xl sm:text-3xl font-roboto font-bold text-dark-blue-900 dark:text-white mb-6">Payment
+            Confirmation</h1>
+
+        <div class="bg-white dark:bg-dark-blue-800 rounded-xl shadow-lg p-4 sm:p-6">
+            <h2 class="text-lg sm:text-2xl font-roboto font-bold text-dark-blue-900 dark:text-white mb-4">Order Details
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <p class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200"><strong>Transaction
+                            Reference:</strong>
+                        <%= payment.tx_ref %>
+                    </p>
+                    <p class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200"><strong>Amount:</strong> $<%=
+                            payment.amount.toFixed(2) %> USD</p>
+                </div>
+                <div>
+                    <p class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200"><strong>Email:</strong>
+                        <%= payment.email %>
+                    </p>
+                    <p class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200"><strong>Phone Number:</strong>
+                        <%= payment.phone_number %>
+                    </p>
+                    <p class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200"><strong>Description:</strong>
+                        <%= payment.description || 'N/A' %>
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="text-base sm:text-lg font-roboto font-bold text-dark-blue-900 dark:text-white mb-4">Products</h3>
+            <div class="overflow-x-auto scrollbar-hide mb-6">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="bg-dark-blue-900 text-white text-xs sm:text-sm">
+                            <th class="p-2 sm:p-4 font-roboto font-semibold">Product</th>
+                            <th class="p-2 sm:p-4 font-roboto font-semibold">Price</th>
+                            <th class="p-2 sm:p-4 font-roboto font-semibold">Quantity</th>
+                            <th class="p-2 sm:p-4 font-roboto font-semibold">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% payment.products.forEach(item=> { %>
+                            <tr class="text-xs sm:text-sm border-b dark:border-dark-blue-600">
+                                <td
+                                    class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto truncate truncate-mobile">
+                                    <%= item.title %>
+                                </td>
+                                <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">$<%=
+                                        item.price.toFixed(2) %>
+                                </td>
+                                <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                    <%= item.quantity %>
+                                </td>
+                                <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">$<%=
+                                        (item.price * item.quantity).toFixed(2) %>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
+
+            <% if (paymentLink) { %>
+                <!-- Online Payment -->
+                <div class="text-center">
+                    <p class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200 mb-4">Click the button below to
+                        complete your payment via Flutterwave.</p>
+                    <a href="<%= paymentLink %>" target="_blank"
+                        class="bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-800 font-roboto text-sm min-h-[44px] inline-block">Pay
+                        Now</a>
+                </div>
+                <% } else { %>
+                    <!-- Local Payment Instructions -->
+                    <div class="text-center">
+                        <p class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200 mb-4">Please make a bank
+                            transfer to the following account:</p>
+                        <div class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200 mb-4">
+                            <p><strong>Bank:</strong> Access Bank</p>
+                            <p><strong>Account Number:</strong> 0095065107</p>
+                            <p><strong>Account Name:</strong> Angel Wings Power Assembly</p>
+                            <p><strong>Swift Code:</strong> ABNGNGLA</p>
+                            <p><strong>Amount:</strong>
+                                <%= nairaEquivalent %> NGN
+                            </p>
+                            <p><strong>Reference:(add payment reference to your transfer description)</strong>
+                                <%= payment.tx_ref %>
+                            </p>
+                        </div>
+                        <p class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200 mb-4">An email has been sent
+                            to the admin for approval. You'll be notified once the payment is confirmed.</p>
+                        <a href="/"
+                            class="bg-dark-blue-900 text-white px-4 py-2 rounded-lg hover:bg-dark-blue-800 font-roboto text-sm min-h-[44px] inline-block">Back
+                            to Home</a>
+                    </div>
+                    <% } %>
+        </div>
+    </main>
+</body>
+
+</html>

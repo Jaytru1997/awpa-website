@@ -361,6 +361,34 @@ router.get("/giving", (req, res) => {
   });
 });
 
+router.get("/cart", (req, res) => {
+  const cart = req.session.cart || [];
+  res.status(StatusCodes.OK).render("cart", {
+    app_name: process.env.APP_NAME,
+    url: process.env.URL,
+    title: "Cart",
+    description: config.page_desc,
+    cart,
+    keywords: "online donation, giving, church, Angel Wings Power Assembly",
+  });
+});
+
+router.get("/payment-success", (req, res) => {
+  res.status(StatusCodes.OK).render("status/status", {
+    app_name: process.env.APP_NAME,
+    url: process.env.URL,
+    title: "Payment Success",
+    description: config.page_desc,
+    keywords: "online donation, giving, church, Angel Wings Power Assembly",
+    status: 200,
+    message_title: "Payment Successful",
+    message:
+      "Thank you for your generous donation. Your support helps us continue our mission.",
+    actionUrl: "/",
+    actionText: "Back to website",
+  });
+});
+
 router.get(
   "/programs-and-events",
   asyncWrapper(async (req, res) => {

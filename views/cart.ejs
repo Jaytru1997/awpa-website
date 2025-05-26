@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/asset/logo/logo.png" type="image/png">
+    <meta name="description" content="<%= description %>">
+    <meta name="keywords" content="<%= keywords %>">
+    <title>
+        <%= app_name %> - Shopping Cart
+    </title>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Puritan:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        @media (max-width: 640px) {
+
+            th,
+            td {
+                font-size: 0.75rem;
+                padding: 0.5rem;
+            }
+
+            .truncate-mobile {
+                max-width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-roboto bg-grey-200 dark:bg-dark-blue-900 text-dark dark:text-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-white dark:bg-dark-blue-800 shadow p-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <a href="/" class="text-xl font-roboto font-bold text-dark-blue-900 dark:text-white">
+                <%= app_name %>
+            </a>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="/cart" class="relative">
+                <svg class="w-6 h-6 text-dark-blue-900 dark:text-grey-200" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                    </path>
+                </svg>
+                <% if (cart && cart.length> 0) { %>
+                    <span
+                        class="absolute -top-2 -right-2 bg-red-900 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                        <%= cart.reduce((sum, item)=> sum + item.quantity, 0) %>
+                    </span>
+                    <% } %>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="p-4 sm:p-6 max-w-7xl mx-auto">
+        <h1 class="text-xl sm:text-3xl font-roboto font-bold text-dark-blue-900 dark:text-white mb-6">
+            Shopping Cart</h1>
+
+        <!-- Cart Table -->
+        <% if (cart && cart.length> 0) { %>
+            <div class="bg-white dark:bg-dark-blue-800 rounded-xl shadow-lg overflow-x-auto scrollbar-hide mb-6">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="bg-dark-blue-900 text-white text-xs sm:text-sm">
+                            <th class="p-2 sm:p-4 font-roboto font-semibold w-[30%]">Product</th>
+                            <th class="p-2 sm:p-4 font-roboto font-semibold w-[20%]">Price</th>
+                            <th class="p-2 sm:p-4 font-roboto font-semibold w-[20%]">Quantity</th>
+                            <th class="p-2 sm:p-4 font-roboto font-semibold w-[20%]">Total</th>
+                            <th class="p-2 sm:p-4 font-roboto font-semibold w-[10%]"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% cart.forEach(item=> { %>
+                            <tr
+                                class="text-xs sm:text-sm border-b dark:border-dark-blue-600 hover:bg-grey-100 dark:hover:bg-dark-blue-700">
+                                <td
+                                    class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto truncate truncate-mobile">
+                                    <%= item.title %>
+                                </td>
+                                <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                    $<%= item.price.toFixed(2) %>
+                                </td>
+                                <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                    <form action="/cart/update" method="POST" class="flex items-center gap-2">
+                                        <input type="hidden" name="id" value="<%= item.id %>">
+                                        <input type="number" name="quantity" value="<%= item.quantity %>" min="1"
+                                            class="w-16 p-1 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 text-sm"
+                                            required>
+                                        <button type="submit" class="text-light-blue-900 hover:text-light-blue-800"
+                                            aria-label="Update quantity">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                    $<%= (item.price * item.quantity).toFixed(2) %>
+                                </td>
+                                <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                    <form action="/cart/remove" method="POST">
+                                        <input type="hidden" name="id" value="<%= item.id %>">
+                                        <button type="submit" class="text-red-900 hover:text-red-800"
+                                            aria-label="Remove item">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                    <tfoot>
+                        <tr class="text-sm sm:text-base">
+                            <td colspan="3"
+                                class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto font-bold text-right">
+                                Total:</td>
+                            <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto font-bold">
+                                $<%= cart.reduce((sum, item)=> sum + item.price * item.quantity,
+                                    0).toFixed(2) %>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <!-- Checkout Form -->
+            <div class="bg-white dark:bg-dark-blue-800 rounded-xl shadow-lg p-4 sm:p-6 max-w-lg mx-auto">
+                <h2 class="text-lg sm:text-2xl font-roboto font-bold text-dark-blue-900 dark:text-white mb-4">
+                    Checkout</h2>
+                <form action="/payment" method="POST" class="flex flex-col gap-4">
+                    <div>
+                        <label for="email"
+                            class="block text-dark-blue-900 dark:text-grey-200 font-roboto text-sm mb-2">Email</label>
+                        <input type="email" id="email" name="email"
+                            class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto text-sm"
+                            required>
+                    </div>
+                    <div>
+                        <label for="phone_number"
+                            class="block text-dark-blue-900 dark:text-grey-200 font-roboto text-sm mb-2">Phone
+                            Number</label>
+                        <input type="tel" id="phone_number" name="phone_number"
+                            class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto text-sm"
+                            required>
+                    </div>
+                    <div>
+                        <label for="description"
+                            class="block text-dark-blue-900 dark:text-grey-200 font-roboto text-sm mb-2">Description
+                            (Optional)</label>
+                        <textarea id="description" name="description"
+                            class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto text-sm"
+                            rows="4"></textarea>
+                    </div>
+                    <input type="hidden" name="amount"
+                        value="<%= cart.reduce((sum, item) => sum + item.price * item.quantity, 0) %>">
+                    <input type="hidden" name="products"
+                        value="<%= JSON.stringify(cart.map(item => ({ id: item.id, title: item.title, price: item.price, quantity: item.quantity }))) %>">
+                    <button type="submit"
+                        class="bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-800 font-roboto text-sm min-h-[44px] uppercase">Proceed
+                        to Payment</button>
+                </form>
+            </div>
+            <% } else { %>
+                <div class="text-center text-grey-600 dark:text-grey-400 font-roboto text-sm sm:text-base">
+                    Your cart is empty. <a href="/church-media"
+                        class="text-light-blue-900 hover:text-light-blue-800">Continue shopping</a>.
+                </div>
+                <% } %>
+    </main>
+</body>
+
+</html>

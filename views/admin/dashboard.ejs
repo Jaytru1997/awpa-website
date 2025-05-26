@@ -15,7 +15,7 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="<%= app_name %>">
     <meta property="og:description" content="<%= description %>">
-    <meta property="og:image" content="https://awpa-website.onrender.com/asset/images/banner.png">
+    <meta property="og:image" content="https://angelwingspowerassembly.org/asset/images/banner.png">
     <meta property="og:image:alt" content="Angel Wings Power Assembly Logo">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -69,7 +69,7 @@
             <!-- Navigation -->
             <nav class="flex-1 p-4 scrollbar-hide overflow-y-auto"
                 style="-ms-overflow-style: none; scrollbar-width: none;">
-                <a href="/admin/"
+                <a href="/admin"
                     class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2 bg-red-900">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -105,6 +105,26 @@
                         </path>
                     </svg>
                     <span class="font-roboto">Media</span>
+                </a>
+                <a href="/admin/subscribers"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Subscribers</span>
+                </a>
+                <a href="/admin/testimonies"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Testimonies</span>
                 </a>
                 <a href="/admin/church-details"
                     class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
@@ -267,6 +287,54 @@
                         <a href="/media"
                             class="mt-4 inline-block bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-800 transition-colors text-sm font-roboto uppercase">View
                             All Ebooks</a>
+                    </div>
+
+                    <!-- Widget 6: Subscribers Count -->
+                    <div
+                        class="bg-gradient-to-br from-light-blue-900 to-dark-blue-900 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 transform text-white">
+                        <div class="flex items-center gap-4">
+                            <svg class="w-10 h-10 text-red-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                                </path>
+                            </svg>
+                            <div>
+                                <h3 class="text-xl font-roboto font-bold mb-1">Subscribers</h3>
+                                <p class="text-3xl font-bold text-red-400 animate-pulse">
+                                    <%= subscribers.length %>
+                                </p>
+                                <p class="text-grey-200 text-sm">Total Subscribers</p>
+                            </div>
+                        </div>
+                        <a href="/admin/subscribers"
+                            class="mt-4 inline-block bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-800 transition-colors text-sm font-roboto uppercase">
+                            View All Subscribers
+                        </a>
+                    </div>
+
+                    <!-- Widget 7: Unapproved Testimonies Count -->
+                    <div
+                        class="bg-gradient-to-br from-light-blue-900 to-dark-blue-900 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 transform text-white">
+                        <div class="flex items-center gap-4">
+                            <svg class="w-10 h-10 text-red-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                                </path>
+                            </svg>
+                            <div>
+                                <h3 class="text-xl font-roboto font-bold mb-1">Unapproved Testimonies</h3>
+                                <p class="text-3xl font-bold text-red-400 animate-pulse">
+                                    <%= testimonies.length %>
+                                </p>
+                                <p class="text-grey-200 text-sm">Pending Approval</p>
+                            </div>
+                        </div>
+                        <a href="/admin/testimonies"
+                            class="mt-4 inline-block bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-800 transition-colors text-sm font-roboto uppercase">
+                            Review Testimonies
+                        </a>
                     </div>
                 </div>
             </main>

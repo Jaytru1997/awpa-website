@@ -2,12 +2,8 @@ const express = require("express");
 const {
   createPost,
   renderBlogsDashboard,
-  getAllPosts,
-  getPostById,
   updatePost,
   deletePost,
-  addComment,
-  getComments,
 } = require("../controllers/blogController");
 const authMiddleware = require("../middleware/authMiddleware");
 const { checkRole } = require("../middleware/rbacMiddleware");
@@ -46,52 +42,6 @@ router.get(
   checkRole(access.manager),
   renderBlogsDashboard
 );
-
-/**
- * @swagger
- * /blog/{id}:
- *   get:
- *     summary: Get a single blog post by ID
- *     tags: [Blog]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *         description: Blog post ID
- *     responses:
- *       200:
- *         description: The blog post data
- *       404:
- *         description: Blog post not found
- *       500:
- *         description: Server error
- */
-router.get("/:id", getPostById);
-
-/**
- * @swagger
- * /blog/{id}/comments:
- *   get:
- *     summary: Get comments for a specific blog post
- *     tags: [Blog]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *         description: Blog post ID
- *     responses:
- *       200:
- *         description: List of comments for the post
- *       404:
- *         description: Blog post not found
- *       500:
- *         description: Server error
- */
-router.get("/:id/comments", getComments);
 
 /**
  * @swagger
@@ -135,45 +85,6 @@ router.get("/:id/comments", getComments);
  *         description: Server error
  */
 router.post("/", authMiddleware, checkRole(access.manager), createPost);
-
-/**
- * @swagger
- * /blog/{id}/comment:
- *   post:
- *     summary: Add a comment to a blog post
- *     tags: [Blog]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *         description: Blog post ID
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required:
- *               - text
- *             properties:
- *               text:
- *                 type: string
- *                 description: Comment text
- *     responses:
- *       201:
- *         description: Comment added successfully
- *       401:
- *         description: Unauthorized
- *       404:
- *         description: Blog post not found
- *       500:
- *         description: Server error
- */
-router.post("/:id/comment", authMiddleware, checkRole(access.all), addComment);
 
 /**
  * @swagger

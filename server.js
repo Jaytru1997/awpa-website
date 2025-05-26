@@ -10,6 +10,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const mongoSanitize = require("express-mongo-sanitize");
 const fileUpload = require("express-fileupload");
+const methodOverride = require("method-override");
 const staticRoutes = require("./routes/staticRoutes");
 const authRoutes = require("./routes/authRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
@@ -44,6 +45,7 @@ app.use(fileUpload());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(methodOverride("_method"));
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
@@ -68,7 +70,7 @@ app.use(cors());
 app.use(function (req, res, next) {
   const allowedOrigins = [
     "http://localhost:10000",
-    "https://awpa-website.onrender.com",
+    "https://angelwingspowerassembly.org",
     "https://angelwingspowerassembly.org",
   ];
 

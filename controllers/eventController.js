@@ -5,19 +5,111 @@ const Event = require("../models/Event");
 const Registration = require("../models/Registration");
 const { asyncWrapper } = require("../utils/async");
 const { StatusCodes } = require("http-status-codes");
+const sanitizeHtml = require("sanitize-html");
 const { config } = require("../config/config");
 const { sendEmail } = require("../services/emailService");
 
 exports.renderEventsDashboard = asyncWrapper(async (req, res) => {
-  const events = (await Event.find()) || [];
-  return res.status(StatusCodes.OK).render("admin/events", {
-    app_name: process.env.APP_NAME,
-    url: process.env.URL,
-    title: "Events Dashboard",
-    description: config.page_desc,
-    keywords: "home, welcome, church, Angel Wings Power Assembly",
-    events,
-  });
+  const page = parseInt(req.query.page) || 1;
+  const perPage = 10;
+
+  if (page < 1) {
+    return res.status(StatusCodes.BAD_REQUEST).render("status/status", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      title: "Admin Dashboard",
+      description: "Manage church events and activities",
+      keywords: "church, events, admin, Angel Wings Power Assembly",
+      status: 400,
+      message_title: "Invalid Page Number",
+      message: "Page number must be positive.",
+      actionUrl: "/events",
+      actionText: "Go back to events",
+    });
+  }
+
+  try {
+    const total = await Event.countDocuments();
+    const events = await Event.find()
+      .select(
+        "title startDate endDate location priceStatus price description tags banner"
+      )
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .lean();
+
+    const sanitizedEvents = events.map((event) => ({
+      ...event,
+      title: sanitizeHtml(event.title, {
+        allowedTags: [],
+        allowedAttributes: {},
+      }),
+      location: sanitizeHtml(event.location, {
+        allowedTags: [],
+        allowedAttributes: {},
+      }),
+      description: sanitizeHtml(event.description, {
+        allowedTags: ["p", "strong", "em", "br"],
+        allowedAttributes: {},
+      }),
+      tags: event.tags.map((tag) =>
+        sanitizeHtml(tag, { allowedTags: [], allowedAttributes: {} })
+      ),
+      priceStatus: sanitizeHtml(event.priceStatus, {
+        allowedTags: [],
+        allowedAttributes: {},
+      }),
+      price: event.price ? parseFloat(event.price).toFixed(2) : null,
+      banner: event.banner
+        ? sanitizeHtml(event.banner, { allowedTags: [], allowedAttributes: {} })
+        : null,
+    }));
+
+    const totalPages = Math.ceil(total / perPage);
+
+    if (page > totalPages && total > 0) {
+      return res.status(StatusCodes.NOT_FOUND).render("status/status", {
+        app_name: process.env.APP_NAME,
+        url: process.env.URL,
+        title: "Admin Dashboard",
+        description: "Manage church events and activities",
+        keywords: "church, events, admin, Angel Wings Power Assembly",
+        status: 404,
+        message_title: "Page Not Found",
+        message: `Page ${page} does not exist.`,
+        actionUrl: "/events",
+        actionText: "Go back to events",
+      });
+    }
+
+    res.render("admin/events", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      description: "Manage church events",
+      keywords: "church, events, admin",
+      title: "Events",
+      events: sanitizedEvents,
+      page,
+      perPage,
+      total,
+      totalPages,
+    });
+  } catch (error) {
+    console.error("Error rendering events:", error);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("status/status", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      title: "Admin Dashboard",
+      description: "Manage church events and activities",
+      keywords: "church, events, admin, Angel Wings Power Assembly",
+      status: 500,
+      message_title: "Server Error",
+      message: "Failed to load events. Please try again later.",
+      actionUrl: "/events",
+      actionText: "Go back to events",
+    });
+  }
 });
 
 // Add a new event

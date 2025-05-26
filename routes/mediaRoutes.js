@@ -1,10 +1,10 @@
 const express = require("express");
 const {
   renderMediaDashboard,
-  getMedia,
   getMediaById,
   addMedia,
   updateMedia,
+  toggleMediaStatus,
   deleteMedia,
 } = require("../controllers/mediaController");
 const authMiddleware = require("../middleware/authMiddleware");
@@ -24,6 +24,12 @@ router.post("/", authMiddleware, checkRole(access.manager), addMedia);
 
 router.get("/:id", authMiddleware, checkRole(access.manager), getMediaById);
 router.post("/:id", authMiddleware, checkRole(access.manager), updateMedia);
+router.patch(
+  "/:id/status",
+  authMiddleware,
+  checkRole(access.manager),
+  toggleMediaStatus
+);
 router.delete("/:id", authMiddleware, checkRole(access.manager), deleteMedia);
 
 module.exports = router;

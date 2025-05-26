@@ -14,8 +14,8 @@ const { access } = require("../config/access");
 // Routes for event management
 router.get("/", authMiddleware, renderEventsDashboard);
 router.post("/", authMiddleware, addEvent); // Create a new event
-router.delete("/:id", authMiddleware, checkRole(access.manager), deleteEvent); // Delete an event
-router.post("/:id", authMiddleware, checkRole(access.manager), updateEvent); // Update an event
+router.delete("/:id", authMiddleware, checkRole(access.admin), deleteEvent); // Delete an event
+router.put("/:id", authMiddleware, checkRole(access.admin), updateEvent); // Update an event
 router.post("/:id/register", registerForEvent); // Register for an event
 
 module.exports = router;

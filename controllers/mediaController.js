@@ -5,17 +5,169 @@ const fs = require("fs").promises;
 const mongoose = require("mongoose");
 require("dotenv").config();
 const { StatusCodes } = require("http-status-codes");
+const sanitizeHtml = require("sanitize-html");
 const { config } = require("../config/config");
 
 exports.renderMediaDashboard = asyncWrapper(async (req, res) => {
-  const media = (await Media.find()) || [];
-  return res.status(StatusCodes.OK).render("admin/media", {
+  const page = parseInt(req.query.page) || 1;
+  const perPage = 10;
+
+  if (page < 1) {
+    return res.status(400).render("status/status", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      title: "Admin Dashboard",
+      description: "Manage church media",
+      keywords: "church, media, admin, Angel Wings Power Assembly",
+      status: 400,
+      message_title: "Invalid Page Number",
+      message: "Page number must be positive.",
+      actionUrl: "/admin/media",
+      actionText: "Go back to media",
+    });
+  }
+
+  try {
+    const total = await Media.countDocuments();
+    const media = await Media.find()
+      .select(
+        "title description type status tags category priceStatus price author"
+      )
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .lean();
+
+    const sanitizedMedia = media.map((item) => ({
+      ...item,
+      title: sanitizeHtml(item.title, {
+        allowedTags: [],
+        allowedAttributes: {},
+      }),
+      description: item.description
+        ? sanitizeHtml(item.description, {
+            allowedTags: [],
+            allowedAttributes: {},
+          })
+        : "",
+      type: sanitizeHtml(item.type, { allowedTags: [], allowedAttributes: {} }),
+      status: sanitizeHtml(item.status, {
+        allowedTags: [],
+        allowedAttributes: {},
+      }),
+      tags: item.tags.map((tag) =>
+        sanitizeHtml(tag, { allowedTags: [], allowedAttributes: {} })
+      ),
+      category: item.category
+        ? sanitizeHtml(item.category, {
+            allowedTags: [],
+            allowedAttributes: {},
+          })
+        : "",
+      priceStatus: sanitizeHtml(item.priceStatus, {
+        allowedTags: [],
+        allowedAttributes: {},
+      }),
+      price: item.price ? parseFloat(item.price).toFixed(2) : null,
+      author: item.author
+        ? sanitizeHtml(item.author, { allowedTags: [], allowedAttributes: {} })
+        : "",
+    }));
+
+    const totalPages = Math.ceil(total / perPage);
+
+    if (page > totalPages && total > 0) {
+      return res.status(404).render("status/status", {
+        app_name: process.env.APP_NAME,
+        url: process.env.URL,
+        title: "Admin Dashboard",
+        description: "Manage church media",
+        keywords: "church, media, admin, Angel Wings Power Assembly",
+        status: 404,
+        message_title: "Page Not Found",
+        message: `Page ${page} does not exist.`,
+        actionUrl: "/admin/media",
+        actionText: "Go back to media",
+      });
+    }
+
+    res.render("admin/media", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      description: "Manage church media",
+      keywords: "church, media, admin",
+      title: "Media",
+      media: sanitizedMedia,
+      page,
+      perPage,
+      total,
+      totalPages,
+      success: req.query.success,
+      error: req.query.error,
+    });
+  } catch (error) {
+    console.error("Error rendering media:", error);
+    res.status(500).render("status/status", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      title: "Admin Dashboard",
+      description: "Manage church media",
+      keywords: "church, media, admin, Angel Wings Power Assembly",
+      status: 500,
+      message_title: "Server Error",
+      message: "Failed to load media. Please try again later.",
+      actionUrl: "/admin/media",
+      actionText: "Go back to media",
+    });
+  }
+});
+
+exports.toggleMediaStatus = asyncWrapper(async (req, res) => {
+  // Authorization check
+  if (req.user.role !== "admin" && req.user.role !== "manager") {
+    return res.status(StatusCodes.FORBIDDEN).render("status/status", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      title: "Admin Dashboard",
+      description: config.page_desc,
+      keywords: "home, welcome, church, Angel Wings Power Assembly",
+      status: 403,
+      message_title: "Access Denied",
+      message: "You do not have permission to change media status.",
+      actionUrl: "/media",
+      actionText: "Go back to media",
+    });
+  }
+  const { id } = req.params;
+  const media = await Media.findById(id);
+  if (!media) {
+    return res.status(StatusCodes.NOT_FOUND).render("status/status", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      title: "Admin Dashboard",
+      description: config.page_desc,
+      keywords: "home, welcome, church, Angel Wings Power Assembly",
+      status: 404,
+      message_title: "Media Not Found",
+      message: "The media item does not exist.",
+      actionUrl: "/media",
+      actionText: "Go back to media",
+    });
+  }
+  // Toggle status
+  media.status = media.status === "active" ? "inactive" : "active";
+  await media.save();
+  res.status(StatusCodes.OK).render("status/status", {
     app_name: process.env.APP_NAME,
     url: process.env.URL,
-    title: "Media Dashboard",
+    title: "Admin Dashboard",
     description: config.page_desc,
     keywords: "home, welcome, church, Angel Wings Power Assembly",
-    media,
+    status: 200,
+    message_title: "Media Status Updated",
+    message: `The media item status has been changed to ${media.status}.`,
+    actionUrl: "/media",
+    actionText: "Go back to media",
   });
 });
 
@@ -151,10 +303,20 @@ exports.addMedia = asyncWrapper(async (req, res) => {
       // Create directory if it doesn't exist
       await fs.mkdir(thumbnailDir, { recursive: true });
     } catch (error) {
-      throw new CustomError(
-        "Failed to create upload directory",
-        StatusCodes.INTERNAL_SERVER_ERROR
-      );
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .render("status/status", {
+          app_name: process.env.APP_NAME,
+          url: process.env.URL,
+          title: "Admin Dashboard",
+          description: config.page_desc,
+          keywords: "home, welcome, church, Angel Wings Power Assembly",
+          status: 500,
+          message_title: "Upload Error",
+          message: "Failed to create upload directory for thumbnail.",
+          actionUrl: "/media",
+          actionText: "Go back to media",
+        });
     }
 
     // Generate unique filename
@@ -171,10 +333,20 @@ exports.addMedia = asyncWrapper(async (req, res) => {
       // Store relative URL path
       image = `/asset/media/thumbnails/${thumbnailFileName}`;
     } catch (error) {
-      throw new CustomError(
-        "Failed to save media file",
-        StatusCodes.INTERNAL_SERVER_ERROR
-      );
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .render("status/status", {
+          app_name: process.env.APP_NAME,
+          url: process.env.URL,
+          title: "Admin Dashboard",
+          description: config.page_desc,
+          keywords: "home, welcome, church, Angel Wings Power Assembly",
+          status: 500,
+          message_title: "Upload Error",
+          message: "Failed to save thumbnail file.",
+          actionUrl: "/media",
+          actionText: "Go back to media",
+        });
     }
   }
 
@@ -211,10 +383,20 @@ exports.addMedia = asyncWrapper(async (req, res) => {
     try {
       await fs.mkdir(uploadDir, { recursive: true }); // Create directory if it doesn't exist
     } catch (error) {
-      throw new CustomError(
-        "Failed to create upload directory",
-        StatusCodes.INTERNAL_SERVER_ERROR
-      );
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .render("status/status", {
+          app_name: process.env.APP_NAME,
+          url: process.env.URL,
+          title: "Admin Dashboard",
+          description: config.page_desc,
+          keywords: "home, welcome, church, Angel Wings Power Assembly",
+          status: 500,
+          message_title: "Upload Error",
+          message: "Failed to create upload directory for media file.",
+          actionUrl: "/media",
+          actionText: "Go back to media",
+        });
     }
 
     // Generate unique filename
@@ -230,10 +412,20 @@ exports.addMedia = asyncWrapper(async (req, res) => {
       await mediaFile.mv(filePath); // Move file to destination
       url = `/asset/media/${type}/${fileName}`; // Store relative URL path
     } catch (error) {
-      throw new CustomError(
-        "Failed to save media file",
-        StatusCodes.INTERNAL_SERVER_ERROR
-      );
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .render("status/status", {
+          app_name: process.env.APP_NAME,
+          url: process.env.URL,
+          title: "Admin Dashboard",
+          description: config.page_desc,
+          keywords: "home, welcome, church, Angel Wings Power Assembly",
+          status: 500,
+          message_title: "Upload Error",
+          message: "Failed to save media file.",
+          actionUrl: "/media",
+          actionText: "Go back to media",
+        });
     }
   }
 
@@ -367,10 +559,20 @@ exports.updateMedia = asyncWrapper(async (req, res) => {
     try {
       await fs.mkdir(thumbnailDir, { recursive: true });
     } catch (error) {
-      throw new CustomError(
-        "Failed to create upload directory",
-        StatusCodes.INTERNAL_SERVER_ERROR
-      );
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .render("status/status", {
+          app_name: process.env.APP_NAME,
+          url: process.env.URL,
+          title: "Admin Dashboard",
+          description: config.page_desc,
+          keywords: "home, welcome, church, Angel Wings Power Assembly",
+          status: 500,
+          message_title: "Upload Error",
+          message: "Failed to create upload directory for thumbnail.",
+          actionUrl: "/media",
+          actionText: "Go back to media",
+        });
     }
 
     // Generate unique filename with extension
@@ -395,10 +597,20 @@ exports.updateMedia = asyncWrapper(async (req, res) => {
         }
       }
     } catch (error) {
-      throw new CustomError(
-        "Failed to save thumbnail file",
-        StatusCodes.INTERNAL_SERVER_ERROR
-      );
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .render("status/status", {
+          app_name: process.env.APP_NAME,
+          url: process.env.URL,
+          title: "Admin Dashboard",
+          description: config.page_desc,
+          keywords: "home, welcome, church, Angel Wings Power Assembly",
+          status: 500,
+          message_title: "Upload Error",
+          message: "Failed to save thumbnail file.",
+          actionUrl: "/media",
+          actionText: "Go back to media",
+        });
     }
   }
 
@@ -429,10 +641,20 @@ exports.updateMedia = asyncWrapper(async (req, res) => {
     try {
       await fs.mkdir(uploadDir, { recursive: true });
     } catch (error) {
-      throw new CustomError(
-        "Failed to create upload directory",
-        StatusCodes.INTERNAL_SERVER_ERROR
-      );
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .render("status/status", {
+          app_name: process.env.APP_NAME,
+          url: process.env.URL,
+          title: "Admin Dashboard",
+          description: config.page_desc,
+          keywords: "home, welcome, church, Angel Wings Power Assembly",
+          status: 500,
+          message_title: "Upload Error",
+          message: "Failed to create upload directory for media file.",
+          actionUrl: "/media",
+          actionText: "Go back to media",
+        });
     }
 
     // Generate unique filename with extension
@@ -457,10 +679,20 @@ exports.updateMedia = asyncWrapper(async (req, res) => {
         }
       }
     } catch (error) {
-      throw new CustomError(
-        "Failed to save media file",
-        StatusCodes.INTERNAL_SERVER_ERROR
-      );
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .render("status/status", {
+          app_name: process.env.APP_NAME,
+          url: process.env.URL,
+          title: "Admin Dashboard",
+          description: config.page_desc,
+          keywords: "home, welcome, church, Angel Wings Power Assembly",
+          status: 500,
+          message_title: "Upload Error",
+          message: "Failed to save media file.",
+          actionUrl: "/media",
+          actionText: "Go back to media",
+        });
     }
   } else if (type === "video" && req.body.file) {
     url = req.body.file; // Update video URL if provided

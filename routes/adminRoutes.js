@@ -7,6 +7,12 @@ const {
   renderChurchDetailsDashboard,
   toggleUserStatus,
   adminSubmitFeedBack,
+  renderSubscribersDashboard,
+  renderTestimoniesDashboard,
+  deleteSubscriber,
+  approveFeedback,
+  unapproveFeedback,
+  deleteFeedback,
 } = require("../controllers/adminController");
 
 const router = express.Router();
@@ -34,11 +40,55 @@ router.get(
   renderChurchDetailsDashboard
 );
 
+router.get(
+  "/testimonies",
+  authMiddleware,
+  checkRole(access.admin),
+  renderTestimoniesDashboard
+);
+
 router.post(
   "/feedback",
   authMiddleware,
   checkRole(access.admin),
   adminSubmitFeedBack
+);
+
+router.put(
+  "/testimonies/:id/approve",
+  authMiddleware,
+  checkRole(access.admin),
+  approveFeedback
+);
+
+// PUT /admin/testimonies/:id/unapprove - Unapprove testimony
+router.put(
+  "/testimonies/:id/unapprove",
+  authMiddleware,
+  checkRole(access.admin),
+  unapproveFeedback
+);
+
+// DELETE /admin/testimonies/:id - Delete testimony
+router.delete(
+  "/testimonies/:id",
+  authMiddleware,
+  checkRole(access.admin),
+  deleteFeedback
+);
+
+router.get(
+  "/subscribers",
+  authMiddleware,
+  checkRole(access.admin),
+  renderSubscribersDashboard
+);
+
+router.delete(
+  "/subscribers/:id",
+  authMiddleware,
+  checkRole(access.admin),
+  deleteSubscriber
 );
 
 module.exports = router;

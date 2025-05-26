@@ -103,7 +103,7 @@ router.get("/visit-us", (req, res) => {
 router.get(
   "/church-media",
   asyncWrapper(async (req, res) => {
-    const media = await Media.find();
+    const media = await Media.find({ status: "active" });
     const audios = media.filter((el) => el.type === "audio");
     const videos = media.filter((el) => el.type === "video");
     const ebooks = media.filter((el) => el.type === "ebook");

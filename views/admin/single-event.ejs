@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/asset/logo/logo.png" type="image/png">
+    <meta name="description" content="<%= description %>">
+    <meta name="keywords" content="<%= keywords %>">
+    <title>
+        <%= app_name %>
+    </title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="<%= app_name %>">
+    <meta property="og:description" content="<%= description %>">
+    <meta property="og:image" content="https://angelwingspowerassembly.org/asset/images/banner.png">
+    <meta property="og:image:alt" content="Angel Wings Power Assembly Logo">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://<%= url %>">
+    <meta property="og:site_name" content="<%= app_name %>">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= app_name %>">
+    <meta name="twitter:description" content="<%= description %>">
+    <meta name="twitter:image" content="/asset/images/banner.png">
+    <meta name="twitter:image:alt" content="Angel Wings Power Assembly Logo">
+
+    <!-- Font Awesome (if used) -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Puritan:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="/css/tailwind.css">
+
+
+    <!-- PagedJS -->
+    <!-- <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script> -->
+
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .modal {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .modal.hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        /* Ensure table columns are responsive */
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        @media (max-width: 640px) {
+
+            th,
+            td {
+                font-size: 0.75rem;
+                padding: 0.5rem;
+            }
+
+            .truncate-mobile {
+                max-width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .action-btn {
+                padding: 0.25rem;
+                min-width: 44px;
+                min-height: 44px;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-roboto bg-white dark:bg-black text-dark dark:text-white">
+    <div class="min-h-screen flex bg-grey-200 dark:bg-dark-blue-900">
+        <!-- Sidebar -->
+        <div id="sidebar"
+            class="w-64 bg-dark-blue-900 text-white flex flex-col fixed inset-y-0 left-0 transform transition-transform duration-300 ease-in-out md:translate-x-0 z-30">
+            <div class="p-4 flex items-center gap-2">
+                <svg class="w-8 h-8 text-red-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                </svg>
+                <h1 class="text-xl font-roboto font-bold">Church Admin</h1>
+            </div>
+            <nav class="flex-1 p-4 scrollbar-hide overflow-y-auto"
+                style="-ms-overflow-style: none; scrollbar-width: none;">
+                <a href="/admin" class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Dashboard</span>
+                </a>
+                <a href="/events" class="flex items-center gap-3 p-3 rounded-xl bg-red-900 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Events</span>
+                </a>
+                <a href="/blog" class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Articles</span>
+                </a>
+                <a href="/media" class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Media</span>
+                </a>
+                <a href="/admin/subscribers"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Subscribers</span>
+                </a>
+                <a href="/admin/testimonies"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Testimonies</span>
+                </a>
+                <a href="/admin/church-details"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a2 2 0 012-2h2a2 2 0 012 2v5m-4 0h4">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Church Details</span>
+                </a>
+                <a href="/auth/logout"
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                        </path>
+                    </svg>
+                    <span class="font-roboto">Logout</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 ml-0 md:ml-64">
+            <!-- Top Bar -->
+            <header class="bg-white dark:bg-dark-blue-800 shadow p-4 flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <button id="menuBtn" class="md:hidden text-dark dark:text-white focus:outline-none"
+                        aria-label="Toggle sidebar">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <h2 class="text-xl font-roboto font-bold text-dark-blue-900 dark:text-white">Event</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-dark dark:text-grey-200 font-roboto">Admin User</span>
+                    <img src="/asset/logo/logo.png" alt="User Avatar" class="w-10 h-10 rounded-full object-cover">
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <main class="p-4 sm:p-6 dark:bg-dark-blue-900 min-h-[calc(100vh-64px)]">
+                <!-- Header -->
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
+                    <h1 class="text-xl sm:text-3xl font-roboto font-bold text-dark-blue-900 dark:text-white">Manage
+                        Attendance</h1>
+                    <button onclick="printElement()" id="printAttendanceBtn"
+                        class="bg-red-900 text-white px-4 py-2 rounded-xl hover:bg-red-800 flex items-center gap-2 font-roboto uppercase transition-colors min-h-[44px]">
+                        Print Attendance
+                    </button>
+                </div>
+
+                <!-- Attendees Table -->
+
+                <div id="attendeeTable"
+                    class="bg-white dark:bg-dark-blue-800 rounded-xl shadow-lg overflow-x-auto scrollbar-hide">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-dark-blue-900 text-white text-xs sm:text-sm">
+                                <th class="p-2 sm:p-4 font-roboto font-semibold w-[5%]">No.</th>
+                                <th class="p-2 sm:p-4 font-roboto font-semibold w-[20%]">Name</th>
+                                <th class="p-2 sm:p-4 font-roboto font-semibold w-[20%]">Email</th>
+                                <th class="p-2 sm:p-4 font-roboto font-semibold w-[10%]">Event
+                                </th>
+                                <th class="p-2 sm:p-4 font-roboto font-semibold w-[15%]">Start Date</th>
+                                <th class="p-2 sm:p-4 font-roboto font-semibold w-[15%]">End Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (attendees && attendees.length> 0) { %>
+                                <% attendees.forEach((attendee, index)=> { %>
+                                    <tr
+                                        class="border-b dark:border-dark-blue-600 hover:bg-grey-100 dark:hover:bg-dark-blue-700 text-xs sm:text-sm">
+                                        <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                            <%= index + 1 %>
+                                        </td>
+                                        <td
+                                            class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto truncate truncate-mobile">
+                                            <%= attendee.user.name %>
+                                        </td>
+                                        <td
+                                            class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto truncate truncate-mobile">
+                                            <%= attendee.user.email %>
+                                        </td>
+                                        <td
+                                            class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto capitalize">
+                                            <%= attendee.event.title %>
+                                        </td>
+                                        <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                            <%= attendee.event.startDate.toLocaleString('en-US', { month: 'short' ,
+                                                day: 'numeric' , year: 'numeric' , hour: 'numeric' , minute: 'numeric' ,
+                                                hour12: true }) %>
+                                        </td>
+                                        <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                            <%= attendee.event.endDate.toLocaleString('en-US', { month: 'short' ,
+                                                day: 'numeric' , year: 'numeric' , hour: 'numeric' , minute: 'numeric' ,
+                                                hour12: true }) %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                        <% } else { %>
+                                            <tr>
+                                                <td colspan="7"
+                                                    class="p-4 text-center text-grey-600 dark:text-grey-400 font-roboto text-sm">
+                                                    No attendees found.
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.getElementById('menuBtn');
+
+            menuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('-translate-x-full');
+            });
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !sidebar.classList.contains('-translate-x-full')) {
+                    sidebar.classList.add('-translate-x-full');
+                }
+            });
+        }); 
+    </script>
+
+    <script>
+        function printElement() {
+            const element = document.getElementById("attendeeTable");
+            const printWindow = window.open('', '', 'height=600,width=800');
+
+            // Get all stylesheets and inline styles
+            let styles = '';
+            const styleNodes = document.querySelectorAll('style, link[rel="stylesheet"]');
+            styleNodes.forEach((node) => {
+                styles += node.outerHTML;
+            });
+
+            // Build printable HTML
+            printWindow.document.write(`
+        <html>
+          <head>
+            <title>Print</title>
+            ${styles}
+          </head>
+          <body>
+            ${element.innerHTML}
+          </body>
+        </html>
+      `);
+
+            printWindow.document.close();
+            printWindow.focus();
+
+            setTimeout(() => {
+                printWindow.print();
+                printWindow.close();
+            }, 500);
+        }
+    </script>
+</body>
+
+</html>

@@ -232,28 +232,32 @@
                                 <% events.forEach((event, index)=> { %>
                                     <tr
                                         class="border-b dark:border-dark-blue-600 hover:bg-grey-100 dark:hover:bg-dark-blue-700 text-xs sm:text-sm">
-                                        <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+
+                                        <td onclick="location.href='/events/<%= event._id %>'"
+                                            class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
                                             <%= (page - 1) * perPage + index + 1 %>
                                         </td>
-                                        <td
+                                        <td onclick="location.href='/events/<%= event._id %>'"
                                             class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto truncate truncate-mobile">
                                             <%= event.title %>
                                         </td>
-                                        <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                        <td onclick="location.href='/events/<%= event._id %>'"
+                                            class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
                                             <%= event.startDate.toLocaleString('en-US', { month: 'short' ,
                                                 day: 'numeric' , year: 'numeric' , hour: 'numeric' , minute: 'numeric' ,
                                                 hour12: true }) %>
                                         </td>
-                                        <td class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
+                                        <td onclick="location.href='/events/<%= event._id %>'"
+                                            class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto">
                                             <%= event.endDate.toLocaleString('en-US', { month: 'short' , day: 'numeric'
                                                 , year: 'numeric' , hour: 'numeric' , minute: 'numeric' , hour12: true
                                                 }) %>
                                         </td>
-                                        <td
+                                        <td onclick="location.href='/events/<%= event._id %>'"
                                             class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto truncate truncate-mobile">
                                             <%= event.location %>
                                         </td>
-                                        <td
+                                        <td onclick="location.href='/events/<%= event._id %>'"
                                             class="p-2 sm:p-4 text-dark-blue-900 dark:text-grey-200 font-roboto capitalize">
                                             <%= event.priceStatus %>
                                                 <%= event.priceStatus==='paid' ? `($${event.price})` : '' %>

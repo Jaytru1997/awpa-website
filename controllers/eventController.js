@@ -112,6 +112,51 @@ exports.renderEventsDashboard = asyncWrapper(async (req, res) => {
   }
 });
 
+exports.renderSingleEventDashboard = asyncWrapper(async (req, res) => {
+  // get registrants of an event by event id
+  const { id } = req.params;
+  const registrants = await Registration.find({ event: id })
+    .populate(
+      "event",
+      "title startDate endDate location priceStatus price description tags banner"
+    )
+    .lean();
+  if (!registrants) {
+    return res.status(StatusCodes.NOT_FOUND).render("status/status", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      title: "Admin Dashboard",
+      description: config.page_desc,
+      keywords: "home, welcome, church, Angel Wings Power Assembly",
+      status: 404,
+      message_title: "Registrants Not Found",
+      message: "No registrants found for this event.",
+      actionUrl: "/events",
+      actionText: "Go back to events",
+    });
+  }
+  const sanitizedRegistrants = registrants.map((registrant) => ({
+    ...registrant,
+    "user.name": sanitizeHtml(registrant.user.name, {
+      allowedTags: [],
+      allowedAttributes: {},
+    }),
+    "user.email": sanitizeHtml(registrant.user.email, {
+      allowedTags: [],
+      allowedAttributes: {},
+    }),
+  }));
+  res.render("admin/single-event", {
+    app_name: process.env.APP_NAME,
+    url: process.env.URL,
+    title: "Event Registrants",
+    description: config.page_desc,
+    keywords: "home, welcome, church, Angel Wings Power Assembly",
+    attendees: sanitizedRegistrants,
+    eventId: id,
+  });
+});
+
 // Add a new event
 exports.addEvent = asyncWrapper(async (req, res) => {
   const {

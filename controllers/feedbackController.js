@@ -17,11 +17,17 @@ exports.submitFeedback = asyncWrapper(async (req, res) => {
   });
 
   const options = {
-    email: `contact@${process.env.URL}`,
+    // email: `contact@${process.env.URL}`,
+    email: `contact@angelwingspowerassembly.org`,
     subject: "New Testimony Submitted",
     message_1: `${name} just shared a testimony on the church website.`,
-    message_2:
+    message_2: `Testimony Title: ${title} \n
+    Testimony Comment: ${comment} \n
+    User Email: ${email} \n
+    User Name: ${name}`,
+    message_3:
       "Kindly login to the admin dashboard to approve the testimony on the website.",
+    attachments: [req.files.image ? req.files.image : null],
     cta: "Go to dashboard",
     ctaLink: `https://${process.env.URL}/auth/login`,
   };

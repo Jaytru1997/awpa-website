@@ -352,6 +352,18 @@ exports.deleteSubscriber = asyncWrapper(async (req, res) => {
         actionText: "Back to subscribers",
       });
     }
+    return res.status(StatusCodes.OK).render("status/status", {
+      app_name: process.env.APP_NAME,
+      url: process.env.URL,
+      title: "Server Error",
+      description: config.page_desc,
+      keywords: "home, welcome, church, Angel Wings Power Assembly",
+      status: 200,
+      message_title: "Subscriber deleted",
+      message: "The subscriber has been removed from our database.",
+      actionUrl: "/admin/subscribers",
+      actionText: "Back to subscribers",
+    });
   } catch (error) {
     console.error("Error deleting subscriber:", error);
     return res

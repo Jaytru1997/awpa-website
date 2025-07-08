@@ -1,437 +1,636 @@
 <!DOCTYPE html>
 <html lang="en" class="">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- favicon -->
-    <link rel="icon" href="/asset/logo/logo.png" type="image/png">
-    <meta name="description" content="<%= description %>">
-    <meta name="keywords" content="<%= keywords %>">
-    <title>
-        <%= app_name %>
-    </title>
+    <link rel="icon" href="/asset/logo/logo.png" type="image/png" />
+    <meta name="description" content="<%= description %>" />
+    <meta name="keywords" content="<%= keywords %>" />
+    <title><%= app_name %></title>
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="<%= app_name %>">
-    <meta property="og:description" content="<%= description %>">
-    <meta property="og:image" content="https://angelwingspowerassembly.org/asset/images/banner.png">
-    <meta property="og:image:alt" content="Angel Wings Power Assembly Logo">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://<%= url %>">
-    <meta property="og:site_name" content="<%= app_name %>">
+    <meta property="og:title" content="<%= app_name %>" />
+    <meta property="og:description" content="<%= description %>" />
+    <meta
+      property="og:image"
+      content="https://angelwingspowerassembly.org/asset/images/banner.png"
+    />
+    <meta property="og:image:alt" content="Angel Wings Power Assembly Logo" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://<%= url %>" />
+    <meta property="og:site_name" content="<%= app_name %>" />
 
     <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<%= app_name %>">
-    <meta name="twitter:description" content="<%= description %>">
-    <meta name="twitter:image" content="/asset/images/banner.png">
-    <meta name="twitter:image:alt" content="Angel Wings Power Assembly Logo">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="<%= app_name %>" />
+    <meta name="twitter:description" content="<%= description %>" />
+    <meta name="twitter:image" content="/asset/images/banner.png" />
+    <meta name="twitter:image:alt" content="Angel Wings Power Assembly Logo" />
 
     <!-- Font Awesome (if used, ensure it's installed) -->
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Puritan:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Puritan:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Tailwind CSS -->
-    <link rel="stylesheet" href="/css/tailwind.css">
-
+    <link rel="stylesheet" href="/css/tailwind.css" />
 
     <style>
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
 
-        .modal {
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
+      .modal {
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
 
-        .modal.hidden {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
+      .modal.hidden {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
     </style>
-</head>
+  </head>
 
-<body class="font-roboto bg-white dark:bg-black text-dark dark:text-white">
+  <body class="font-roboto bg-white dark:bg-black text-dark dark:text-white">
     <div class="min-h-screen flex bg-grey-200 dark:bg-dark-blue-900">
-        <!-- Sidebar -->
-        <div id="sidebar"
-            class="w-64 bg-dark-blue-900 text-white flex flex-col fixed inset-y-0 left-0 transform transition-transform duration-300 ease-in-out md:translate-x-0 z-30">
-            <!-- Logo -->
-            <div class="p-4 flex items-center gap-2">
-                <svg class="w-8 h-8 text-red-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-                    </path>
-                </svg>
-                <h1 class="text-xl font-roboto font-bold">Church Admin</h1>
+      <!-- Sidebar -->
+      <div
+        id="sidebar"
+        class="w-64 bg-dark-blue-900 text-white flex flex-col fixed inset-y-0 left-0 transform transition-transform duration-300 ease-in-out md:translate-x-0 z-30"
+      >
+        <!-- Logo -->
+        <div class="p-4 flex items-center gap-2">
+          <svg
+            class="w-8 h-8 text-red-900"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            ></path>
+          </svg>
+          <h1 class="text-xl font-roboto font-bold">Church Admin</h1>
+        </div>
+        <!-- Navigation -->
+        <nav
+          class="flex-1 p-4 scrollbar-hide overflow-y-auto"
+          style="-ms-overflow-style: none; scrollbar-width: none"
+        >
+          <a
+            href="/admin"
+            class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+              ></path>
+            </svg>
+            <span class="font-roboto">Dashboard</span>
+          </a>
+          <a
+            href="/events"
+            class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+            <span class="font-roboto">Events</span>
+          </a>
+          <a
+            href="/blog"
+            class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+              ></path>
+            </svg>
+            <span class="font-roboto">Articles</span>
+          </a>
+          <a
+            href="/media"
+            class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+            <span class="font-roboto">Media</span>
+          </a>
+          <a
+            href="/payments/admin/purchases"
+            class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 <%= url.includes('/payments/admin/purchases') ? 'bg-red-900 text-white' : 'text-white' %> mb-2"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 9V7a5 5 0 00-10 0v2a2 2 0 00-2 2v7a2 2 0 002 2h10a2 2 0 002-2v-7a2 2 0 00-2-2zm-5 4v4"
+              />
+            </svg>
+            <span class="font-roboto">Pending Purchases</span>
+          </a>
+          <a
+            href="/admin/subscribers"
+            class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+              ></path>
+            </svg>
+            <span class="font-roboto">Subscribers</span>
+          </a>
+          <a
+            href="/admin/testimonies"
+            class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 bg-red-900 text-white mb-2"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+              ></path>
+            </svg>
+            <span class="font-roboto">Testimonies</span>
+          </a>
+          <a
+            href="/admin/church-details"
+            class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a2 2 0 012-2h2a2 2 0 012 2v5m-4 0h4"
+              ></path>
+            </svg>
+            <span class="font-roboto">Church Details</span>
+          </a>
+          <a
+            href="/auth/logout"
+            class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+              ></path>
+            </svg>
+            <span class="font-roboto">Logout</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div class="flex-1 ml-0 md:ml-64">
+        <!-- Top Bar -->
+        <header
+          class="bg-white dark:bg-dark-blue-800 shadow p-4 flex justify-between items-center"
+        >
+          <div class="flex items-center gap-4">
+            <!-- Hamburger Menu for Mobile -->
+            <button
+              id="menuBtn"
+              class="md:hidden text-dark dark:text-white focus:outline-none"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+            <h2
+              class="text-xl font-roboto font-bold text-dark-blue-900 dark:text-white"
+            >
+              Testimonies
+            </h2>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-dark dark:text-grey-200 font-roboto"
+              >Admin User</span
+            >
+            <img
+              src="/asset/logo/logo.png"
+              alt="User Avatar"
+              class="w-10 h-10 rounded-full object-cover"
+            />
+          </div>
+        </header>
+
+        <!-- Content Area -->
+        <main class="p-6 dark:bg-dark-blue-900 min-h-[calc(100vh-64px)]">
+          <h1 class="text-2xl font-roboto font-bold text-dark-blue-900 mb-6">
+            Testimonies
+          </h1>
+
+          <!-- Success/Error Messages -->
+          <% if (success) { %>
+          <div
+            class="mb-6 p-4 bg-green-100 text-green-900 rounded-lg font-roboto"
+          >
+            <%= success %>
+          </div>
+          <% } %> <% if (error) { %>
+          <div class="mb-6 p-4 bg-red-100 text-red-900 rounded-lg font-roboto">
+            <%= error %>
+          </div>
+          <% } %>
+
+          <!-- Add Testimony Form -->
+          <div class="mb-8 bg-white p-6 rounded-xl shadow-lg">
+            <h2
+              class="text-xl font-roboto font-semibold text-dark-blue-900 mb-4"
+            >
+              Add New Testimony
+            </h2>
+            <form action="/admin/feedback" method="POST" class="space-y-4">
+              <div>
+                <label
+                  for="title"
+                  class="block text-sm font-roboto text-grey-900"
+                  >Title</label
+                >
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  required
+                  class="w-full p-2 border border-grey-200 rounded-lg font-roboto text-grey-900 focus:outline-none focus:ring-2 focus:ring-dark-blue-900"
+                />
+              </div>
+              <div>
+                <label
+                  for="comment"
+                  class="block text-sm font-roboto text-grey-900"
+                  >Content</label
+                >
+                <textarea
+                  id="comment"
+                  name="comment"
+                  required
+                  rows="4"
+                  class="w-full p-2 border border-grey-200 rounded-lg font-roboto text-grey-900 focus:outline-none focus:ring-2 focus:ring-dark-blue-900"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-800 transition-colors font-roboto uppercase"
+              >
+                Add Testimony
+              </button>
+            </form>
+          </div>
+
+          <!-- Unapproved Testimonies Table -->
+          <div class="mb-12">
+            <h2
+              class="text-xl font-roboto font-semibold text-dark-blue-900 mb-4"
+            >
+              Unapproved Testimonies
+            </h2>
+            <div class="mb-4 text-grey-900">
+              <p>
+                Showing <%= (unapprovedPage - 1) * perPage + 1 %>–<%=
+                Math.min(unapprovedPage * perPage, unapprovedTotal) %> of <%=
+                unapprovedTotal %> unapproved testimonies
+              </p>
             </div>
-            <!-- Navigation -->
-            <nav class="flex-1 p-4 scrollbar-hide overflow-y-auto"
-                style="-ms-overflow-style: none; scrollbar-width: none;">
-                <a href="/admin" class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2 ">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                        </path>
-                    </svg>
-                    <span class="font-roboto">Dashboard</span>
+            <div class="overflow-x-auto shadow-lg rounded-xl">
+              <table class="w-full bg-white text-left border-collapse">
+                <thead>
+                  <tr class="bg-dark-blue-900 text-white">
+                    <th class="p-4 font-roboto font-semibold">No.</th>
+                    <th class="p-4 font-roboto font-semibold">Title</th>
+                    <th class="p-4 font-roboto font-semibold">Content</th>
+                    <th class="p-4 font-roboto font-semibold">Date</th>
+                    <th class="p-4 font-roboto font-semibold">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (unapprovedTestimonies.length> 0) { %> <%
+                  unapprovedTestimonies.forEach((testimony, index)=> { %>
+                  <tr class="border-b border-grey-200 hover:bg-grey-100">
+                    <td class="p-4 font-roboto text-grey-900">
+                      <%= (unapprovedPage - 1) * perPage + index + 1 %>
+                    </td>
+                    <td class="p-4 font-roboto text-grey-900">
+                      <%= testimony.title %>
+                    </td>
+                    <td class="p-4 font-roboto text-grey-900">
+                      <%= testimony.content.length> 100 ?
+                      testimony.content.substring(0, 100) + '...' :
+                      testimony.content %>
+                    </td>
+                    <td class="p-4 font-roboto text-grey-900">
+                      <%= new
+                      Date(testimony.createdAt).toLocaleDateString('en-US', {
+                      month: 'short' , day: 'numeric' , year: 'numeric' }) %>
+                    </td>
+                    <td class="p-4 flex gap-2">
+                      <form
+                        action="/admin/testimonies/<%= testimony._id %>/approve?_method=PUT"
+                        method="POST"
+                        class="inline"
+                      >
+                        <button
+                          type="submit"
+                          class="text-green-900 hover:text-green-800 font-roboto text-sm"
+                        >
+                          Approve
+                        </button>
+                      </form>
+                      <form
+                        action="/admin/testimonies/<%= testimony._id %>?_method=DELETE"
+                        method="POST"
+                        class="inline"
+                      >
+                        <button
+                          type="submit"
+                          class="text-red-900 hover:text-red-800 font-roboto text-sm"
+                          onclick="return confirm('Are you sure you want to delete this testimony?')"
+                        >
+                          Delete
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                  <% }) %> <% } else { %>
+                  <tr>
+                    <td
+                      colspan="5"
+                      class="p-4 text-center font-roboto text-grey-900"
+                    >
+                      No unapproved testimonies found.
+                    </td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+            <% if (unapprovedTotalPages> 1) { %>
+            <div class="mt-6 flex items-center justify-between">
+              <a
+                href="?unapprovedPage=<%= unapprovedPage > 1 ? unapprovedPage - 1 : 1 %>"
+                class="inline-block bg-dark-blue-900 text-white px-4 py-2 rounded-lg hover:bg-dark-blue-800 transition-colors font-roboto <%= unapprovedPage === 1 ? 'opacity-50 cursor-not-allowed' : '' %>"
+              >
+                Previous
+              </a>
+              <div class="flex gap-2">
+                <% for (let i=1; i <=unapprovedTotalPages; i++) { %>
+                <a
+                  href="?unapprovedPage=<%= i %>"
+                  class="px-4 py-2 rounded-lg font-roboto <%= unapprovedPage === i ? 'bg-red-900 text-white' : 'bg-grey-200 text-grey-900 hover:bg-grey-300' %>"
+                >
+                  <%= i %>
                 </a>
-                <a href="/events" class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                        </path>
-                    </svg>
-                    <span class="font-roboto">Events</span>
+                <% } %>
+              </div>
+              <a
+                href="?unapprovedPage=<%= unapprovedPage < unapprovedTotalPages ? unapprovedPage + 1 : unapprovedTotalPages %>"
+                class="inline-block bg-dark-blue-900 text-white px-4 py-2 rounded-lg hover:bg-dark-blue-800 transition-colors font-roboto <%= unapprovedPage === unapprovedTotalPages ? 'opacity-50 cursor-not-allowed' : '' %>"
+              >
+                Next
+              </a>
+            </div>
+            <% } %>
+          </div>
+
+          <!-- Approved Testimonies Table -->
+          <div>
+            <h2
+              class="text-xl font-roboto font-semibold text-dark-blue-900 mb-4"
+            >
+              Approved Testimonies
+            </h2>
+            <div class="mb-4 text-grey-900">
+              <p>
+                Showing <%= (approvedPage - 1) * perPage + 1 %>–<%=
+                Math.min(approvedPage * perPage, approvedTotal) %> of <%=
+                approvedTotal %> approved testimonies
+              </p>
+            </div>
+            <div class="overflow-x-auto shadow-lg rounded-xl">
+              <table class="w-full bg-white text-left border-collapse">
+                <thead>
+                  <tr class="bg-dark-blue-900 text-white">
+                    <th class="p-4 font-roboto font-semibold">No.</th>
+                    <th class="p-4 font-roboto font-semibold">Title</th>
+                    <th class="p-4 font-roboto font-semibold">Content</th>
+                    <th class="p-4 font-roboto font-semibold">Date</th>
+                    <th class="p-4 font-roboto font-semibold">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (approvedTestimonies.length> 0) { %> <%
+                  approvedTestimonies.forEach((testimony, index)=> { %>
+                  <tr class="border-b border-grey-200 hover:bg-grey-100">
+                    <td class="p-4 font-roboto text-grey-900">
+                      <%= (approvedPage - 1) * perPage + index + 1 %>
+                    </td>
+                    <td class="p-4 font-roboto text-grey-900">
+                      <%= testimony.title %>
+                    </td>
+                    <td class="p-4 font-roboto text-grey-900">
+                      <%= testimony.content.length> 100 ?
+                      testimony.content.substring(0, 100) + '...' :
+                      testimony.content %>
+                    </td>
+                    <td class="p-4 font-roboto text-grey-900">
+                      <%= new
+                      Date(testimony.createdAt).toLocaleDateString('en-US', {
+                      month: 'short' , day: 'numeric' , year: 'numeric' }) %>
+                    </td>
+                    <td class="p-4 flex gap-2">
+                      <form
+                        action="/admin/testimonies/<%= testimony._id %>/unapprove?_method=PUT"
+                        method="POST"
+                        class="inline"
+                      >
+                        <button
+                          type="submit"
+                          class="text-yellow-900 hover:text-yellow-800 font-roboto text-sm"
+                        >
+                          Unapprove
+                        </button>
+                      </form>
+                      <form
+                        action="/admin/testimonies/<%= testimony._id %>?_method=DELETE"
+                        method="POST"
+                        class="inline"
+                      >
+                        <button
+                          type="submit"
+                          class="text-red-900 hover:text-red-800 font-roboto text-sm"
+                          onclick="return confirm('Are you sure you want to delete this testimony?')"
+                        >
+                          Delete
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                  <% }) %> <% } else { %>
+                  <tr>
+                    <td
+                      colspan="5"
+                      class="p-4 text-center font-roboto text-grey-900"
+                    >
+                      No approved testimonies found.
+                    </td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+            <% if (approvedTotalPages> 1) { %>
+            <div class="mt-6 flex items-center justify-between">
+              <a
+                href="?approvedPage=<%= approvedPage > 1 ? approvedPage - 1 : 1 %>"
+                class="inline-block bg-dark-blue-900 text-white px-4 py-2 rounded-lg hover:bg-dark-blue-800 transition-colors font-roboto <%= approvedPage === 1 ? 'opacity-50 cursor-not-allowed' : '' %>"
+              >
+                Previous
+              </a>
+              <div class="flex gap-2">
+                <% for (let i=1; i <=approvedTotalPages; i++) { %>
+                <a
+                  href="?approvedPage=<%= i %>"
+                  class="px-4 py-2 rounded-lg font-roboto <%= approvedPage === i ? 'bg-red-900 text-white' : 'bg-grey-200 text-grey-900 hover:bg-grey-300' %>"
+                >
+                  <%= i %>
                 </a>
-                <a href="/blog" class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
-                        </path>
-                    </svg>
-                    <span class="font-roboto">Articles</span>
-                </a>
-                <a href="/media" class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
-                        </path>
-                    </svg>
-                    <span class="font-roboto">Media</span>
-                </a>
-                <a href="/admin/subscribers"
-                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
-                        </path>
-                    </svg>
-                    <span class="font-roboto">Subscribers</span>
-                </a>
-                <a href="/admin/testimonies"
-                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 bg-red-900 text-white mb-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
-                        </path>
-                    </svg>
-                    <span class="font-roboto">Testimonies</span>
-                </a>
-                <a href="/admin/church-details"
-                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a2 2 0 012-2h2a2 2 0 012 2v5m-4 0h4">
-                        </path>
-                    </svg>
-                    <span class="font-roboto">Church Details</span>
-                </a>
-                <a href="/auth/logout"
-                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-blue-800 text-white mb-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
-                        </path>
-                    </svg>
-                    <span class="font-roboto">Logout</span>
-                </a>
-            </nav>
-        </div>
-
-        <!-- Main Content -->
-        <div class="flex-1 ml-0 md:ml-64">
-            <!-- Top Bar -->
-            <header class="bg-white dark:bg-dark-blue-800 shadow p-4 flex justify-between items-center">
-                <div class="flex items-center gap-4">
-                    <!-- Hamburger Menu for Mobile -->
-                    <button id="menuBtn" class="md:hidden text-dark dark:text-white focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16">
-                            </path>
-                        </svg>
-                    </button>
-                    <h2 class="text-xl font-roboto font-bold text-dark-blue-900 dark:text-white">Testimonies</h2>
-                </div>
-                <div class="flex items-center gap-4">
-                    <span class="text-dark dark:text-grey-200 font-roboto">Admin User</span>
-                    <img src="/asset/logo/logo.png" alt="User Avatar" class="w-10 h-10 rounded-full object-cover">
-                </div>
-            </header>
-
-            <!-- Content Area -->
-            <main class="p-6 dark:bg-dark-blue-900 min-h-[calc(100vh-64px)]">
-                <h1 class="text-2xl font-roboto font-bold text-dark-blue-900 mb-6">Testimonies</h1>
-
-                <!-- Success/Error Messages -->
-                <% if (success) { %>
-                    <div class="mb-6 p-4 bg-green-100 text-green-900 rounded-lg font-roboto">
-                        <%= success %>
-                    </div>
-                    <% } %>
-                        <% if (error) { %>
-                            <div class="mb-6 p-4 bg-red-100 text-red-900 rounded-lg font-roboto">
-                                <%= error %>
-                            </div>
-                            <% } %>
-
-                                <!-- Add Testimony Form -->
-                                <div class="mb-8 bg-white p-6 rounded-xl shadow-lg">
-                                    <h2 class="text-xl font-roboto font-semibold text-dark-blue-900 mb-4">Add New
-                                        Testimony</h2>
-                                    <form action="/admin/feedback" method="POST" class="space-y-4">
-                                        <div>
-                                            <label for="title"
-                                                class="block text-sm font-roboto text-grey-900">Title</label>
-                                            <input type="text" id="title" name="title" required
-                                                class="w-full p-2 border border-grey-200 rounded-lg font-roboto text-grey-900 focus:outline-none focus:ring-2 focus:ring-dark-blue-900">
-                                        </div>
-                                        <div>
-                                            <label for="comment"
-                                                class="block text-sm font-roboto text-grey-900">Content</label>
-                                            <textarea id="comment" name="comment" required rows="4"
-                                                class="w-full p-2 border border-grey-200 rounded-lg font-roboto text-grey-900 focus:outline-none focus:ring-2 focus:ring-dark-blue-900"></textarea>
-                                        </div>
-                                        <button type="submit"
-                                            class="bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-800 transition-colors font-roboto uppercase">
-                                            Add Testimony
-                                        </button>
-                                    </form>
-                                </div>
-
-                                <!-- Unapproved Testimonies Table -->
-                                <div class="mb-12">
-                                    <h2 class="text-xl font-roboto font-semibold text-dark-blue-900 mb-4">Unapproved
-                                        Testimonies</h2>
-                                    <div class="mb-4 text-grey-900">
-                                        <p>
-                                            Showing <%= (unapprovedPage - 1) * perPage + 1 %>–<%=
-                                                    Math.min(unapprovedPage * perPage, unapprovedTotal) %> of <%=
-                                                        unapprovedTotal %> unapproved testimonies
-                                        </p>
-                                    </div>
-                                    <div class="overflow-x-auto shadow-lg rounded-xl">
-                                        <table class="w-full bg-white text-left border-collapse">
-                                            <thead>
-                                                <tr class="bg-dark-blue-900 text-white">
-                                                    <th class="p-4 font-roboto font-semibold">No.</th>
-                                                    <th class="p-4 font-roboto font-semibold">Title</th>
-                                                    <th class="p-4 font-roboto font-semibold">Content</th>
-                                                    <th class="p-4 font-roboto font-semibold">Date</th>
-                                                    <th class="p-4 font-roboto font-semibold">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <% if (unapprovedTestimonies.length> 0) { %>
-                                                    <% unapprovedTestimonies.forEach((testimony, index)=> { %>
-                                                        <tr class="border-b border-grey-200 hover:bg-grey-100">
-                                                            <td class="p-4 font-roboto text-grey-900">
-                                                                <%= (unapprovedPage - 1) * perPage + index + 1 %>
-                                                            </td>
-                                                            <td class="p-4 font-roboto text-grey-900">
-                                                                <%= testimony.title %>
-                                                            </td>
-                                                            <td class="p-4 font-roboto text-grey-900">
-                                                                <%= testimony.content.length> 100 ?
-                                                                    testimony.content.substring(0, 100)
-                                                                    + '...' : testimony.content %>
-                                                            </td>
-                                                            <td class="p-4 font-roboto text-grey-900">
-                                                                <%= new
-                                                                    Date(testimony.createdAt).toLocaleDateString('en-US',
-                                                                    { month: 'short' , day: 'numeric' , year: 'numeric'
-                                                                    }) %>
-                                                            </td>
-                                                            <td class="p-4 flex gap-2">
-                                                                <form
-                                                                    action="/admin/testimonies/<%= testimony._id %>/approve?_method=PUT"
-                                                                    method="POST" class="inline">
-                                                                    <button type="submit"
-                                                                        class="text-green-900 hover:text-green-800 font-roboto text-sm">Approve</button>
-                                                                </form>
-                                                                <form
-                                                                    action="/admin/testimonies/<%= testimony._id %>?_method=DELETE"
-                                                                    method="POST" class="inline">
-                                                                    <button type="submit"
-                                                                        class="text-red-900 hover:text-red-800 font-roboto text-sm"
-                                                                        onclick="return confirm('Are you sure you want to delete this testimony?')">
-                                                                        Delete
-                                                                    </button>
-                                                                </form>
-                                                            </td>
-                                                        </tr>
-                                                        <% }) %>
-                                                            <% } else { %>
-                                                                <tr>
-                                                                    <td colspan="5"
-                                                                        class="p-4 text-center font-roboto text-grey-900">
-                                                                        No unapproved testimonies found.
-                                                                    </td>
-                                                                </tr>
-                                                                <% } %>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <% if (unapprovedTotalPages> 1) { %>
-                                        <div class="mt-6 flex items-center justify-between">
-                                            <a href="?unapprovedPage=<%= unapprovedPage > 1 ? unapprovedPage - 1 : 1 %>"
-                                                class="inline-block bg-dark-blue-900 text-white px-4 py-2 rounded-lg hover:bg-dark-blue-800 transition-colors font-roboto <%= unapprovedPage === 1 ? 'opacity-50 cursor-not-allowed' : '' %>">
-                                                Previous
-                                            </a>
-                                            <div class="flex gap-2">
-                                                <% for (let i=1; i <=unapprovedTotalPages; i++) { %>
-                                                    <a href="?unapprovedPage=<%= i %>"
-                                                        class="px-4 py-2 rounded-lg font-roboto <%= unapprovedPage === i ? 'bg-red-900 text-white' : 'bg-grey-200 text-grey-900 hover:bg-grey-300' %>">
-                                                        <%= i %>
-                                                    </a>
-                                                    <% } %>
-                                            </div>
-                                            <a href="?unapprovedPage=<%= unapprovedPage < unapprovedTotalPages ? unapprovedPage + 1 : unapprovedTotalPages %>"
-                                                class="inline-block bg-dark-blue-900 text-white px-4 py-2 rounded-lg hover:bg-dark-blue-800 transition-colors font-roboto <%= unapprovedPage === unapprovedTotalPages ? 'opacity-50 cursor-not-allowed' : '' %>">
-                                                Next
-                                            </a>
-                                        </div>
-                                        <% } %>
-                                </div>
-
-                                <!-- Approved Testimonies Table -->
-                                <div>
-                                    <h2 class="text-xl font-roboto font-semibold text-dark-blue-900 mb-4">Approved
-                                        Testimonies</h2>
-                                    <div class="mb-4 text-grey-900">
-                                        <p>
-                                            Showing <%= (approvedPage - 1) * perPage + 1 %>–<%= Math.min(approvedPage *
-                                                    perPage, approvedTotal) %> of <%= approvedTotal %> approved
-                                                        testimonies
-                                        </p>
-                                    </div>
-                                    <div class="overflow-x-auto shadow-lg rounded-xl">
-                                        <table class="w-full bg-white text-left border-collapse">
-                                            <thead>
-                                                <tr class="bg-dark-blue-900 text-white">
-                                                    <th class="p-4 font-roboto font-semibold">No.</th>
-                                                    <th class="p-4 font-roboto font-semibold">Title</th>
-                                                    <th class="p-4 font-roboto font-semibold">Content</th>
-                                                    <th class="p-4 font-roboto font-semibold">Date</th>
-                                                    <th class="p-4 font-roboto font-semibold">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <% if (approvedTestimonies.length> 0) { %>
-                                                    <% approvedTestimonies.forEach((testimony, index)=> { %>
-                                                        <tr class="border-b border-grey-200 hover:bg-grey-100">
-                                                            <td class="p-4 font-roboto text-grey-900">
-                                                                <%= (approvedPage - 1) * perPage + index + 1 %>
-                                                            </td>
-                                                            <td class="p-4 font-roboto text-grey-900">
-                                                                <%= testimony.title %>
-                                                            </td>
-                                                            <td class="p-4 font-roboto text-grey-900">
-                                                                <%= testimony.content.length> 100 ?
-                                                                    testimony.content.substring(0, 100)
-                                                                    + '...' : testimony.content %>
-                                                            </td>
-                                                            <td class="p-4 font-roboto text-grey-900">
-                                                                <%= new
-                                                                    Date(testimony.createdAt).toLocaleDateString('en-US',
-                                                                    { month: 'short' , day: 'numeric' , year: 'numeric'
-                                                                    }) %>
-                                                            </td>
-                                                            <td class="p-4 flex gap-2">
-                                                                <form
-                                                                    action="/admin/testimonies/<%= testimony._id %>/unapprove?_method=PUT"
-                                                                    method="POST" class="inline">
-                                                                    <button type="submit"
-                                                                        class="text-yellow-900 hover:text-yellow-800 font-roboto text-sm">Unapprove</button>
-                                                                </form>
-                                                                <form
-                                                                    action="/admin/testimonies/<%= testimony._id %>?_method=DELETE"
-                                                                    method="POST" class="inline">
-                                                                    <button type="submit"
-                                                                        class="text-red-900 hover:text-red-800 font-roboto text-sm"
-                                                                        onclick="return confirm('Are you sure you want to delete this testimony?')">
-                                                                        Delete
-                                                                    </button>
-                                                                </form>
-                                                            </td>
-                                                        </tr>
-                                                        <% }) %>
-                                                            <% } else { %>
-                                                                <tr>
-                                                                    <td colspan="5"
-                                                                        class="p-4 text-center font-roboto text-grey-900">
-                                                                        No approved testimonies found.
-                                                                    </td>
-                                                                </tr>
-                                                                <% } %>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <% if (approvedTotalPages> 1) { %>
-                                        <div class="mt-6 flex items-center justify-between">
-                                            <a href="?approvedPage=<%= approvedPage > 1 ? approvedPage - 1 : 1 %>"
-                                                class="inline-block bg-dark-blue-900 text-white px-4 py-2 rounded-lg hover:bg-dark-blue-800 transition-colors font-roboto <%= approvedPage === 1 ? 'opacity-50 cursor-not-allowed' : '' %>">
-                                                Previous
-                                            </a>
-                                            <div class="flex gap-2">
-                                                <% for (let i=1; i <=approvedTotalPages; i++) { %>
-                                                    <a href="?approvedPage=<%= i %>"
-                                                        class="px-4 py-2 rounded-lg font-roboto <%= approvedPage === i ? 'bg-red-900 text-white' : 'bg-grey-200 text-grey-900 hover:bg-grey-300' %>">
-                                                        <%= i %>
-                                                    </a>
-                                                    <% } %>
-                                            </div>
-                                            <a href="?approvedPage=<%= approvedPage < approvedTotalPages ? approvedPage + 1 : approvedTotalPages %>"
-                                                class="inline-block bg-dark-blue-900 text-white px-4 py-2 rounded-lg hover:bg-dark-blue-800 transition-colors font-roboto <%= approvedPage === approvedTotalPages ? 'opacity-50 cursor-not-allowed' : '' %>">
-                                                Next
-                                            </a>
-                                        </div>
-                                        <% } %>
-                                </div>
-            </main>
-
-        </div>
-
+                <% } %>
+              </div>
+              <a
+                href="?approvedPage=<%= approvedPage < approvedTotalPages ? approvedPage + 1 : approvedTotalPages %>"
+                class="inline-block bg-dark-blue-900 text-white px-4 py-2 rounded-lg hover:bg-dark-blue-800 transition-colors font-roboto <%= approvedPage === approvedTotalPages ? 'opacity-50 cursor-not-allowed' : '' %>"
+              >
+                Next
+              </a>
+            </div>
+            <% } %>
+          </div>
+        </main>
+      </div>
     </div>
-
 
     <!-- JavaScript for Mobile Sidebar Toggle -->
     <script>
-        const sidebar = document.getElementById('sidebar');
-        const menuBtn = document.getElementById('menuBtn');
+      const sidebar = document.getElementById("sidebar");
+      const menuBtn = document.getElementById("menuBtn");
 
-        menuBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('-translate-x-full');
-        });
+      menuBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("-translate-x-full");
+      });
 
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', (e) => {
-            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !sidebar.classList.contains('-translate-x-full')) {
-                sidebar.classList.add('-translate-x-full');
-            }
-        });
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener("click", (e) => {
+        if (
+          !sidebar.contains(e.target) &&
+          !menuBtn.contains(e.target) &&
+          !sidebar.classList.contains("-translate-x-full")
+        ) {
+          sidebar.classList.add("-translate-x-full");
+        }
+      });
     </script>
-
-</body>
-
+  </body>
 </html>

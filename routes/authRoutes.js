@@ -140,12 +140,25 @@ router.post(
  *         description: Unauthorized
  */
 router.get("/logout", authMiddleware, async (req, res) => {
-  const token = req.headers.authorization.split(" ")[1];
-  // blacklist token
-  await blacklistToken(token);
-  return res
-    .status(200)
-    .json({ message: "Logged out successfully", redirect: process.env.URL });
+  let token = null;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer ")
+  ) {
+    token = req.headers.authorization.split(" ")[1];
+  }
+  if (token) {
+    await blacklistToken(token);
+  }
+  // Destroy session if present
+  if (req.session) {
+    req.session.destroy(() => {
+      res.clearCookie("connect.sid");
+      return res.redirect(`https://${process.env.URL}`);
+    });
+  } else {
+    return res.redirect(`https://${process.env.URL}`);
+  }
 });
 
 module.exports = router;

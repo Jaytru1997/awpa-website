@@ -2,6 +2,9 @@ const express = require("express");
 const {
   createPaymentLink,
   paymentCallback,
+  createManualPayment,
+  approvePayment,
+  renderAdminPayments,
 } = require("../controllers/paymentController");
 const authMiddleware = require("../middleware/authMiddleware");
 
@@ -42,6 +45,40 @@ router.post("/create-link", authMiddleware, createPaymentLink);
 
 /**
  * @swagger
+ * /payments/manual:
+ *   post:
+ *     summary: Create a manual payment for media purchase
+ *     tags: [Payments]
+ *     description: Creates a manual payment record for media purchases.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/x-www-form-urlencoded:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               product_id:
+ *                 type: string
+ *               product_type:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               phone_number:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               tx_ref:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Manual payment created successfully
+ *       500:
+ *         description: Server error
+ */
+router.post("/manual", createManualPayment);
+
+/**
+ * @swagger
  * /payments/callback:
  *   get:
  *     summary: Payment callback
@@ -54,5 +91,10 @@ router.post("/create-link", authMiddleware, createPaymentLink);
  *         description: Payment failed
  */
 router.get("/callback", paymentCallback);
+
+// Approve payment (admin only)
+router.post("/:id/approve", authMiddleware, approvePayment);
+
+router.get("/admin/purchases", authMiddleware, renderAdminPayments);
 
 module.exports = router;

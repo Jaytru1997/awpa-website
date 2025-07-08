@@ -5,7 +5,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "pm2 start app.js --name awpa-website --watch --ignore-watch=\"node_modules, logs\"",
+    "start": "pm2 start server.js --name awpa-website --watch --ignore-watch=\"node_modules, logs\"",
     "kill": "pm2 delete awpa-website",
     "restart": "pm2 stop awpa-website && pm2 start awpa-website --watch --ignore-watch=\"node_modules, logs\"",
     "build:css": "NODE_ENV=production postcss ./public/css/input.css -o public/css/tailwind.css",
@@ -18,9 +18,11 @@
   "license": "ISC",
   "dependencies": {
     "@google-cloud/translate": "^8.5.1",
+    "archiver": "^7.0.1",
     "axios": "^1.8.1",
     "bcryptjs": "^3.0.2",
     "body-parser": "^1.20.3",
+    "connect-mongo": "^5.1.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",

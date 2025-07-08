@@ -8,6 +8,7 @@ const { asyncWrapper } = require("../utils/async");
 const { StatusCodes } = require("http-status-codes");
 const { config } = require("../config/config");
 const sanitizeHtml = require("sanitize-html");
+const Payment = require("../models/Payment");
 
 // Render Admin Dashboard
 exports.renderAdminDashboard = asyncWrapper(async (req, res) => {
@@ -19,6 +20,9 @@ exports.renderAdminDashboard = asyncWrapper(async (req, res) => {
   const videos = media.filter((el) => el.type === "video");
   const testimonies = await Feedback.find({ isApproved: false }).lean();
   const subscribers = await Subscriber.find().lean();
+  const pendingPurchasesCount = await Payment.countDocuments({
+    status: "pending",
+  });
 
   return res.status(StatusCodes.OK).render("admin/dashboard", {
     app_name: process.env.APP_NAME,
@@ -33,6 +37,7 @@ exports.renderAdminDashboard = asyncWrapper(async (req, res) => {
     videos,
     testimonies,
     subscribers,
+    pendingPurchasesCount,
   });
 });
 

@@ -1,180 +1,270 @@
 <!DOCTYPE html>
 <html lang="en" class="">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- favicon -->
-    <link rel="icon" href="/asset/logo/logo.png" type="image/png">
-    <meta name="description" content="<%= description %>">
-    <meta name="keywords" content="<%= keywords %>">
-    <title>
-        <%= app_name %>
-    </title>
+    <link rel="icon" href="/asset/logo/logo.png" type="image/png" />
+    <meta name="description" content="<%= description %>" />
+    <meta name="keywords" content="<%= keywords %>" />
+    <title><%= app_name %></title>
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="<%= app_name %>">
-    <meta property="og:description" content="<%= description %>">
-    <meta property="og:image" content="https://angelwingspowerassembly.org/asset/images/banner.png">
-    <meta property="og:image:alt" content="Angel Wings Power Assembly Logo">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://<%= url %>">
-    <meta property="og:site_name" content="<%= app_name %>">
+    <meta property="og:title" content="<%= app_name %>" />
+    <meta property="og:description" content="<%= description %>" />
+    <meta
+      property="og:image"
+      content="https://angelwingspowerassembly.org/asset/images/banner.png"
+    />
+    <meta property="og:image:alt" content="Angel Wings Power Assembly Logo" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://<%= url %>" />
+    <meta property="og:site_name" content="<%= app_name %>" />
 
     <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<%= app_name %>">
-    <meta name="twitter:description" content="<%= description %>">
-    <meta name="twitter:image" content="/asset/images/banner.png">
-    <meta name="twitter:image:alt" content="Angel Wings Power Assembly Logo">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="<%= app_name %>" />
+    <meta name="twitter:description" content="<%= description %>" />
+    <meta name="twitter:image" content="/asset/images/banner.png" />
+    <meta name="twitter:image:alt" content="Angel Wings Power Assembly Logo" />
 
     <!-- Font Awesome (if used, ensure it's installed) -->
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Puritan:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Puritan:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Tailwind CSS -->
-    <link rel="stylesheet" href="/css/tailwind.css">
-    <link rel="stylesheet" href="/css/book.css">
+    <link rel="stylesheet" href="/css/tailwind.css" />
+    <link rel="stylesheet" href="/css/book.css" />
+  </head>
 
-</head>
-
-<body class="font-roboto bg-white dark:bg-black text-dark dark:text-white">
-
+  <body class="font-roboto bg-white dark:bg-black text-dark dark:text-white">
     <!-- Navigation Bar Start-->
     <nav class="bg-dark-blue-900">
-        <div class="mx-auto max-w-7xl px-2">
-            <div class="relative flex h-20 items-center justify-between">
-                <!-- Logo -->
-                <div class="flex shrink-0 items-center">
-                    <img class="h-8 sm:h-14 w-auto " src="/asset/logo/logo.png" alt="<%= app_name %>">
-                </div>
+      <div class="mx-auto max-w-7xl px-2">
+        <div class="relative flex h-20 items-center justify-between">
+          <!-- Logo -->
+          <div class="flex shrink-0 items-center">
+            <img
+              class="h-8 sm:h-14 w-auto"
+              src="/asset/logo/logo.png"
+              alt="<%= app_name %>"
+            />
+          </div>
 
-                <!-- Menu -->
-                <div class="flex items-center justify-center lg:items-stretch lg:justify-start">
-                    <div class="hidden lg:ml-6 lg:block">
-                        <div class="flex space-x-4 uppercase">
-                            <a href="/"
-                                class="rounded-md px-3 py-2 text-sm font-medium hover:bg-dark-blue-800 text-grey-400 hover:text-white">Home</a>
-                            <a href="/who-we-are"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Who
-                                we are</a>
-                            <a href="/programs-and-events"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Programs
-                                & Events</a>
-                            <a href="/visit-us"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Visit
-                                Us</a>
-                            <a href="/church-media"
-                                class="rounded-md px-3 py-2 text-sm font-medium hover:bg-dark-blue-800 text-white "
-                                aria-current="page">Media</a>
-                            <a href="/resources"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Resources</a>
-                            <a href="/giving"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Giving</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Live Service Button -->
-                <a href="https://live.angelwingspowerassembly.org"
-                    class="hidden lg:inline-flex items-center justify-center rounded-md border border-transparent bg-light-blue-600 px-4 py-2 text-base font-medium text-dark shadow-sm hover:bg-light-blue-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 uppercase">
-                    Live Service
-                </a>
-
-                <!-- Mobile menu button -->
-                <div class="absolute inset-y-0 right-0 flex items-center lg:hidden no-animate">
-                    <button type="button"
-                        class="relative inline-flex items-center justify-center rounded-md p-2 text-grey-400 hover:bg-dark-blue-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
-                        aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-toggle">
-                        <span class="sr-only">Open main menu</span>
-                        <!-- Hamburger icon (shown when menu is closed) -->
-                        <svg class="block size-6 menu-open" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
-                        <!-- Close icon (shown when menu is open) -->
-                        <svg class="hidden size-6 menu-close" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
+          <!-- Menu -->
+          <div
+            class="flex items-center justify-center lg:items-stretch lg:justify-start"
+          >
+            <div class="hidden lg:ml-6 lg:block">
+              <div class="flex space-x-4 uppercase">
+                <a
+                  href="/"
+                  class="rounded-md px-3 py-2 text-sm font-medium hover:bg-dark-blue-800 text-grey-400 hover:text-white"
+                  >Home</a
+                >
+                <a
+                  href="/who-we-are"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white"
+                  >Who we are</a
+                >
+                <a
+                  href="/programs-and-events"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white"
+                  >Programs & Events</a
+                >
+                <a
+                  href="/visit-us"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white"
+                  >Visit Us</a
+                >
+                <a
+                  href="/church-media"
+                  class="rounded-md px-3 py-2 text-sm font-medium hover:bg-dark-blue-800 text-white"
+                  aria-current="page"
+                  >Media</a
+                >
+                <a
+                  href="/resources"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white"
+                  >Resources</a
+                >
+                <a
+                  href="/giving"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white"
+                  >Giving</a
+                >
+              </div>
             </div>
+          </div>
+
+          <!-- Live Service Button -->
+          <a
+            href="https://live.angelwingspowerassembly.org"
+            class="hidden lg:inline-flex items-center justify-center rounded-md border border-transparent bg-light-blue-600 px-4 py-2 text-base font-medium text-dark shadow-sm hover:bg-light-blue-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 uppercase"
+          >
+            Live Service
+          </a>
+
+          <!-- Mobile menu button -->
+          <div
+            class="absolute inset-y-0 right-0 flex items-center lg:hidden no-animate"
+          >
+            <button
+              type="button"
+              class="relative inline-flex items-center justify-center rounded-md p-2 text-grey-400 hover:bg-dark-blue-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+              id="mobile-menu-toggle"
+            >
+              <span class="sr-only">Open main menu</span>
+              <!-- Hamburger icon (shown when menu is closed) -->
+              <svg
+                class="block size-6 menu-open"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+              <!-- Close icon (shown when menu is open) -->
+              <svg
+                class="hidden size-6 menu-close"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
-        <!-- Mobile menu -->
-        <div class="hidden lg:hidden no-animate" id="mobile-menu">
-            <div class="space-y-1 px-2 pt-2 pb-3 uppercase">
-                <a href="/"
-                    class="block rounded-md bg-dark-blue-900 px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">
-                    Home
-                </a>
-                <a href="/who-we-are"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Who
-                    we are</a>
-                <a href="/programs-and-events"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Programs
-                    & Events</a>
-                <a href="/visit-us"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Visit
-                    Us</a>
-                <a href="/church-media"
-                    class="block rounded-md px-3 py-2 text-base font-medium hover:bg-dark-blue-800 text-white"
-                    aria-current="page">Media</a>
-                <a href="/resources"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Resources</a>
-                <a href="/giving"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Giving</a>
-                <a href="https://live.angelwingspowerassembly.org"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white">Live
-                    Service</a>
-            </div>
+      </div>
+      <!-- Mobile menu -->
+      <div class="hidden lg:hidden no-animate" id="mobile-menu">
+        <div class="space-y-1 px-2 pt-2 pb-3 uppercase">
+          <a
+            href="/"
+            class="block rounded-md bg-dark-blue-900 px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white"
+          >
+            Home
+          </a>
+          <a
+            href="/who-we-are"
+            class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white"
+            >Who we are</a
+          >
+          <a
+            href="/programs-and-events"
+            class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white"
+            >Programs & Events</a
+          >
+          <a
+            href="/visit-us"
+            class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white"
+            >Visit Us</a
+          >
+          <a
+            href="/church-media"
+            class="block rounded-md px-3 py-2 text-base font-medium hover:bg-dark-blue-800 text-white"
+            aria-current="page"
+            >Media</a
+          >
+          <a
+            href="/resources"
+            class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white"
+            >Resources</a
+          >
+          <a
+            href="/giving"
+            class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white"
+            >Giving</a
+          >
+          <a
+            href="https://live.angelwingspowerassembly.org"
+            class="block rounded-md px-3 py-2 text-base font-medium text-grey-400 hover:bg-dark-blue-800 hover:text-white"
+            >Live Service</a
+          >
         </div>
+      </div>
     </nav>
     <!-- Navigation Bar End -->
 
     <!-- Header Start -->
-    <section class="relative w-full h-[90vh] sm:h-[483px] overflow-hidden bg-white">
-        <!-- Slides -->
-        <div class="slideshow-container flex h-full transition-transform duration-500 ease-in-out">
-            <!-- Slide 3 -->
-            <div class="slide flex-none w-full h-full relative">
-                <!-- Desktop -->
-                <img src="/asset/images/general-header.png" alt="Header Image"
-                    class="w-full h-full object-cover object-[100%_25%] hidden xl:block">
-                <!-- Tablet -->
-                <img src="/asset/images/general-header.png" alt="Header Image"
-                    class="w-full h-full object-cover object-[75%_75%] hidden sm:block xl:hidden">
-                <!-- Mobile -->
-                <img src="/asset/images/general-header.png" alt="Header Image"
-                    class="w-full h-full object-cover object-[75%_75%] sm:hidden">
-                <div class="absolute inset-0  bg-dark-blue-900/50 flex items-center justify-center sm:justify-start">
-                    <div
-                        class="sm:ml-18 md:w-[65%] xl:w-[65%] text-center sm:text-left prose prose-lg text-blue-600 font-roboto xl:pl-56">
-                        <p class="text-md md:text-lg uppercase">Media</p>
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl mb-4 font-extrabold text-white uppercase">messages
-                            and conference talks to grow your spirit and mind</h1>
-                    </div>
-                </div>
+    <section
+      class="relative w-full h-[90vh] sm:h-[483px] overflow-hidden bg-white"
+    >
+      <!-- Slides -->
+      <div
+        class="slideshow-container flex h-full transition-transform duration-500 ease-in-out"
+      >
+        <!-- Slide 3 -->
+        <div class="slide flex-none w-full h-full relative">
+          <!-- Desktop -->
+          <img
+            src="/asset/images/general-header.png"
+            alt="Header Image"
+            class="w-full h-full object-cover object-[100%_25%] hidden xl:block"
+          />
+          <!-- Tablet -->
+          <img
+            src="/asset/images/general-header.png"
+            alt="Header Image"
+            class="w-full h-full object-cover object-[75%_75%] hidden sm:block xl:hidden"
+          />
+          <!-- Mobile -->
+          <img
+            src="/asset/images/general-header.png"
+            alt="Header Image"
+            class="w-full h-full object-cover object-[75%_75%] sm:hidden"
+          />
+          <div
+            class="absolute inset-0 bg-dark-blue-900/50 flex items-center justify-center sm:justify-start"
+          >
+            <div
+              class="sm:ml-18 md:w-[65%] xl:w-[65%] text-center sm:text-left prose prose-lg text-blue-600 font-roboto xl:pl-56"
+            >
+              <p class="text-md md:text-lg uppercase">Media</p>
+              <h1
+                class="text-4xl md:text-5xl lg:text-6xl mb-4 font-extrabold text-white uppercase"
+              >
+                messages and conference talks to grow your spirit and mind
+              </h1>
             </div>
+          </div>
         </div>
+      </div>
     </section>
     <!-- Header End -->
 
     <section class="mt-8 py-8 font-raleway">
-        <div class="mx-auto max-w-7xl px-4 py-6 grid grid-cols-1 sm:grid-cols-12 w-full gap-4 ">
-            <!-- Main Section -->
-            <div class="grid-cols-1 sm:col-span-7 flex flex-col w-full gap-4">
-                <!-- Audio Player -->
-                <!-- <div class="bg-light-blue-600 h-[190px] sm:h-[200px] lg:h-[224px] w-full grid grid-cols-12 gap-0 mb-4">
+      <div
+        class="mx-auto max-w-7xl px-4 py-6 grid grid-cols-1 sm:grid-cols-12 w-full gap-4"
+      >
+        <!-- Main Section -->
+        <div class="grid-cols-1 sm:col-span-7 flex flex-col w-full gap-4">
+          <!-- Audio Player -->
+          <!-- <div class="bg-light-blue-600 h-[190px] sm:h-[200px] lg:h-[224px] w-full grid grid-cols-12 gap-0 mb-4">
                     <div
                         class="col-span-9 bg-light-blue-600 bg-[url(/asset/images/listner-1.png)] bg-[100%_75%] bg-no-repeat bg-contain flex flex-col justify-center items-start px-6 gap-3">
                         <div class="flex gap-2 items-center justify-start">
@@ -212,243 +302,591 @@
                     </div>
                 </div> -->
 
-                <!-- Audio Carousel -->
-                <div class="container mx-auto max-w-7xl gap-4">
-                    <h2 class="font-bold mb-4">Weekly Top Tracks</h2>
-                    <!-- Carousel Container -->
-                    <div class="scrollbar-hide flex flex-row gap-4 overflow-x-scroll overflow-y-hidden snap-x snap-mandatory"
-                        style="-ms-overflow-style: none; scrollbar-width: none;">
-                        <!-- Audio Item 1 -->
-                        <% audios.forEach(item=> { %>
-                            <div class="w-full max-w-[250px] h-auto flex-shrink-0 snap-center  p-4 flex flex-col items-center justify-center bg-light-blue-600"
-                                data-index="0">
-                                <img src="/asset/media/thumbnails/audio-message.jpg" alt=""
-                                    class="w-full h-auto object-cover">
-                                <h3 class="text-lg font-roboto  font-bold mb-2 text-dark line-clamp-1 text-center">
-                                    <%= item.title %>
-                                </h3>
-                                <button id="addToCart"
-                                    class=" bg-light-blue-900 text-white px-3 py-1 rounded-lg hover:bg-light-blue-800 flex items-center gap-2 font-roboto"
-                                    data-id="<%= item._id %>" data-title="<%= item.title %>"
-                                    data-description="<%= item.description %>" data-type="<%= item.type %>"
-                                    data-status="<%= item.status %>" data-tags="<%= item.tags.join(',') %>"
-                                    data-category="<%= item.category %>" data-price-status="<%= item.priceStatus %>"
-                                    data-price="<%= item.price %>" data-author="<%= item.author %>">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15.828l-5.657-5.657a2 2 0 112.828-2.828l2.829 2.829">
-                                        </path>
-                                    </svg>
-                                    Buy Message
-                                </button>
-                            </div>
-                            <% }); %>
-                    </div>
+          <!-- Audio Carousel -->
+          <div class="container mx-auto max-w-7xl gap-4">
+            <h2 class="font-bold mb-4">Audio Mesages</h2>
+            <!-- Carousel Container -->
+            <div
+              class="scrollbar-hide flex flex-row gap-4 overflow-x-scroll overflow-y-hidden snap-x snap-mandatory"
+              style="-ms-overflow-style: none; scrollbar-width: none"
+            >
+              <% audios.forEach(item => { %>
+              <div
+                class="w-full max-w-[250px] h-auto flex-shrink-0 snap-center p-4 flex flex-col items-center justify-center bg-light-blue-600 rounded-xl"
+                data-index="0"
+              >
+                <img
+                  src="/asset/media/thumbnails/audio-message.jpg"
+                  alt="<%= item.title %>"
+                  class="w-full h-auto object-cover rounded-lg mb-2"
+                />
+                <h3
+                  class="text-base sm:text-lg font-roboto font-bold mb-2 text-dark line-clamp-1 text-center"
+                >
+                  <%= item.title %>
+                </h3>
+                <p class="text-sm font-roboto text-dark mb-2">
+                  <%= item.priceStatus === 'free' ? 'Free' :
+                  `$${item.price.toFixed(2)}` %>
+                </p>
+                <div class="flex flex-col gap-2 w-full">
+                  <!-- <button
+                    class="addToCart bg-light-blue-900 text-white px-3 py-1 rounded-lg hover:bg-light-blue-800 flex items-center justify-center gap-2 font-roboto text-sm min-h-[44px]"
+                    data-id="<%= item._id %>"
+                    data-title="<%= item.title %>"
+                    data-description="<%= item.description %>"
+                    data-type="<%= item.type %>"
+                    data-status="<%= item.status %>"
+                    data-tags="<%= item.tags.join(',') %>"
+                    data-category="<%= item.category %>"
+                    data-price-status="<%= item.priceStatus %>"
+                    data-price="<%= item.price %>"
+                    data-author="<%= item.author %>"
+                    aria-label="Add to cart"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                      ></path>
+                    </svg>
+                    Add to Cart
+                  </button> -->
+                  <% if (item.priceStatus === 'paid') { %>
+                  <button
+                    class="buyNowBtn bg-red-900 text-white px-3 py-1 rounded-lg hover:bg-red-800 flex items-center justify-center gap-2 font-roboto text-sm min-h-[44px]"
+                    data-id="<%= item._id %>"
+                    data-title="<%= item.title %>"
+                    data-price="<%= item.price %>"
+                    data-type="<%= item.type %>"
+                    aria-label="Buy now"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                    Buy Message
+                  </button>
+                  <% } %>
                 </div>
+              </div>
+              <% }) %>
+            </div>
+          </div>
 
-                <!-- Videos -->
-                <div class="container mx-auto max-w-7xl gap-4">
-                    <h2 class="font-bold my-4">Latest Videos</h2>
+          <!-- Videos -->
+          <div class="container mx-auto max-w-7xl gap-4">
+            <h2 class="font-bold my-4">Latest Videos</h2>
 
-                    <!-- Video Carousel -->
-                    <div class="scrollbar-hide flex flex-row gap-4 overflow-x-scroll overflow-y-hidden snap-x snap-mandatory"
-                        style="-ms-overflow-style: none; scrollbar-width: none;">
-
-                        <% videos.forEach(item=> { %>
-                            <!-- Video -->
-                            <div class="max-w-[707px] h-[350px]">
-                                <iframe class="hidden xl:block" width="707" height="350" src="<%= item.url %>"
-                                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            <!-- Video Carousel -->
+            <div
+              class="scrollbar-hide flex flex-row gap-4 overflow-x-scroll overflow-y-hidden snap-x snap-mandatory"
+              style="-ms-overflow-style: none; scrollbar-width: none"
+            >
+              <% videos.forEach(item=> { %>
+              <!-- Video -->
+              <div class="max-w-[707px] h-[350px]">
+                <iframe
+                  class="hidden xl:block"
+                  width="707"
+                  height="350"
+                  src="<%= item.url %>"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media;
                                     gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                                </iframe>
-                                <iframe class="hidden sm:block xl:hidden" width="707" height="350" src="<%= item.url %>"
-                                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                >
+                </iframe>
+                <iframe
+                  class="hidden sm:block xl:hidden"
+                  width="707"
+                  height="350"
+                  src="<%= item.url %>"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media;
                                                                     gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                                </iframe>
-                                <iframe class="sm:hidden" width="360" height="350" src="<%= item.url %>"
-                                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                >
+                </iframe>
+                <iframe
+                  class="sm:hidden"
+                  width="360"
+                  height="350"
+                  src="<%= item.url %>"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media;
                                                                     gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                                </iframe>
-                            </div>
-                            <% }); %>
-                    </div>
-                </div>
-
-                <!-- Ebooks -->
-                <div class="container mx-auto max-w-7xl gap-4 mt-8">
-                    <h2 class="font-bold mb-4">Ebooks and Publications</h2>
-                    <!-- Carousel Container -->
-                    <div class="scrollbar-hide flex flex-row gap-4 overflow-x-scroll overflow-y-hidden snap-x snap-mandatory pt-4"
-                        style="-ms-overflow-style: none; scrollbar-width: none;">
-                        <% ebooks.forEach(item=> { %>
-                            <!-- Ebook Item 1 -->
-                            <a class="book-container" href="Javascript:void(0);" rel="noreferrer noopener"
-                                onclick="addToCart(<%= item._id %>)">
-                                <div class="book">
-                                    <img alt="" src="<%= item.image %>" />
-                                </div>
-                            </a>
-                            <% }) %>
-                    </div>
-                </div>
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                >
+                </iframe>
+              </div>
+              <% }); %>
             </div>
+          </div>
 
-            <!-- Audio Side List -->
-            <div class="hidden bg-light-blue-600  grid-cols-1 sm:col-span-5 sm:flex flex-col w-full">
-                <h2 class="font-bold my-8 ml-14">Audio Messages</h2>
-                <div class="bg-light-blue-600 w-full h-[888px] flex flex-col items-start justify-start gap-4 py-8 px-14 overflow-y-scroll overflow-x-hidden snap-y snap-mandatory"
-                    style="-ms-overflow-style: none; scrollbar-width: none;">
-
-                    <% audios.forEach(item=> { %>
-                        <!-- Audio 1 -->
-                        <div class="bg-light-blue-600 flex items-center gap-0 border-1 border-dark/50 h-20 w-full">
-                            <img src="/asset/media/thumbnails/audio-message.jpg" alt=""
-                                class="w-20 h-full object-cover mr-4">
-                            <div class="flex flex-col gap-0 mr-4">
-                                <p class="text-sm sm:text-md font-normal text-black line-clamp-1">
-                                    <%= item.title %>
-                                </p>
-                                <p class="text-xs sm:text-sm text-dark/30">
-                                    <%= item.author %>
-                                </p>
-                            </div>
-                            <button id="addToCart"
-                                class=" bg-light-blue-900 text-white px-3 py-1 rounded-lg hover:bg-light-blue-800 flex items-center gap-2 font-roboto"
-                                data-id="<%= item._id %>" data-title="<%= item.title %>"
-                                data-description="<%= item.description %>" data-type="<%= item.type %>"
-                                data-status="<%= item.status %>" data-tags="<%= item.tags.join(',') %>"
-                                data-category="<%= item.category %>" data-price-status="<%= item.priceStatus %>"
-                                data-price="<%= item.price %>" data-author="<%= item.author %>">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15.828l-5.657-5.657a2 2 0 112.828-2.828l2.829 2.829">
-                                    </path>
-                                </svg>
-                                Buy Message
-                            </button>
-                        </div>
-                        <% }); %>
-
+          <!-- Ebooks -->
+          <div class="container mx-auto max-w-7xl gap-4 mt-8">
+            <h2 class="font-bold mb-4">Ebooks and Publications</h2>
+            <!-- Carousel Container -->
+            <div
+              class="scrollbar-hide flex flex-row gap-4 overflow-x-scroll overflow-y-hidden snap-x snap-mandatory pt-4"
+              style="-ms-overflow-style: none; scrollbar-width: none"
+            >
+              <% ebooks.forEach(item=> { %>
+              <!-- Ebook Item 1 -->
+              <a
+                class="book-container"
+                href="javascript:void(0);"
+                rel="noreferrer noopener"
+                onclick="addToCart('<%= item._id %>')"
+              >
+                <div class="book">
+                  <img alt="" src="<%= item.image %>" />
                 </div>
+              </a>
+              <% }) %>
             </div>
+          </div>
         </div>
+
+        <!-- Audio Side List -->
+        <div
+          class="hidden bg-light-blue-600 grid-cols-1 sm:col-span-5 sm:flex flex-col w-full"
+        >
+          <h2 class="font-bold my-8 ml-14">Audio Messages</h2>
+          <div
+            class="bg-light-blue-600 w-full h-[888px] flex flex-col items-start justify-start gap-4 py-8 px-14 overflow-y-scroll overflow-x-hidden snap-y snap-mandatory"
+            style="-ms-overflow-style: none; scrollbar-width: none"
+          >
+            <% audios.forEach(item=> { %>
+            <!-- Audio 1 -->
+            <div
+              class="bg-light-blue-600 flex items-center gap-0 border-1 border-dark/50 h-20 w-full"
+            >
+              <img
+                src="/asset/media/thumbnails/audio-message.jpg"
+                alt=""
+                class="w-20 h-full object-cover mr-4"
+              />
+              <div class="flex flex-col gap-0 mr-4">
+                <p
+                  class="text-sm sm:text-md font-normal text-black line-clamp-1"
+                >
+                  <%= item.title %>
+                </p>
+                <p class="text-xs sm:text-sm text-dark/30">
+                  <%= item.author %>
+                </p>
+              </div>
+              <button
+                id="addToCart"
+                class="bg-light-blue-900 text-white px-3 py-1 rounded-lg hover:bg-light-blue-800 flex items-center gap-2 font-roboto"
+                data-id="<%= item._id %>"
+                data-title="<%= item.title %>"
+                data-description="<%= item.description %>"
+                data-type="<%= item.type %>"
+                data-status="<%= item.status %>"
+                data-tags="<%= item.tags.join(',') %>"
+                data-category="<%= item.category %>"
+                data-price-status="<%= item.priceStatus %>"
+                data-price="<%= item.price %>"
+                data-author="<%= item.author %>"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15.828l-5.657-5.657a2 2 0 112.828-2.828l2.829 2.829"
+                  ></path>
+                </svg>
+                Buy Message
+              </button>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- Buy Now Modal -->
+    <div
+      id="buyNowModal"
+      class="fixed inset-0 bg-black/50 flex flex-col justify-start hidden modal z-50"
+    >
+      <div
+        class="bg-white dark:bg-dark-blue-800 rounded-xl p-4 sm:p-6 w-full max-w-[90%] sm:max-w-lg mx-auto my-4 sm:my-8 overflow-y-auto max-h-[calc(100vh-2rem)] scrollbar-thin scrollbar-thumb-grey-400 dark:scrollbar-thumb-dark-blue-600"
+      >
+        <h2
+          id="modalTitle"
+          class="text-lg sm:text-2xl font-roboto font-bold text-dark-blue-900 dark:text-white mb-4"
+        >
+          Purchase Audio Message
+        </h2>
+        <form
+          id="buyNowForm"
+          action="/payments/manual"
+          method="POST"
+          class="flex flex-col gap-4"
+        >
+          <input type="hidden" id="productId" name="product_id" />
+          <input type="hidden" id="productType" name="product_type" />
+          <input type="hidden" id="txRef" name="tx_ref" />
+          <div class="mb-4">
+            <p
+              class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200"
+            >
+              <strong>Title:</strong> <span id="modalProductTitle"></span>
+            </p>
+            <p
+              class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200"
+            >
+              <strong>Price:</strong> $<span id="modalProductPrice"></span>
+            </p>
+          </div>
+          <div class="mb-4">
+            <label
+              for="email"
+              class="block text-dark-blue-900 dark:text-grey-200 font-roboto text-sm mb-2"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto text-sm"
+              required
+              value=""
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              for="phone_number"
+              class="block text-dark-blue-900 dark:text-grey-200 font-roboto text-sm mb-2"
+              >Phone Number</label
+            >
+            <input
+              type="tel"
+              id="phone_number"
+              name="phone_number"
+              class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto text-sm"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              for="description"
+              class="block text-dark-blue-900 dark:text-grey-200 font-roboto text-sm mb-2"
+              >Description (Optional)</label
+            >
+            <textarea
+              id="description"
+              name="description"
+              class="w-full p-2 rounded-lg border border-grey-400 dark:border-dark-blue-600 bg-grey-100 dark:bg-dark-blue-900 text-dark-blue-900 dark:text-grey-200 font-roboto text-sm"
+              rows="4"
+            ></textarea>
+          </div>
+          <div class="mb-4">
+            <p
+              class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200 font-bold mb-2"
+            >
+              Bank Transfer Details
+            </p>
+            <p
+              class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200"
+            >
+              <strong>Bank:</strong> Access Bank
+            </p>
+            <p
+              class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200"
+            >
+              <strong>Account Number:</strong> 0095065107
+            </p>
+            <p
+              class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200"
+            >
+              <strong>Account Name:</strong> Angel Wings Power Assembly
+            </p>
+            <p
+              class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200"
+            >
+              <strong>Amount:</strong> $<span id="modalProductPrice2"></span>
+            </p>
+            <p
+              class="text-sm font-roboto text-dark-blue-900 dark:text-grey-200"
+            >
+              <strong>Reference:</strong> <span id="modalTxRef"></span>
+            </p>
+          </div>
+          <div class="flex justify-end gap-4">
+            <button
+              type="button"
+              id="closeModalBtn"
+              class="bg-grey-400 text-dark-blue-900 px-4 py-2 rounded-lg hover:bg-grey-500 font-roboto text-sm min-h-[44px]"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-800 font-roboto text-sm min-h-[44px]"
+            >
+              Confirm Transfer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <!-- Footer Start -->
     <footer class="bg-dark-blue-900 mt-8 mb-0 py-8">
-        <div class="w-full mx-auto max-w-7xl px-2 grid grid-cols-12 gap-4">
-            <div class="flex flex-col gap-4 col-span-12 lg:col-span-4">
-                <!-- Logo -->
-                <div class="flex items-start justify-start">
-                    <img src="/asset/logo/logo.png" alt="" srcset="" class="w-20 h-16">
-                </div>
-                <!-- Address -->
-                <div class="uppercase text-light flex flex-col gap-3 text-sm">
-                    <p>+234 (803) 647 6292</p>
-                    <p class="">17, Angel Wings Avenue, Off Kess College Road,
-                        Ekredjebor, Ughelli, Delta State.</p>
-                    <p>contact@angelwingspowerassembly.org</p>
-                </div>
-
-            </div>
-
-            <div class="col-span-12 lg:col-span-2">
-                <!-- Quick Links -->
-                <div class="flex items-start justify-start mb-4">
-                    <p class="text-left text-light">Quick Links</p>
-                </div>
-                <!-- Address -->
-                <div class="text-light flex flex-col gap-1 uppercase text-sm">
-                    <a href="/giving" class="py-2 text-base font-medium text-grey-400">Giving</a>
-                    <a href="/visit-us" class="py-2 text-base font-medium text-grey-400">Visit
-                        Us</a>
-                    <a href="/who-we-are" class="py-2 text-base font-medium text-grey-400">About Us</a>
-                    <a href="/programs-and-events" class="py-2 text-base font-medium text-grey-400">Events</a>
-                    <a href="/resources" class="py-2 text-base font-medium text-grey-400">Resources</a>
-                </div>
-            </div>
-
-            <div class="col-span-12 lg:col-span-2">
-                <!-- Connect -->
-                <div class="flex items-start justify-start mb-4">
-                    <p class="text-left text-light">Connect</p>
-                </div>
-                <!-- Address -->
-                <div class="text-light flex flex-row gap-3 uppercase text-sm">
-                    <a href="https://facebook.com/Angelwingsglobal"
-                        class="py-2 text-base font-medium text-grey-400"><img src="/asset/icons/facebook.svg"
-                            alt=""></a>
-                    <a href="https://linkedin.com" class="py-2 text-base font-medium text-grey-400"><img
-                            src="/asset/icons/linked-in.svg" alt=""></a>
-                    <a href="https://www.youtube.com/channel/UCn_cW0cxpYvxeuAFs-CTt1Q"
-                        class="text-base font-medium text-grey-400"><img src="/asset/icons/youtube.svg" alt=""
-                            class="mt-[5px]"></a>
-                </div>
-            </div>
-
-            <div class="col-span-12 lg:col-span-4 items-center justify-center">
-                <!-- Newsletter -->
-                <div class="flex items-start justify-start mb-4">
-                    <p class="text-left text-light font-bold text-lg md:text-xl lg:text-2xl uppercase w-80">Subscribe to
-                        get
-                        Latest
-                        Updates and News</p>
-                </div>
-                <div>
-                    <form action="/subscribe" method="post">
-                        <div class="flex flex-row gap-0 items-center justify-start">
-                            <input type="email" name="email" id="email"
-                                class="bg-transparent dark:bg-dark-blue-900 rounded-xl border-l-1 border-y-1 border-light text-light px-4 py-3 placeholder:text-light -mr-10 focus:outline-none"
-                                placeholder="Enter your email address" required>
-                            <button type="submit"
-                                class="bg-light-blue-600 text-dark border-1 border-l-0 border-light px-8 py-3 rounded-xl hover:bg-light-blue-900 uppercase">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
+      <div class="w-full mx-auto max-w-7xl px-2 grid grid-cols-12 gap-4">
+        <div class="flex flex-col gap-4 col-span-12 lg:col-span-4">
+          <!-- Logo -->
+          <div class="flex items-start justify-start">
+            <img
+              src="/asset/logo/logo.png"
+              alt=""
+              srcset=""
+              class="w-20 h-16"
+            />
+          </div>
+          <!-- Address -->
+          <div class="uppercase text-light flex flex-col gap-3 text-sm">
+            <p>+234 (803) 647 6292</p>
+            <p class="">
+              17, Angel Wings Avenue, Off Kess College Road, Ekredjebor,
+              Ughelli, Delta State.
+            </p>
+            <p>contact@angelwingspowerassembly.org</p>
+          </div>
         </div>
 
+        <div class="col-span-12 lg:col-span-2">
+          <!-- Quick Links -->
+          <div class="flex items-start justify-start mb-4">
+            <p class="text-left text-light">Quick Links</p>
+          </div>
+          <!-- Address -->
+          <div class="text-light flex flex-col gap-1 uppercase text-sm">
+            <a href="/giving" class="py-2 text-base font-medium text-grey-400"
+              >Giving</a
+            >
+            <a href="/visit-us" class="py-2 text-base font-medium text-grey-400"
+              >Visit Us</a
+            >
+            <a
+              href="/who-we-are"
+              class="py-2 text-base font-medium text-grey-400"
+              >About Us</a
+            >
+            <a
+              href="/programs-and-events"
+              class="py-2 text-base font-medium text-grey-400"
+              >Events</a
+            >
+            <a
+              href="/resources"
+              class="py-2 text-base font-medium text-grey-400"
+              >Resources</a
+            >
+          </div>
+        </div>
+
+        <div class="col-span-12 lg:col-span-2">
+          <!-- Connect -->
+          <div class="flex items-start justify-start mb-4">
+            <p class="text-left text-light">Connect</p>
+          </div>
+          <!-- Address -->
+          <div class="text-light flex flex-row gap-3 uppercase text-sm">
+            <a
+              href="https://facebook.com/Angelwingsglobal"
+              class="py-2 text-base font-medium text-grey-400"
+              ><img src="/asset/icons/facebook.svg" alt=""
+            /></a>
+            <a
+              href="https://linkedin.com"
+              class="py-2 text-base font-medium text-grey-400"
+              ><img src="/asset/icons/linked-in.svg" alt=""
+            /></a>
+            <a
+              href="https://www.youtube.com/channel/UCn_cW0cxpYvxeuAFs-CTt1Q"
+              class="text-base font-medium text-grey-400"
+              ><img src="/asset/icons/youtube.svg" alt="" class="mt-[5px]"
+            /></a>
+          </div>
+        </div>
+
+        <div class="col-span-12 lg:col-span-4 items-center justify-center">
+          <!-- Newsletter -->
+          <div class="flex items-start justify-start mb-4">
+            <p
+              class="text-left text-light font-bold text-lg md:text-xl lg:text-2xl uppercase w-80"
+            >
+              Subscribe to get Latest Updates and News
+            </p>
+          </div>
+          <div>
+            <form action="/subscribe" method="post">
+              <div class="flex flex-row gap-0 items-center justify-start">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="bg-transparent dark:bg-dark-blue-900 rounded-xl border-l-1 border-y-1 border-light text-light px-4 py-3 placeholder:text-light -mr-10 focus:outline-none"
+                  placeholder="Enter your email address"
+                  required
+                />
+                <button
+                  type="submit"
+                  class="bg-light-blue-600 text-dark border-1 border-l-0 border-light px-8 py-3 rounded-xl hover:bg-light-blue-900 uppercase"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </footer>
 
     <!-- Footer End -->
 
-
-
-
     <!-- JavaScript for mobile menu and dropdown -->
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuOpenIcon = mobileMenuButton.querySelector('.menu-open');
-        const menuCloseIcon = mobileMenuButton.querySelector('.menu-close');
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuOpenIcon = mobileMenuButton.querySelector(".menu-open");
+      const menuCloseIcon = mobileMenuButton.querySelector(".menu-close");
 
-        mobileMenuButton.addEventListener('click', () => {
-            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.classList.toggle('hidden');
-            menuOpenIcon.classList.toggle('hidden');
-            menuCloseIcon.classList.toggle('hidden');
+      mobileMenuButton.addEventListener("click", () => {
+        const isExpanded =
+          mobileMenuButton.getAttribute("aria-expanded") === "true";
+        mobileMenuButton.setAttribute("aria-expanded", !isExpanded);
+        mobileMenu.classList.toggle("hidden");
+        menuOpenIcon.classList.toggle("hidden");
+        menuCloseIcon.classList.toggle("hidden");
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const buyNowButtons = document.querySelectorAll(".buyNowBtn");
+        const buyNowModal = document.getElementById("buyNowModal");
+        const closeModalBtn = document.getElementById("closeModalBtn");
+        const buyNowForm = document.getElementById("buyNowForm");
+        const modalProductTitle = document.getElementById("modalProductTitle");
+        const modalProductPrice = document.getElementById("modalProductPrice");
+        const modalProductPrice2 =
+          document.getElementById("modalProductPrice2");
+        const productIdInput = document.getElementById("productId");
+        const productTypeInput = document.getElementById("productType");
+        const modalTxRef = document.getElementById("modalTxRef");
+
+        // Generate unique transaction reference
+        function generateTxRef() {
+          return `awpa-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+        }
+
+        // Open modal
+        buyNowButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            modalProductTitle.textContent = btn.dataset.title;
+            modalProductPrice.textContent = parseFloat(
+              btn.dataset.price
+            ).toFixed(2);
+            modalProductPrice2.textContent = parseFloat(
+              btn.dataset.price
+            ).toFixed(2);
+            productIdInput.value = btn.dataset.id;
+            productTypeInput.value = btn.dataset.type;
+            modalTxRef.textContent = generateTxRef();
+            buyNowForm.querySelector('input[name="tx_ref"]').value =
+              modalTxRef.textContent;
+            buyNowModal.classList.remove("hidden");
+          });
         });
+
+        // Close modal
+        closeModalBtn.addEventListener("click", () => {
+          buyNowModal.classList.add("hidden");
+        });
+
+        // Close modal on outside click
+        buyNowModal.addEventListener("click", (e) => {
+          if (e.target === buyNowModal) {
+            buyNowModal.classList.add("hidden");
+          }
+        });
+
+        // Form validation
+        buyNowForm.addEventListener("submit", (e) => {
+          const email = document.getElementById("email").value;
+          const phone_number = document.getElementById("phone_number").value;
+          if (!email || !phone_number) {
+            e.preventDefault();
+            alert("Please fill out all required fields.");
+          }
+        });
+
+        // Add to cart function (placeholder for future implementation)
+        window.addToCart = function (itemId) {
+          console.log(
+            "Add to cart functionality not implemented yet. Item ID:",
+            itemId
+          );
+          alert("Add to cart functionality coming soon!");
+        };
+      });
     </script>
 
     <!-- Smartsupp Live Chat script -->
     <script type="text/javascript">
-        var _smartsupp = _smartsupp || {};
-        _smartsupp.key = 'f1518d82d7cafb773824db4d44a44d24026a1004';
-        window.smartsupp || (function (d) {
-            var s, c, o = smartsupp = function () { o._.push(arguments) }; o._ = [];
-            s = d.getElementsByTagName('script')[0]; c = d.createElement('script');
-            c.type = 'text/javascript'; c.charset = 'utf-8'; c.async = true;
-            c.src = 'https://www.smartsuppchat.com/loader.js?'; s.parentNode.insertBefore(c, s);
+      var _smartsupp = _smartsupp || {};
+      _smartsupp.key = "f1518d82d7cafb773824db4d44a44d24026a1004";
+      window.smartsupp ||
+        (function (d) {
+          var s,
+            c,
+            o = (smartsupp = function () {
+              o._.push(arguments);
+            });
+          o._ = [];
+          s = d.getElementsByTagName("script")[0];
+          c = d.createElement("script");
+          c.type = "text/javascript";
+          c.charset = "utf-8";
+          c.async = true;
+          c.src = "https://www.smartsuppchat.com/loader.js?";
+          s.parentNode.insertBefore(c, s);
         })(document);
     </script>
-</body>
-
+  </body>
 </html>

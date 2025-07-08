@@ -271,6 +271,150 @@ exports.createManualPayment = asyncWrapper(async (req, res) => {
   });
 });
 
+// exports.approvePayment = asyncWrapper(async (req, res) => {
+//   const paymentId = req.params.id;
+//   const payment = await Payment.findById(paymentId);
+//   if (!payment) {
+//     return res.status(404).render("status/status", {
+//       app_name: process.env.APP_NAME,
+//       url: process.env.URL,
+//       title: "Payment Not Found",
+//       description: config.page_desc,
+//       keywords: "payment, error, Angel Wings Power Assembly",
+//       status: 404,
+//       message_title: "Payment Not Found",
+//       message: "The payment record could not be found.",
+//       actionUrl: "/admin",
+//       actionText: "Back to admin dashboard",
+//     });
+//   }
+//   if (payment.status === "completed") {
+//     return res.status(400).render("status/status", {
+//       app_name: process.env.APP_NAME,
+//       url: process.env.URL,
+//       title: "Already Approved",
+//       description: config.page_desc,
+//       keywords: "payment, error, Angel Wings Power Assembly",
+//       status: 400,
+//       message_title: "Already Approved",
+//       message: "This payment has already been approved.",
+//       actionUrl: "/admin",
+//       actionText: "Back to admin dashboard",
+//     });
+//   }
+//   // Gather product files
+//   const productFiles = [];
+//   for (const prod of payment.products) {
+//     if (prod.product_type === "audio" || prod.product_type === "ebook") {
+//       const media = await Media.findById(prod.product_id);
+//       if (media && media.url) {
+//         productFiles.push(path.join(__dirname, "../public", media.url));
+//       }
+//     }
+//   }
+//   if (productFiles.length === 0) {
+//     return res.status(400).render("status/status", {
+//       app_name: process.env.APP_NAME,
+//       url: process.env.URL,
+//       title: "No Files",
+//       description: config.page_desc,
+//       keywords: "payment, error, Angel Wings Power Assembly",
+//       status: 400,
+//       message_title: "No Downloadable Files",
+//       message: "No downloadable files found for this purchase.",
+//       actionUrl: "/admin",
+//       actionText: "Back to admin dashboard",
+//     });
+//   }
+//   // Create zip
+//   const zipName = `purchase_${payment._id}.zip`;
+//   const zipPath = path.join(__dirname, `../logs/${zipName}`);
+//   try {
+//     await new Promise((resolve, reject) => {
+//       const output = fs.createWriteStream(zipPath);
+//       const archive = archiver("zip", { zlib: { level: 9 } });
+//       output.on("close", resolve);
+//       archive.on("error", reject);
+//       archive.pipe(output);
+//       for (const file of productFiles) {
+//         archive.file(file, { name: path.basename(file) });
+//       }
+//       archive.finalize();
+//     });
+//   } catch (zipErr) {
+//     console.error("Error creating zip:", zipErr);
+//     await sendEmail({
+//       email: `admin@${process.env.URL}`,
+//       subject: "Purchase Approval Failed (Zip Error)",
+//       message_1: `Failed to create zip for payment ${payment._id}: ${zipErr.message}`,
+//     });
+//     return res.status(500).render("status/status", {
+//       app_name: process.env.APP_NAME,
+//       url: process.env.URL,
+//       title: "Zip Error",
+//       description: config.page_desc,
+//       keywords: "payment, error, Angel Wings Power Assembly",
+//       status: 500,
+//       message_title: "Zip Error",
+//       message:
+//         "Failed to create zip file for this purchase. Admin has been notified.",
+//       actionUrl: "/admin",
+//       actionText: "Back to admin dashboard",
+//     });
+//   }
+//   // Send email with zip attachment
+//   let emailSuccess = true;
+//   try {
+//     await sendEmail({
+//       email: payment.email,
+//       subject: "Your Purchase from Angel Wings Power Assembly",
+//       message_1:
+//         "Thank you for your purchase! Please find your files attached.",
+//       message_2:
+//         "If you have any issues, contact us at contact@" + process.env.URL,
+//       attachments: [
+//         {
+//           filename: zipName,
+//           path: zipPath,
+//         },
+//       ],
+//     });
+//   } catch (emailErr) {
+//     emailSuccess = false;
+//     console.error("Error sending purchase email:", emailErr);
+//     await sendEmail({
+//       email: `admin@${process.env.URL}`,
+//       subject: "Purchase Approval Failed (Email Error)",
+//       message_1: `Failed to send purchase email for payment ${payment._id}: ${emailErr.message}`,
+//     });
+//   }
+//   // Clean up zip file
+//   try {
+//     fs.unlinkSync(zipPath);
+//   } catch (cleanupErr) {
+//     console.warn("Could not delete zip file:", zipPath, cleanupErr);
+//   }
+//   // Update payment status
+//   payment.status = "completed";
+//   await payment.save();
+//   return res.status(200).render("status/status", {
+//     app_name: process.env.APP_NAME,
+//     url: process.env.URL,
+//     title: "Payment Approved",
+//     description: config.page_desc,
+//     keywords: "payment, approved, Angel Wings Power Assembly",
+//     status: 200,
+//     message_title: emailSuccess
+//       ? "Purchase Approved"
+//       : "Purchase Approved (Email Failed)",
+//     message: emailSuccess
+//       ? "The purchase has been approved and files sent to the purchaser."
+//       : "The purchase was approved, but the email could not be sent. Admin has been notified.",
+//     actionUrl: "/admin",
+//     actionText: "Back to admin dashboard",
+//   });
+// });
+
 exports.approvePayment = asyncWrapper(async (req, res) => {
   const paymentId = req.params.id;
   const payment = await Payment.findById(paymentId);
@@ -288,6 +432,7 @@ exports.approvePayment = asyncWrapper(async (req, res) => {
       actionText: "Back to admin dashboard",
     });
   }
+
   if (payment.status === "completed") {
     return res.status(400).render("status/status", {
       app_name: process.env.APP_NAME,
@@ -302,17 +447,20 @@ exports.approvePayment = asyncWrapper(async (req, res) => {
       actionText: "Back to admin dashboard",
     });
   }
-  // Gather product files
-  const productFiles = [];
+
+  // Gather download links
+  const downloadLinks = [];
   for (const prod of payment.products) {
     if (prod.product_type === "audio" || prod.product_type === "ebook") {
       const media = await Media.findById(prod.product_id);
       if (media && media.url) {
-        productFiles.push(path.join(__dirname, "../public", media.url));
+        const fullUrl = `${process.env.URL}${media.url}`;
+        downloadLinks.push(fullUrl);
       }
     }
   }
-  if (productFiles.length === 0) {
+
+  if (downloadLinks.length === 0) {
     return res.status(400).render("status/status", {
       app_name: process.env.APP_NAME,
       url: process.env.URL,
@@ -326,58 +474,23 @@ exports.approvePayment = asyncWrapper(async (req, res) => {
       actionText: "Back to admin dashboard",
     });
   }
-  // Create zip
-  const zipName = `purchase_${payment._id}.zip`;
-  const zipPath = path.join(__dirname, `../logs/${zipName}`);
-  try {
-    await new Promise((resolve, reject) => {
-      const output = fs.createWriteStream(zipPath);
-      const archive = archiver("zip", { zlib: { level: 9 } });
-      output.on("close", resolve);
-      archive.on("error", reject);
-      archive.pipe(output);
-      for (const file of productFiles) {
-        archive.file(file, { name: path.basename(file) });
-      }
-      archive.finalize();
-    });
-  } catch (zipErr) {
-    console.error("Error creating zip:", zipErr);
-    await sendEmail({
-      email: `admin@${process.env.URL}`,
-      subject: "Purchase Approval Failed (Zip Error)",
-      message_1: `Failed to create zip for payment ${payment._id}: ${zipErr.message}`,
-    });
-    return res.status(500).render("status/status", {
-      app_name: process.env.APP_NAME,
-      url: process.env.URL,
-      title: "Zip Error",
-      description: config.page_desc,
-      keywords: "payment, error, Angel Wings Power Assembly",
-      status: 500,
-      message_title: "Zip Error",
-      message:
-        "Failed to create zip file for this purchase. Admin has been notified.",
-      actionUrl: "/admin",
-      actionText: "Back to admin dashboard",
-    });
-  }
-  // Send email with zip attachment
+
+  // Format plain-text links separated by new lines
+  const plainTextLinks = downloadLinks
+    .map((link, index) => `File ${index + 1}: ${link}`)
+    .join("\n");
+
+  // Send plain text email
   let emailSuccess = true;
   try {
     await sendEmail({
       email: payment.email,
       subject: "Your Purchase from Angel Wings Power Assembly",
       message_1:
-        "Thank you for your purchase! Please find your files attached.",
+        "Thank you for your purchase! You can download your files using the links below:\n\n" +
+        plainTextLinks,
       message_2:
-        "If you have any issues, contact us at contact@" + process.env.URL,
-      attachments: [
-        {
-          filename: zipName,
-          path: zipPath,
-        },
-      ],
+        "\n\nIf you have any issues, contact us at contact@" + process.env.URL,
     });
   } catch (emailErr) {
     emailSuccess = false;
@@ -388,15 +501,11 @@ exports.approvePayment = asyncWrapper(async (req, res) => {
       message_1: `Failed to send purchase email for payment ${payment._id}: ${emailErr.message}`,
     });
   }
-  // Clean up zip file
-  try {
-    fs.unlinkSync(zipPath);
-  } catch (cleanupErr) {
-    console.warn("Could not delete zip file:", zipPath, cleanupErr);
-  }
+
   // Update payment status
   payment.status = "completed";
   await payment.save();
+
   return res.status(200).render("status/status", {
     app_name: process.env.APP_NAME,
     url: process.env.URL,
@@ -408,7 +517,7 @@ exports.approvePayment = asyncWrapper(async (req, res) => {
       ? "Purchase Approved"
       : "Purchase Approved (Email Failed)",
     message: emailSuccess
-      ? "The purchase has been approved and files sent to the purchaser."
+      ? "The purchase has been approved and download links sent to the purchaser."
       : "The purchase was approved, but the email could not be sent. Admin has been notified.",
     actionUrl: "/admin",
     actionText: "Back to admin dashboard",

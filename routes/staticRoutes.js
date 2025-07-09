@@ -396,14 +396,15 @@ router.get(
     const events = await Event.find();
     const nearestEvent =
       events.find((el) => el.startDate > today) ||
-      events.find((el) => el.endDate > today);
+      events.find((el) => el.endDate > today) ||
+      events[0];
     res.status(StatusCodes.OK).render("programs-and-events", {
       app_name: process.env.APP_NAME,
       url: process.env.URL,
       title: "Programs and Events",
       description: config.page_desc,
       keywords: "Programs and Events, church, Angel Wings Power Assembly",
-      nearestEvent,
+      nearestEvent: nearestEvent || null,
       events,
     });
   })
